@@ -8,4 +8,5 @@ RUN hugo mod get && hugo mod tidy
 # Expose the HTTP port
 EXPOSE 1313
 
-CMD ["server", "--buildDrafts", "--baseURL", "https://hugo.gavriliu.com/"]
+ENTRYPOINT ["hugo", "server"]
+CMD ["--buildDrafts", "--baseURL", "https://hugo.gavriliu.com/"]
