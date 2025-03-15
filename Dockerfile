@@ -12,4 +12,4 @@ RUN grep baseurl /src/hugo.toml
 # Expose the HTTP port
 EXPOSE 1313
 
-CMD ["hugo", "server", "--bind", "0.0.0.0", "--baseURL", "http://hugo.gavriliu.com/", "--disableFastRender"]
+CMD ["hugo", "server", "--bind", "0.0.0.0", "--config", "/src/hugo.toml", "--baseURL", "https://hugo.gavriliu.com/", "--disableFastRender"]
