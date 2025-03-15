@@ -3,7 +3,7 @@ FROM hugomods/hugo
 # Copy the public folder to Apache's web root
 COPY . /src
 
-RUN echo "XXXXXX" && ls -la /src
+RUN echo "XXXXXX" && ls -la /src && grep baseURL /src/config.toml
 
 RUN hugo mod get && hugo mod tidy
 
