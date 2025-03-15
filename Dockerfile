@@ -1,13 +1,14 @@
 FROM hugomods/hugo
 
-# Copy the public folder to Apache's web root
+
 COPY . /src
 
-# RUN hugo mod get && hugo mod tidy
 
-VOLUME ["/src/hugo.toml"]
+# Uncomment below to install dependencies via NPM, it depends on your site.
 
-# Expose the HTTP port
-EXPOSE 1313
+# RUN npm i
 
-CMD ["server", "-D", "--buildDrafts", "--baseURL", "https://hugo.gavriliu.com/"]
+
+# Build site.
+
+RUN hugo --minify 
