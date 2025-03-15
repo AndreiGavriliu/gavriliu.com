@@ -10,5 +10,4 @@ VOLUME ["/src/hugo.toml"]
 # Expose the HTTP port
 EXPOSE 1313
 
-ENTRYPOINT ["hugo", "server"]
-CMD ["--buildDrafts", "--baseURL", "https://hugo.gavriliu.com/"]
+CMD ["server", "-D", "--buildDrafts", "--baseURL", "https://hugo.gavriliu.com/"]
