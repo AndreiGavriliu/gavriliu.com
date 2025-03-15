@@ -1,7 +1,7 @@
 FROM hugomods/hugo
 
 # Copy the public folder to Apache's web root
-COPY / /src
+COPY ./ /src
 
 RUN hugo mod get && hugo mod tidy
 
