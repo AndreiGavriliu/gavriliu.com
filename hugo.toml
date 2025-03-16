@@ -112,3 +112,10 @@ pagination.pagerSize = 5
   # replacements = "github.com/panr/hugo-theme-terminal/v4 -> themes/terminal"
 [[module.imports]]
   path = 'github.com/panr/hugo-theme-terminal/v4'
+[[module.imports]]
+  path = 'github.com/hugomods/umami-analytics'
+
+[params.umami]
+enabled = true
+website_id = "574a017e-9b3c-4935-ae63-d080ef064110"
+host_url = "https://umami.gavriliu.com"
