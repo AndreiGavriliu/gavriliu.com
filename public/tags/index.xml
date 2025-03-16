@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Terminal</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://hugo.gavriliu.com/tags/</link>
     <description>Recent content in Tags on Terminal</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Mar 2025 22:19:55 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://hugo.gavriliu.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Homeassistant</title>
-      <link>http://localhost:1313/tags/homeassistant/</link>
+      <link>https://hugo.gavriliu.com/tags/homeassistant/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
-      <guid>http://localhost:1313/tags/homeassistant/</guid>
+      <guid>https://hugo.gavriliu.com/tags/homeassistant/</guid>
       <description></description>
     </item>
     <item>
       <title>Waste-Collection</title>
-      <link>http://localhost:1313/tags/waste-collection/</link>
+      <link>https://hugo.gavriliu.com/tags/waste-collection/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
-      <guid>http://localhost:1313/tags/waste-collection/</guid>
+      <guid>https://hugo.gavriliu.com/tags/waste-collection/</guid>
       <description></description>
     </item>
     <item>
       <title>Longhorn</title>
-      <link>http://localhost:1313/tags/longhorn/</link>
+      <link>https://hugo.gavriliu.com/tags/longhorn/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
-      <guid>http://localhost:1313/tags/longhorn/</guid>
+      <guid>https://hugo.gavriliu.com/tags/longhorn/</guid>
       <description></description>
     </item>
     <item>
       <title>Troubleshooting</title>
-      <link>http://localhost:1313/tags/troubleshooting/</link>
+      <link>https://hugo.gavriliu.com/tags/troubleshooting/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
-      <guid>http://localhost:1313/tags/troubleshooting/</guid>
+      <guid>https://hugo.gavriliu.com/tags/troubleshooting/</guid>
       <description></description>
     </item>
     <item>
       <title>Application</title>
-      <link>http://localhost:1313/tags/application/</link>
+      <link>https://hugo.gavriliu.com/tags/application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
-      <guid>http://localhost:1313/tags/application/</guid>
+      <guid>https://hugo.gavriliu.com/tags/application/</guid>
       <description></description>
     </item>
     <item>
       <title>Argocd</title>
-      <link>http://localhost:1313/tags/argocd/</link>
+      <link>https://hugo.gavriliu.com/tags/argocd/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
-      <guid>http://localhost:1313/tags/argocd/</guid>
+      <guid>https://hugo.gavriliu.com/tags/argocd/</guid>
       <description></description>
     </item>
     <item>
       <title>Helm</title>
-      <link>http://localhost:1313/tags/helm/</link>
+      <link>https://hugo.gavriliu.com/tags/helm/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
-      <guid>http://localhost:1313/tags/helm/</guid>
+      <guid>https://hugo.gavriliu.com/tags/helm/</guid>
       <description></description>
     </item>
     <item>
       <title>Bitnami</title>
-      <link>http://localhost:1313/tags/bitnami/</link>
+      <link>https://hugo.gavriliu.com/tags/bitnami/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      <guid>http://localhost:1313/tags/bitnami/</guid>
+      <guid>https://hugo.gavriliu.com/tags/bitnami/</guid>
       <description></description>
     </item>
     <item>
       <title>Sealed-Secrets</title>
-      <link>http://localhost:1313/tags/sealed-secrets/</link>
+      <link>https://hugo.gavriliu.com/tags/sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      <guid>http://localhost:1313/tags/sealed-secrets/</guid>
+      <guid>https://hugo.gavriliu.com/tags/sealed-secrets/</guid>
       <description></description>
     </item>
     <item>
       <title>Security</title>
-      <link>http://localhost:1313/tags/security/</link>
+      <link>https://hugo.gavriliu.com/tags/security/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      <guid>http://localhost:1313/tags/security/</guid>
+      <guid>https://hugo.gavriliu.com/tags/security/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,61 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/homeassistant/</loc>
+    <loc>https://hugo.gavriliu.com/tags/homeassistant/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://hugo.gavriliu.com/posts/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://hugo.gavriliu.com/tags/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://hugo.gavriliu.com/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/waste-collection-schedule-in-ha/</loc>
+    <loc>https://hugo.gavriliu.com/posts/waste-collection-schedule-in-ha/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/waste-collection/</loc>
+    <loc>https://hugo.gavriliu.com/tags/waste-collection/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/containers-not-mounting-longhorn-volumes/</loc>
+    <loc>https://hugo.gavriliu.com/posts/containers-not-mounting-longhorn-volumes/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/longhorn/</loc>
+    <loc>https://hugo.gavriliu.com/tags/longhorn/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/troubleshooting/</loc>
+    <loc>https://hugo.gavriliu.com/tags/troubleshooting/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/application/</loc>
+    <loc>https://hugo.gavriliu.com/tags/application/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/argocd/</loc>
+    <loc>https://hugo.gavriliu.com/tags/argocd/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</loc>
+    <loc>https://hugo.gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/helm/</loc>
+    <loc>https://hugo.gavriliu.com/tags/helm/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/bitnami/</loc>
+    <loc>https://hugo.gavriliu.com/tags/bitnami/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</loc>
+    <loc>https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sealed-secrets/</loc>
+    <loc>https://hugo.gavriliu.com/tags/sealed-secrets/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/security/</loc>
+    <loc>https://hugo.gavriliu.com/tags/security/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://hugo.gavriliu.com/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://hugo.gavriliu.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://hugo.gavriliu.com/projects/</loc>
   </url>
 </urlset>
