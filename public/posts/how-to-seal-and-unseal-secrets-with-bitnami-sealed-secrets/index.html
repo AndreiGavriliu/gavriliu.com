@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>How to seal and unseal secrets with Bitnami Sealed-Secrets :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!
+" />
+<meta name="keywords" content=", " />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/code.min.4f0ccc8439f99bf7f7970298556b94011aabc1fcae743b6842fc3361a2da9ea3.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/main.min.15870410d15d02abd22fb5ef00996f65a00d04b3a7435e9f83831c7c2298de88.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="https://hugo.gavriliu.com/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://hugo.gavriliu.com/favicon.png">
+<link rel="apple-touch-icon" href="https://hugo.gavriliu.com/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to seal and unseal secrets with Bitnami Sealed-Secrets">
+<meta property="og:description" content="I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!
+" />
+<meta property="og:url" content="https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" />
+<meta property="og:site_name" content="Terminal" />
+
+  
+  
+  <meta property="og:image" content="https://hugo.gavriliu.com/">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-03-14 16:41:25 &#43;0100 CET" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-03-14</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="https://hugo.gavriliu.com/tags/bitnami/">bitnami</a>&nbsp;
+      
+      #<a href="https://hugo.gavriliu.com/tags/sealed-secrets/">sealed-secrets</a>&nbsp;
+      
+      #<a href="https://hugo.gavriliu.com/tags/security/">security</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!</p>
+<h2 id="what-is-bitnamis-sealed-secrets">What is Bitnami’s Sealed Secrets?<a href="#what-is-bitnamis-sealed-secrets" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<blockquote>
+<p><strong>Problem</strong>: &ldquo;I can manage all my K8s config in git, except Secrets.&rdquo;<br>
+<strong>Solution</strong>: Encrypt your Secret into a SealedSecret, which is safe to store - even inside a public repository. The SealedSecret can be decrypted only by the controller running in the target cluster and nobody else (not even the original author) is able to obtain the original Secret from the SealedSecret. (from the official <a href="https://github.com/bitnami-labs/sealed-secrets">project&rsquo;s GitHub Repository</a>)</p></blockquote>
+<p>You might be wondering what it actually looks like</p>
+<h2 id="how-to-seal-secrets">How to seal secrets<a href="#how-to-seal-secrets" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="sensitive-information">Sensitive information<a href="#sensitive-information" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>For instance, if you need to seal the following credentials:</p>
+<ul>
+<li><code>POSTGRES_HOST</code>: <code>10.20.1.45</code></li>
+<li><code>POSTGRES_PORT</code>: <code>5432</code></li>
+<li><code>POSTGRES_DB</code>: <code>fbi_undercover_agents</code></li>
+<li><code>POSTGRES_USER</code>: <code>admin</code></li>
+<li><code>POSTGRES_PASSWORD</code>: <code>superSecr3tPassw0rd</code></li>
+</ul>
+<h3 id="create-a-secret">Create a secret<a href="#create-a-secret" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>The values of each key in <code>secret.yaml</code> must be base64 encoded</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">MTAuMjAuMS40NQ==</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_PORT</span><span class="p">:</span><span class="w"> </span><span class="l">NTQzMg==</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">ZmJpX3VuZGVyY292ZXJfYWdlbnRz</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">YWRtaW4=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">c3VwZXJTZWNyM3RQYXNzdzByZA==</span><span class="w">
+</span></span></span></code></pre></div><h3 id="seal-the-secret">Seal the secret<a href="#seal-the-secret" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat secret.yaml <span class="p">|</span> kubeseal <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --controller-name<span class="o">=</span>sealed-secrets <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --controller-namespace<span class="o">=</span>sealed-secrets <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --format<span class="o">=</span>yaml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --scope<span class="o">=</span>cluster-wide &gt; sealed-secret.yaml
+</span></span></code></pre></div><ul>
+<li><code>--controller-name</code>: Name of sealed-secrets controller. (default &ldquo;sealed-secrets-controller&rdquo;). Since I installed via helm, the controller name is <code>sealed-secrets</code></li>
+<li><code>--controller-namespace</code>: Namespace of sealed-secrets controller. (default &ldquo;kube-system&rdquo;)</li>
+<li><code>--format</code>: Output format for sealed secret. Either json or yaml (default &ldquo;json&rdquo;)</li>
+<li><code>--scope</code>: Set the scope of the sealed secret: <code>strict</code>, <code>namespace-wide</code>, <code>cluster-wide</code> (defaults to <code>strict</code>). Mandatory for <code>--raw</code>, otherwise the <code>sealedsecrets.bitnami.com/cluster-wide</code> and <code>sealedsecrets.bitnami.com/namespace-wide</code> annotations on the input secret can be used to select the scope. (default <code>strict</code>)</li>
+</ul>
+<p>This generates the file <code>sealed-secret.yaml</code></p>
+<h3 id="check-the-sealed-secret-file">Check the sealed secret file<a href="#check-the-sealed-secret-file" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Check <code>metadata.name</code>, <code>metadata.namespace</code>, <code>spec.template.metadata.name</code> and <code>spec.template.metadata.namespace</code> are correct. Ensure these match your intended Secret deployment to avoid issues when applying the SealedSecret</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">bitnami.com/v1alpha1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">SealedSecret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">sealedsecrets.bitnami.com/cluster-wide</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">encryptedData</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">AgCimSDyG7/fDlP9f6lLjr1iVfL2UDcOYsrdkGAUipqIMO+Nd9/aVokfWVveKqAmF0ZFx1tDp2BO8YGv54A7oJVKCiLE3EYVMcsAa76Q3IrUtfbY3Qp5Kk9dLP0IuDn8zykZqpG4RSYqC4ZT+9hnaPRDp+BoeQysJJEoL5txyr/b39LbkUXmH/fuwbHT8ZmYZ7p1wkBxRVKL6vXnqO0GEYi9X8wxBw2ptQuvrt/JD9VUPByLoJTvqLXMfkGcnJ3Is6l5S54vU5Z9HQIodVSVBI34o1WUcP48K1Kj96MXvJ2UgremjmgNgFmrpc0T2cLsIIMAPhWj8g2KTDy2aB5zW2P48wVNW7Uu0foAP9rXgybPexSSA52Vv06ZYwED9zzVQJvvZlAt0Q78+7goB8MzlsU31R4LDs2FcKV1uxATKau+CKe+kKhAN/GBI+vLaLFHdmVIDdmNT3jIapoY00iFL9Xcrv7GdecWrMrov3ZC2co//1E2eZnb+aX71Jl9riYCNXP7J/TXlGc+LcQ4RPxQyWfJ8/r83MipMTfB+iqUjuvOTgVE/5Qf2HtU/1HPWOHgmGJTmiglyRYeLLzug45NBTeFimcIX/2JwqTJwF/sHcdqwu/iotNHNmYf1O/vbjIeWgHFVX8DqtZ/j/0G6zTWPBdEE0tcuKwwvGwYzhcQgj4SjVb9NoYpzkXZXH/p2NXHSnIIBcEynwsNphx71Q9FjtEkGCax5OQ=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">AgBQFZiZaZCeRVzWqAqOaxGuoSRAGPHmITd6XvW5K0NTvA8ZE+yrheKK4sQHS7htQQeFzBOEz99GrRxNLmhQbMDgA0GGd7qCm/kGsVEpNcf8C8yJ6KzRlCCyQdP9PcOIjwAvPxpisGJvStobcsxQXl9VWlCh/4VpkWED7JYJh8TlYd0XaXMR2i+6Q581C3cVPUH0V07EUPiPxstI4w18l8HqAfFqKZiT+uk9EsVXl/IPOqg9Dxg/SksrWuY7EP3R1lrubzQr+RM02LInw5cLh6iX9x3ZNiuF3BbnKKDgA5/tT1+qOP4bljE2JwHMOdo1oJZnrvw2ny4/x9nKOzkAa8KjogSTdFonDnlBV0bRXZ4G3RSZPNcp9l2TG5Q7itZNX1WcOMa+o5OJQUsVf6Y6aSTr+QB1LxeCk8tASPsu1HnaZSSzECr3fxMJ1gDRz6l8SFHLM9XQ0j9MN6QrnNSmWOUWnhAsa22uX+nYM43jGm6oELrlXo/fNLn0oPuY2xaKpO+5YNZ3AM+xGFFioPs+e2Hl+gBsXwY4ZmEou7vZ5/mSIVuTMBkmedi/sdhfpYmOwhVXfqsVa7Rh+ov6Ab6zOEC+xEnVmyxclesEY7wHonCNK4M4YiIXQalHo1M0mi4q78HvvXrOSzmqqRWBg3V8R8mwhypgg1aIgkx7Jti1HRqvXb9hg2rFU+R+fx3vnravYmNO4mt3ePs274GZ</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">AgCEGEVwbWu4GeNgqJDWPO+XgdsMj5j5vMguARiMLFIEz3asEqETItVqMoY+TaF4Cb0jQ51SuhpQYQwy/0LBJbriy9Nj/YxHEBg9q2M11kkd15S4Lwrnan44PiLKYwLjkpM5GkzHek60eT56MxeT2O4gX9muGfYvRle5W71eGba2JMktu8ERXnMStulOUf0Oqfx4DCD7YRgvhsdlFqBMLs9uAcefrXkWjXKuyJhkIdFJBIS9JLjbw68DyQXPWmwHTAbhXWetKIQHYAe+Yr//VZUolAfeqb7xW2NwcLr5WKrdbk9fHgxWKUwPP6KpcmlF2MlwJbntEzOF6ZYBy9IY1Gw4XEu+4ayT8KXYTK8y1gXzBgbFUINs0YNlJoxK7XMIcTj3gBCpg2e4cPHolBpi7bGhAuHJ5vh7d9HZ4KhhxXqcbQ6cin/V5zEK91okpFUyBtiZphlFWJTcgwnaqGbvuCTuh7XHYTEUKWaE+1ha4PV0qLqHzz9d6P2/lobYZyJ+xsczwrdaUyKz7/WgHlDk4Y/xy79ZL9xIOTyUYymEwrzgO2mSN3PAof87ryTM49cpQZd25BxtSa1Y/asYmd6FrpHdaQmxMndAPATugSp4t3XJoKpCVn7+JN4K5dEawAqJyKVqoB/8URcjHnPcgx/Fp4LOJ919WvmR/+wZpjx3eFnOC/+QOqE3H/DzPVhVwsOOUWWbktS2rHM0afy8YATqRI6W8Eja</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_PORT</span><span class="p">:</span><span class="w"> </span><span class="l">AgAOH0MigGUSP2Dh88jMdLV0aFURvlYNM9OChDHCeZSSELa0vnAR7f4rAMLQhO00EupMZj+EcVozXTY2ZoB8u1PKC0/WxjoHTvzHARwFHGMW/SjZFw4YXsBP8lIcFz0aHIHQcGE/vkF0KYPOgH3Gi9r7x3zT8bpHaDrSWtgcsw2Ijzx5bidBcvuGIPfi4R6bMrZxBhz1F+/AY360IVRwXxluCVoXmb+2X2Bp01XqAk2f6fh4dQDz9G+kDyvV7O0eW5KxLqmYHME+AzpEq+M7zE1xlPzE6vb1TB7DOJBBeeejGu/Iq3Yx26D8jAoSAMHsj4kPKEiYTwYZ0mbq6H789MYnnn/PIOkPHqo/2i6lHwJbxoAkGzIkBI6wKZGP5um1PCJFJv2n2DPMEDsTlxkL8j1l0TI607R00jJ5gc7f7Czepi+BXhyadn+wbnmEu/7yAEO13uKNa8M4DKcKUzuTFg/PghjLjK8PnUw14NdAcP8XjEvWtqtjo4QkPFsalAUmvEYZEODol0DiaG0jT50d8IYgXp6Hx5qlC1L1g0p3xPrO6QH8BVda8h/NePISB4rBo/PmQgvz1GyTRSgs14stt1RsjNAKzpNBACysCY0+MNpeAsqg8bLsGkBcl7bfac5HdrY45fR4lS6dIDLlLbW6htEWwBlDeOPX3HznSnnxDvf2ywdakpMzVLsLVII9qmcgDf4riTNo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">AgBC8nVi5UKfNCOzMnzGm1GPafXu2TgAYHqlEfCyHD5DA8btqX8dWpbJehUuXhG39qJnrZe/f3vUwpUIWfgTma2+HUfBz71cyUgrrcvY0HczAvzqs8pz34KjeuZF5GD64rkcWgc0aP663F8ANGsFklsq3fsHzY2xH3dFiKukH6b2jLcitwfrhm55JcUtmnHfeGqwMYSj3MXwf49f07E84zdFH5PgImUOoA4KgzdlcnBzzyqutjSF8omTbTcAq4nmjO8Qa3+pN+gjxU5B2ATC6mtYdfO87DXEG60SasnTsWcS9vR9AKH8CpUX1VR/Q72KyJf5DNCSZsXUVm9kag6RC4KAH3P7xUX5OTlTHZkZsGUi0jI7wP6QtxSdQK9E8t7fHuvlBd7oEwdFYo6gOlLFanO8vHbGE1ZeJSYg3Fhl+bCevXnPRBU7xrqhnvg7VG/Ek9ctmjZHGGen/XrDa7cMpExjjVPuW6Ax+MFQmB+tryHwxDSJ0VTzFbax4yJK84iyvqmxai5xdedetAI6ZbQqcCZx/Hn8QfaKLAObEruA2ryBmyOIbo7Ymx5TLb0E8ZaAoPqW3Joa3dBd+OMhCEGZ0ts0CXKqBaIEEPs6rdz78afCd2WAFcCNJgT+KH596Z5OEfg9q3nD/Gs+WN4HKy+M20CkPo19kQlbcnIpTLNY5oSRGJSpvn9lovYvp6kN8ZQnlKtBmaDJfA==</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">sealedsecrets.bitnami.com/cluster-wide</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
+</span></span></span></code></pre></div><h2 id="how-to-unseal-secrets">How to unseal secrets<a href="#how-to-unseal-secrets" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="download-sealed-secret-key">Download sealed secret key<a href="#download-sealed-secret-key" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl get secret <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -n sealed-secrets <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -l sealedsecrets.bitnami.com/sealed-secrets-key&lt;uniqueId&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -o yaml &gt; sealed-secrets-key.yaml
+</span></span></code></pre></div><h3 id="unseal-secret-using-downloaded-key">Unseal secret using downloaded key<a href="#unseal-secret-using-downloaded-key" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubeseal --controller-name<span class="o">=</span>sealed-secrets <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --controller-namespace<span class="o">=</span>sealed-secrets &lt; sealed-secret.yaml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --recovery-unseal <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --recovery-private-key<span class="o">=</span>sealed-secrets-key -o yaml
+</span></span></code></pre></div>
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="https://hugo.gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/" class="button inline prev">
+        &lt; [<span class="button__text">Combine Helm and K8s Manifests in One ArgoCD Application</span>]
+      </a>
+    
+    
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

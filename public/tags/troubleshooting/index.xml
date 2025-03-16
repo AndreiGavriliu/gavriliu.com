@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on Terminal</title>
+    <link>https://hugo.gavriliu.com/tags/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on Terminal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 14 Mar 2025 21:34:29 +0100</lastBuildDate>
+    <atom:link href="https://hugo.gavriliu.com/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Containers Not Mounting Longhorn Volumes</title>
+      <link>https://hugo.gavriliu.com/posts/containers-not-mounting-longhorn-volumes/</link>
+      <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
+      <guid>https://hugo.gavriliu.com/posts/containers-not-mounting-longhorn-volumes/</guid>
+      <description>&lt;p&gt;Shoutout to &lt;a href=&#34;https://github.com/derekbit&#34;&gt;derekbit&lt;/a&gt; for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183&#34;&gt;here&lt;/a&gt; and in this lifesaving &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359&#34;&gt;comment&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;tools-used&#34;&gt;Tools used&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/stern/stern&#34;&gt;stern&lt;/a&gt;: Stern allows you to &lt;code&gt;tail&lt;/code&gt; multiple pods on Kubernetes and multiple containers within the pod. Each result is color coded for quicker debugging.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;check-the-logs&#34;&gt;Check the logs&lt;/h2&gt;&#xA;&lt;p&gt;To start questioning your life choices, run:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
