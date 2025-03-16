@@ -11,7 +11,6 @@ description = ""
 showFullContent = false
 readingTime = false
 hideComments = false
-ToC = false
 +++
 
 I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup! So, like any reasonable person, I had to RTFM (read the fine manual, of course), and eventually stumbled upon the brilliant solution.

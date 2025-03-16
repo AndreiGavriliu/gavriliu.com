@@ -8,6 +8,7 @@ description = ""
 showFullContent = false
 readingTime = false
 hideComments = false
+ToC = true
 +++
 
 I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!

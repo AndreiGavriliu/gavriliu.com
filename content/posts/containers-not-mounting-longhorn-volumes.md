@@ -11,7 +11,6 @@ description = ""
 showFullContent = false
 readingTime = false
 hideComments = false
-ToC = false
 +++
 
 Shoutout to [derekbit](https://github.com/derekbit) for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found [here](https://github.com/longhorn/longhorn/issues/7183) and in this lifesaving [comment](https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359).

@@ -11,6 +11,7 @@ description = ""
 showFullContent = false
 readingTime = false
 hideComments = false
+ToC = true
 +++
 
 Sometimes, I *totally* forget to take out the garbage bins. And around here, the rule is simple: if your bins aren’t on the sidewalk, the garbage truck just cruises by like a VIP limo ignoring peasants.
