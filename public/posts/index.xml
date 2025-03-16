@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Terminal</title>
-    <link>https://hugo.gavriliu.com/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Terminal</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Mar 2025 22:19:55 +0100</lastBuildDate>
-    <atom:link href="https://hugo.gavriliu.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Waste Collection Schedule in HomeAssistant</title>
-      <link>https://hugo.gavriliu.com/posts/waste-collection-schedule-in-ha/</link>
+      <link>http://localhost:1313/posts/waste-collection-schedule-in-ha/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
-      <guid>https://hugo.gavriliu.com/posts/waste-collection-schedule-in-ha/</guid>
+      <guid>http://localhost:1313/posts/waste-collection-schedule-in-ha/</guid>
       <description>&lt;p&gt;Sometimes, I &lt;em&gt;totally&lt;/em&gt; forget to take out the garbage bins. And around here, the rule is simple: if your bins aren’t on the sidewalk, the garbage truck just cruises by like a VIP limo ignoring peasants.&lt;/p&gt;&#xA;&lt;p&gt;When we first moved in, I forgot to take out the recycling bags (Gelber Sack) three times in a row. This resulted in a majestic mountain of 25 bags filled with plastic, empty cat food cans, and my dignity.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Containers Not Mounting Longhorn Volumes</title>
-      <link>https://hugo.gavriliu.com/posts/containers-not-mounting-longhorn-volumes/</link>
+      <link>http://localhost:1313/posts/containers-not-mounting-longhorn-volumes/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
-      <guid>https://hugo.gavriliu.com/posts/containers-not-mounting-longhorn-volumes/</guid>
+      <guid>http://localhost:1313/posts/containers-not-mounting-longhorn-volumes/</guid>
       <description>&lt;p&gt;Shoutout to &lt;a href=&#34;https://github.com/derekbit&#34;&gt;derekbit&lt;/a&gt; for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183&#34;&gt;here&lt;/a&gt; and in this lifesaving &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359&#34;&gt;comment&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;tools-used&#34;&gt;Tools used&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/stern/stern&#34;&gt;stern&lt;/a&gt;: Stern allows you to &lt;code&gt;tail&lt;/code&gt; multiple pods on Kubernetes and multiple containers within the pod. Each result is color coded for quicker debugging.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;check-the-logs&#34;&gt;Check the logs&lt;/h2&gt;&#xA;&lt;p&gt;To start questioning your life choices, run:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
-      <link>https://hugo.gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <link>http://localhost:1313/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
-      <guid>https://hugo.gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <guid>http://localhost:1313/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
       <description>&lt;p&gt;I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup! So, like any reasonable person, I had to RTFM (read the fine manual, of course), and eventually stumbled upon the brilliant solution.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <link>http://localhost:1313/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      <guid>https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <guid>http://localhost:1313/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
       <description>&lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!&lt;/p&gt;</description>
     </item>
   </channel>

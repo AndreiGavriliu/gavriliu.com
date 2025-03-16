@@ -9,19 +9,19 @@ ToC = true
 My homelab is running on 4 Intel NUCs, all happily chugging along with k3s. The network backbone is a UniFi setup, featuring a UDMPro and a UniFi Switch 24 Pro POE. Right now, it’s a cozy 1GB network, but I’m planning to bump it up to 2.5GB soon—because, well, who doesn’t love faster speeds? The only thing slowing me down at the moment is the backup process—Longhorn and Kasten.io backups are giving me a bit of a bottleneck, with everything stored safely on my trusty old Synology DS918+.
 
 A few details about what makes it all work smoothly:
-* Traefik (Dynamic ingress controller)
-* ArgoCD (GitOps continuous delivery)
-* Kasten.io (Kubernetes backup solution)
-* Longhorn (Cloud-native storage)
-* Bitnami Sealed Secrets (Encrypted secrets management)
-* Graylog (Centralized log management)
-* RenovateBot (Automated dependency updates)
-* MetalLB (Load balancing for bare-metal)
-* cert-manager (TLS certificate management)
-* kube-prometheus-stack (Monitoring stack)
-    * Grafana (Data visualization)
-    * Prometheus (Metrics collection)
-    * AlertManager (Alert management)
+* [Traefik](https://traefik.io/) (Dynamic ingress controller)
+* [ArgoCD](https://argo-cd.readthedocs.io) (GitOps continuous delivery)
+* [Kasten.io](https://www.veeam.com/products/cloud/kubernetes-data-protection.html) (Kubernetes backup solution)
+* [Longhorn](https://longhorn.io/) (Cloud-native storage)
+* [Bitnami Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) (Encrypted secrets management)
+* [Graylog](https://graylog.org/) (Centralized log management)
+* [RenovateBot](https://github.com/renovatebot/renovate) (Automated dependency updates)
+* [MetalLB](https://metallb.io/) (Load balancing for bare-metal)
+* [cert-manager](https://cert-manager.io/) (TLS certificate management)
+* [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack) (Monitoring stack)
+    * [Grafana](https://grafana.com/) (Data visualization)
+    * [Prometheus](https://prometheus.io/) (Metrics collection)
+    * [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) (Alert management)
 
 ... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab)
 
