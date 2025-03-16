@@ -30,11 +30,25 @@
       <description>&lt;p&gt;I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup! So, like any reasonable person, I had to RTFM (read the fine manual, of course), and eventually stumbled upon the brilliant solution.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>About</title>
+      <link>https://hugo.gavriliu.com/about/</link>
+      <pubDate>Fri, 14 Mar 2025 17:35:10 +0100</pubDate>
+      <guid>https://hugo.gavriliu.com/about/</guid>
+      <description>&lt;h1 id=&#34;why&#34;&gt;Why?&lt;/h1&gt;&#xA;&lt;p&gt;I started this blog because I figured it’s time to share my knowledge and opinions with the world. After all, if it’s on the internet, it must be true… right? Well, apparently not. There’s a ton of outdated info and some outright nonsense out there. Even ChatGPT has its off days—sometimes the info is ancient, and other times it just hits me with the classic ‘You’re right!’ like I’m talking to a cheerleader instead of getting actual answers. So here I am, doing my part to make the internet a little less… well, internet-y!&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
       <link>https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
       <guid>https://hugo.gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
       <description>&lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Projects</title>
+      <link>https://hugo.gavriliu.com/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://hugo.gavriliu.com/projects/</guid>
+      <description>&lt;h2 id=&#34;homelab&#34;&gt;Homelab&lt;/h2&gt;&#xA;&lt;p&gt;My homelab is running on 4 Intel NUCs, all happily chugging along with k3s. The network backbone is a UniFi setup, featuring a UDMPro and a UniFi Switch 24 Pro POE. Right now, it’s a cozy 1GB network, but I’m planning to bump it up to 2.5GB soon—because, well, who doesn’t love faster speeds? The only thing slowing me down at the moment is the backup process—Longhorn and Kasten.io backups are giving me a bit of a bottleneck, with everything stored safely on my trusty old Synology DS918+.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
