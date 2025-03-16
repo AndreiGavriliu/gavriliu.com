@@ -23,28 +23,28 @@ A few details about what makes it all work smoothly:
     * [Prometheus](https://prometheus.io/) (Metrics collection)
     * [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) (Alert management)
 
-... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab)
+<!-- ... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab) -->
 
 ## Home Assistant
 
-Home Assistant is like my home’s personal assistant, but instead of scheduling meetings, it’s reminding me to take the trash out and telling me when the washer’s done. It’s got some quirks, though—sometimes it seems to know me better than I know myself, like when it randomly turns on the lights at 3 AM and I’m left wondering if it’s just being helpful or trying to send me a message. At least it’s not sending passive-aggressive reminders… yet.
+[Home Assistant](https://www.home-assistant.io/) is like my home’s personal assistant, but instead of scheduling meetings, it’s reminding me to take the trash out and telling me when the washer’s done. It’s got some quirks, though—sometimes it seems to know me better than I know myself, like when it randomly turns on the lights at 3 AM and I’m left wondering if it’s just being helpful or trying to send me a message. At least it’s not sending passive-aggressive reminders… yet.
 
 A few integrations I use:
-* Alarmo
-* Google Calendar
-* Homematic(IP) Local
-* InfluxDB
-* Nintendo Switch Parental Controls
-* ONVIF
-* OpenWeatherMap
-* OpenWeatherMap History
-* SMLIGHT SLZB
-* Tasmota
-* UniFi Network
-* UniFi Protect
-* Waze Travel Time
+* [Alarmo](https://github.com/nielsfaber/alarmo)
+* [Google Calendar](https://www.home-assistant.io/integrations/google/)
+* [Homematic(IP) Local](https://github.com/SukramJ/custom_homematic)
+* [InfluxDB](https://www.home-assistant.io/integrations/influxdb/)
+* [Nintendo Switch Parental Controls](https://github.com/pantherale0/ha-nintendoparentalcontrols)
+* [ONVIF](https://home.gavriliu.com/config/integrations/integration/onvif)
+* [OpenWeatherMap](https://www.home-assistant.io/integrations/openweathermap/)
+* [OpenWeatherMap History](https://github.com/petergridge/openweathermaphistory)
+* [SMLIGHT](https://www.home-assistant.io/integrations/smlight/)
+* [Tasmota](https://www.home-assistant.io/integrations/tasmota/)
+* [UniFi Network](https://www.home-assistant.io/integrations/unifi/)
+* [UniFi Protect](https://www.home-assistant.io/integrations/unifiprotect/)
+* [Waze Travel Time](https://www.home-assistant.io/integrations/waze_travel_time/)
 
-... and more on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab/cluster/hive/apps/homeassistant/k8s-manifests)
+<!-- ... and more on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab/cluster/hive/apps/homeassistant/k8s-manifests) -->
 
 ## Tasmin
 
