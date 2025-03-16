@@ -118,4 +118,4 @@ pagination.pagerSize = 5
 [params.umami]
 enabled = true
 website_id = "574a017e-9b3c-4935-ae63-d080ef064110"
-host_url = "https://umami.gavriliu.com"
+jsLocation = "https://umami.gavriliu.com/script.js"
