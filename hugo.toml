@@ -97,7 +97,7 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "Terminal"
+        logoText = "gavriliu.com | Breaking IT so you don’t have to."
         logoHomeLink = "/"
 
       [languages.en.menu]
