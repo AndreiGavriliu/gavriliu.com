@@ -6,10 +6,13 @@ title = 'About'
 # Who?
 
 Andrei Gavriliu - Senior IT Consultant | OpenShift @ [ConSol Consulting & Solutions Software GmbH](https://consol.de)
+* [GitHub](https://github.com/AndreiGavriliu)
+* [LinkedIn](https://www.linkedin.com/in/andreigavriliu/)
+* [XING](https://www.xing.com/profile/Andrei_Gavriliu/)
 
 # Why?
 
-I started this blog because I figured it’s time to share my knowledge and opinions with the world. After all, if it’s on the internet, it must be true… right? Well, apparently not. There’s a ton of outdated info and some outright nonsense out there. Even ChatGPT has its off days—sometimes the info is ancient, and other times it just hits me with the classic ‘You’re right!’ like I’m talking to a cheerleader instead of getting actual answers. So here I am, doing my part to make the internet a little less… well, internet-y!
+I started this blog because I figured it’s time to share my knowledge and opinions with the world. After all, if it’s on the internet, it must be true… right? Well, apparently not. There’s a ton of outdated info and some outright nonsense out there. Even ChatGPT has its off days — sometimes the info is ancient, and other times it just hits me with the classic 'You’re right!' like I’m talking to a cheerleader instead of getting actual answers. So here I am, doing my part to make the internet a little less… well, internet-y!
 
 # What?
 
