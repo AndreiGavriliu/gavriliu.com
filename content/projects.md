@@ -2,6 +2,9 @@
 draft = false
 title = 'Projects'
 ToC = true
+showShare = false
+showReadTime = false
+showDate = false
 +++
 
 ## Homelab
@@ -24,6 +27,7 @@ A few details about what makes it all work smoothly:
     * [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) (Alert management)
 
 <!-- ... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab) -->
+... more details about the cluster and what Apps I am hosting, in my [homelab series](series/homelab)
 
 ## Home Assistant
 
@@ -45,6 +49,7 @@ A few integrations I use:
 * [Waze Travel Time](https://www.home-assistant.io/integrations/waze_travel_time/)
 
 <!-- ... and more on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab/cluster/hive/apps/homeassistant/k8s-manifests) -->
+... more details about my Home Assistant instance and what Integrations I am using, in my [homeassistant series](series/homeassistant)
 
 ## Tasmin
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Homelab on </title>
+    <link>http://localhost:1313/series/homelab/</link>
+    <description>Recent content in Homelab on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Andrei Gavriliu</copyright>
+    <lastBuildDate>Fri, 14 Mar 2025 21:34:29 +0100</lastBuildDate><atom:link href="http://localhost:1313/series/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Containers Not Mounting Longhorn Volumes</title>
+      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Shoutout to &lt;a href=&#34;https://github.com/derekbit&#34;&gt;derekbit&lt;/a&gt; for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183&#34;&gt;here&lt;/a&gt; and in this lifesaving &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359&#34;&gt;comment&lt;/a&gt;.&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
+      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <description>
+        
+          
+            &lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

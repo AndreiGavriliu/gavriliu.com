@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diy on </title>
+    <link>http://localhost:1313/tags/diy/</link>
+    <description>Recent content in Diy on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2025, Andrei Gavriliu</copyright>
+    <lastBuildDate>Thu, 27 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/diy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>It all started with a RaspberryPi</title>
+      <link>http://localhost:1313/post/2025/03/27/it-started-with-a-raspberry-py/</link>
+      <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/27/it-started-with-a-raspberry-py/</guid>
+      <description>
+        
+          
+            &lt;p&gt;sdasda&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

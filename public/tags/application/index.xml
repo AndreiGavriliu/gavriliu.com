@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Application on Terminal</title>
-    <link>https://gavriliu.com/tags/application/</link>
-    <description>Recent content in Application on Terminal</description>
-    <generator>Hugo</generator>
+    <title>Application on </title>
+    <link>http://localhost:1313/tags/application/</link>
+    <description>Recent content in Application on </description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate>
-    <atom:link href="https://gavriliu.com/tags/application/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© Andrei Gavriliu</copyright>
+    <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/application/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
-      <link>https://gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <link>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
-      <guid>https://gavriliu.com/posts/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
-      <description>&lt;p&gt;I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup! So, like any reasonable person, I had to RTFM (read the fine manual, of course), and eventually stumbled upon the brilliant solution.&lt;/p&gt;</description>
+      
+      <guid>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <description>
+        
+          
+            &lt;p&gt;I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup!&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
+    
   </channel>
 </rss>

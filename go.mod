@@ -1,8 +1,5 @@
-module gavriliu.com/hugo-theme-terminal
+module clarity.gavriliu.com
 
 go 1.24.1
 
-require (
-	github.com/hugomods/umami-analytics v0.3.1 // indirect
-	github.com/panr/hugo-theme-terminal/v4 v4.2.1 // indirect
-)
+require github.com/chipzoller/hugo-clarity v0.0.0-20250302180814-2c9a7b6d3937 // indirect

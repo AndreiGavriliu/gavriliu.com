@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sealed-Secrets on Terminal</title>
-    <link>https://gavriliu.com/tags/sealed-secrets/</link>
-    <description>Recent content in Sealed-Secrets on Terminal</description>
-    <generator>Hugo</generator>
+    <title>Sealed-Secrets on </title>
+    <link>http://localhost:1313/tags/sealed-secrets/</link>
+    <description>Recent content in Sealed-Secrets on </description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Mar 2025 16:41:25 +0100</lastBuildDate>
-    <atom:link href="https://gavriliu.com/tags/sealed-secrets/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© Andrei Gavriliu</copyright>
+    <lastBuildDate>Fri, 14 Mar 2025 16:41:25 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/sealed-secrets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>https://gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      <guid>https://gavriliu.com/posts/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
-      <description>&lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong? Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!&lt;/p&gt;</description>
+      
+      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <description>
+        
+          
+            &lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
     </item>
+    
   </channel>
 </rss>

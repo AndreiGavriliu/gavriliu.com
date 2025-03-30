@@ -1,4 +1,2 @@
-github.com/hugomods/umami-analytics v0.3.1 h1:C4B1oKRBvCRamH3muiWK+QNbehmxd+7DiK80jHCdMJo=
-github.com/hugomods/umami-analytics v0.3.1/go.mod h1:nlZGLPH5L+H25+HwmuzHsEfM869+tMTUTcSUBcOQEm4=
-github.com/panr/hugo-theme-terminal/v4 v4.2.1 h1:HGQdOolUNFYMbHrguEbkGU8HWKv4qSAV/n1egSGSnvs=
-github.com/panr/hugo-theme-terminal/v4 v4.2.1/go.mod h1:W0sFodm5ipL5gjRqOFjg4zD+euoQ8hCtyDDtqSpihxM=
+github.com/chipzoller/hugo-clarity v0.0.0-20250302180814-2c9a7b6d3937 h1:bOcccet6PjYiCGS62RVV/xgL0Iqwd/CIbiR4eJ3yeTM=
+github.com/chipzoller/hugo-clarity v0.0.0-20250302180814-2c9a7b6d3937/go.mod h1:v1JkaKdcLRibyUCalLP2CNeFo6FGzfd4ipEr4dK0+Zg=

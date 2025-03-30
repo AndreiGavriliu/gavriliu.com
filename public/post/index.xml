@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on </title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Andrei Gavriliu</copyright>
+    <lastBuildDate>Fri, 28 Mar 2025 10:38:06 +0100</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)</title>
+      <link>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
+      <pubDate>Fri, 28 Mar 2025 10:38:06 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
+      <description>
+        
+          
+            &lt;p&gt;A few days ago, my wife decided that we - sorry, I — needed to rearrange our kid&#39;s room. This involved unplugging various things, including my &lt;a href=&#34;https://www.ikea.com/de/de/p/vindstyrka-luftqualitaetssensor-smart-00498231/&#34;&gt;IKEA VINDSTYRKA&lt;/a&gt; air quality sensor.&lt;/p&gt;
+&lt;p&gt;Fast forward to today: I noticed my &lt;code&gt;zigbee2mqtt&lt;/code&gt; container had been restarting multiple times. Weird.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Waste Collection Schedule in HomeAssistant</title>
+      <link>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</link>
+      <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Sometimes, I &lt;em&gt;totally&lt;/em&gt; forget to take out the garbage bins. And around here, the rule is simple: if your bins aren’t on the sidewalk, the garbage truck just cruises by like a VIP limo ignoring peasants.&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Containers Not Mounting Longhorn Volumes</title>
+      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Shoutout to &lt;a href=&#34;https://github.com/derekbit&#34;&gt;derekbit&lt;/a&gt; for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183&#34;&gt;here&lt;/a&gt; and in this lifesaving &lt;a href=&#34;https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359&#34;&gt;comment&lt;/a&gt;.&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
+      <link>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <description>
+        
+          
+            &lt;p&gt;I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup!&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
+      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <description>
+        
+          
+            &lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?&lt;br&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
