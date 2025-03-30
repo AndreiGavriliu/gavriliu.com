@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Troubleshooting on </title>
-    <link>http://localhost:1313/tags/troubleshooting/</link>
+    <link>https://gavriliu.com/tags/troubleshooting/</link>
     <description>Recent content in Troubleshooting on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Andrei Gavriliu</copyright>
-    <lastBuildDate>Fri, 14 Mar 2025 21:34:29 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Mar 2025 21:34:29 +0100</lastBuildDate><atom:link href="https://gavriliu.com/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Containers Not Mounting Longhorn Volumes</title>
-      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <link>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
       <description>
         
           
