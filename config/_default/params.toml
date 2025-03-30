@@ -151,10 +151,15 @@ blogDir = "post"
 # showRelatedInArticle = false
 # showRelatedInSidebar = false
 
+# Umami Analytics -- https://umami.is/
+umami_data_website_id = "cf2e457b-8928-4ded-add0-4418eada5c79"
+umami_script_url = "https://umami.gavriliu.com/script.js"
+
 # website author
 [author]
 name = "Andrei Gavriliu"
 # photo = "images/jane-doe.png" #include this if you would like to show the author photo on the sidebar
+
 
 [plausible_analytics]
 enable = false                # to enable plausible analytics set to true.
@@ -167,10 +172,6 @@ enable = false                      # To enable matomo analytics change to `true
 websiteDomain = "example.com"       # Set the domain name of your website, in most cases same as your base URL this is required.
 matomoDomain = "matomo.example.com" # Set to Matomo domain
 matomoSiteID = "1"                  # Default is set to 1, change this to the siteid being tracked
-
-# Umami Analytics -- https://umami.is/
-umami_data_website_id = "cf2e457b-8928-4ded-add0-4418eada5c79"
-umami_script_url = "https://umami.gavriliu.com/script.js"
 
 [cdn] # a CDN shortcode to generate links for your images and files in buckets such as B2, S3, etc.  
 url = "https://some.url.scheme/"  # your base CDN url such as "https://images.site.com/" (including the trailing slash)
