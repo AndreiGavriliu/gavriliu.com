@@ -1,21 +1,21 @@
 baseURL = 'https://gavriliu.com'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'gavriliu.com'
 DefaultContentLanguage = "en"
 
 [menus]
 [[menus.main]]
     name = "Home"
     url = ""
-    weight = -110
+    weight = -3
 [[menus.main]]
     name = "Projects"
     url = "projects/"
-    weight = -107
+    weight = -2
 [[menus.main]]
     name = "About"
     url = "about/"
-    weight = -107
+    weight = -1
 [[menus.social]]
     name = "github"
     type = "social"
@@ -23,7 +23,7 @@ DefaultContentLanguage = "en"
     url = "https://github.com/AndreiGavriliu"
 [[menus.social]]
     name = "linkedin"
-    weight = 3
+    weight = 2
     url = "https://www.linkedin.com/in/andreigavriliu/"
 [[menus.social]]
     name = "xing"
