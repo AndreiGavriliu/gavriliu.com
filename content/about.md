@@ -10,6 +10,14 @@ comments = false
 ## Who?
 
 Andrei Gavriliu - Senior IT Consultant | OpenShift @ [ConSol Consulting & Solutions Software GmbH](https://consol.de)
+
+I’ve been working at [ConSol Consulting & Solutions Software GmbH](https://consol.de) since 2012, solving technical challenges and breaking things just enough to learn how to fix them again. I have a passion for technology, whether it’s bleeding-edge Kubernetes clusters or almost century-old bicycles that somehow still work better than modern ones.
+
+When I’m not in front of a terminal, I attempt downhill riding — with a strong emphasis on attempt — while trying to avoid turning myself into a cautionary tale. Homelabbing, rediscovering old tech, and tinkering with anything that has gears, or a slightly questionable user manual keep me busy.
+
+If it’s complex, obscure, or slightly dangerous, I’m probably interested.
+
+I can’t think of any reason why, but if you want to get in touch with me or follow me, here I am:
 * [GitHub](https://github.com/AndreiGavriliu)
 * [LinkedIn](https://www.linkedin.com/in/andreigavriliu/)
 * [XING](https://www.xing.com/profile/Andrei_Gavriliu/)
