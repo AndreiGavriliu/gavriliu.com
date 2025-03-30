@@ -5,7 +5,6 @@
     <link>https://gavriliu.com/categories/</link>
     <description>Recent content in Categories on gavriliu.com</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© Andrei Gavriliu</copyright><atom:link href="https://gavriliu.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://gavriliu.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

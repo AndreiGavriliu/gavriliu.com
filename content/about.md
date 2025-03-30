@@ -4,6 +4,7 @@ author = "Andrei Gavriliu"
 showShare = false
 showReadTime = false
 showDate = false
+comments = false
 +++
 
 ## Who?

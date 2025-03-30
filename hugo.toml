@@ -1,3 +1,51 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://gavriliu.com'
 languageCode = 'en-us'
-title = ""
+title = 'My New Hugo Site'
+DefaultContentLanguage = "en"
+
+[menus]
+[[menus.main]]
+    name = "Home"
+    url = ""
+    weight = -110
+[[menus.main]]
+    name = "Projects"
+    url = "projects/"
+    weight = -107
+[[menus.main]]
+    name = "About"
+    url = "about/"
+    weight = -107
+[[menus.social]]
+    name = "github"
+    type = "social"
+    weight = 1
+    url = "https://github.com/AndreiGavriliu"
+[[menus.social]]
+    name = "linkedin"
+    weight = 3
+    url = "https://www.linkedin.com/in/andreigavriliu/"
+[[menus.social]]
+    name = "xing"
+    weight = 3
+    url = "https://www.xing.com/profile/Andrei_Gavriliu"
+[[menus.social]]
+    name = "rss"
+    weight = 4
+    url = "index.xml"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[pagination]
+pagerSize = 10
+
+[module]
+  # In case you would like to make changes to the theme and keep it locally in you repository,
+  # uncomment the line below (and correct the local path if necessary).
+  # --
+  # replacements = "github.com/panr/hugo-theme-terminal/v4 -> themes/terminal"
+[[module.imports]]
+  path = 'github.com/chipzoller/hugo-clarity'

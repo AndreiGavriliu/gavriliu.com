@@ -6,7 +6,6 @@
     <description>Recent content in Argocd on gavriliu.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>© Andrei Gavriliu</copyright>
     <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate><atom:link href="https://gavriliu.com/tags/argocd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>

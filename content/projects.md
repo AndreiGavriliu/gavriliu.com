@@ -5,6 +5,7 @@ ToC = true
 showShare = false
 showReadTime = false
 showDate = false
+comments = false
 +++
 
 ## Homelab
