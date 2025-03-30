@@ -31,3 +31,13 @@ I started this blog because I figured it’s time to share my knowledge and opin
 Here are some of the tools I rely on to keep my homelab running smoothly - no particular order, just pure utility. Each one helps me troubleshoot, automate, or manage my setup with less hassle. Because let’s be honest, a well-managed homelab means fewer late-night debugging sessions!
 
 [ansible](https://github.com/ansible/ansible), [argocd](https://github.com/argoproj/argo-cd), [fluxcd](https://github.com/fluxcd/flux2), [helm](https://github.com/helm/helm), [k9s](https://k9scli.io/), [kubectl](https://github.com/kubernetes/kubectl), [kubectx](https://github.com/ahmetb/kubectx/), [kubens](https://github.com/ahmetb/kubectx/), [kubeseal](https://github.com/bitnami-labs/sealed-secrets), [oc](https://github.com/openshift/oc), [popeye](https://github.com/derailed/popeye), [renovatebot](https://github.com/renovatebot), [stern](https://github.com/stern/stern), [tmux](https://github.com/tmux/tmux), [velero](https://github.com/vmware-tanzu/velero), [vscode](https://github.com/microsoft/vscode)
+
+## Privacy & Data Usage
+
+This website values your privacy and only uses local cookies to store your preferences (e.g.: light/dark mode). No third-party tracking cookies or external advertising networks are used.
+
+For comments, the site integrates **[giscus](https://giscus.app/)** ([repository](https://github.com/giscus/giscus)), a GitHub-based commenting system. To participate in discussions, you will need a [GitHub account](https://github.com/), as all comments are stored as discussions within my repository.
+
+For analytics, we use a self-hosted **[Umami](https://umami.is/)** ([repository](https://github.com/umami-software/umami)) instance to gather insights on website traffic while respecting user privacy. No personal data is collected, and all analytics data remains within our infrastructure.
+
+Both the static site and the analytics service are hosted in my self-managed homelab, ensuring full control over data and performance.
