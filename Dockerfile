@@ -1,9 +1,10 @@
-FROM hugomods/hugo
+FROM nginx:latest
 
-# Copy the public folder to Apache's web root
-COPY / /src
+# Copy built Hugo site from the builder stage to Nginx's web root
+COPY /public /usr/share/nginx/html
 
-# Expose the HTTP port
-EXPOSE 1313
+# Expose HTTP port
+EXPOSE 80
 
-CMD ["server", "-D"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
