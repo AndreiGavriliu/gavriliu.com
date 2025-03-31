@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apt on gavriliu.com</title>
+    <link>http://localhost:1313/tags/apt/</link>
+    <description>Recent content in Apt on gavriliu.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/apt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fix Key Stored in Legacy Trusted Gpg Keyring</title>
+      <link>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
+      <pubDate>Mon, 31 Mar 2025 08:30:35 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
+      <description>
+        
+          
+            &lt;p&gt;In an effort to balance power efficiency with my tendency to hoard old hardware, I decided to move my overpowered Pi-hole setup from a Mac Mini to a Raspberry Pi 2. (Yes, the Pi 2! A true relic from the past, but still kicking.)&lt;/p&gt;
+&lt;p&gt;Everything was going smoothly — static IP, hostname set, network configured — until I ran the inevitable:&lt;/p&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;apt update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;Hit:1 http://raspbian.raspberrypi.com/raspbian bookworm InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;Hit:2 http://archive.raspberrypi.com/debian bookworm InRelease
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;Reading package lists... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;Building dependency tree... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;Reading state information... Done
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;90&lt;/span&gt; packages can be upgraded. Run &lt;span class=&#34;s1&#34;&gt;&amp;#39;apt list --upgradable&amp;#39;&lt;/span&gt; to see them.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;W: http://raspbian.raspberrypi.com/raspbian/dists/bookworm/InRelease: Key is stored in legacy trusted.gpg keyring &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;/etc/apt/trusted.gpg&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, see the DEPRECATION section in apt-key&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;8&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; details.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Weird, it&#39;s a brand new install, but anyway, let&#39;s fix it.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

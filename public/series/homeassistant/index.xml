@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homeassistant on gavriliu.com</title>
-    <link>https://gavriliu.com/series/homeassistant/</link>
+    <link>http://localhost:1313/series/homeassistant/</link>
     <description>Recent content in Homeassistant on gavriliu.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 28 Mar 2025 10:38:06 +0100</lastBuildDate><atom:link href="https://gavriliu.com/series/homeassistant/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 Mar 2025 10:38:06 +0100</lastBuildDate><atom:link href="http://localhost:1313/series/homeassistant/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)</title>
-      <link>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
+      <link>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
       <pubDate>Fri, 28 Mar 2025 10:38:06 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
+      <guid>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
       <description>
         
           
@@ -26,10 +26,10 @@
     
     <item>
       <title>Waste Collection Schedule in HomeAssistant</title>
-      <link>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</link>
+      <link>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
+      <guid>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
       <description>
         
           

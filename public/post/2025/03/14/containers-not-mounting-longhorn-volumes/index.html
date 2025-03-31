@@ -8,16 +8,12 @@
   
   
   >
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 <title>Containers Not Mounting Longhorn Volumes | gavriliu.com</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
-<script defer src="https://umami.gavriliu.com/script.js" data-website-id="cf2e457b-8928-4ded-add0-4418eada5c79"></script>
-
 
 
 <meta property="og:locale" content="en" />
@@ -27,30 +23,30 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
 <meta name="twitter:title" content="Containers Not Mounting Longhorn Volumes" />
-<meta name="twitter:image" content="https://gavriliu.com/"/>
-<meta property="og:url" content="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" />
+<meta name="twitter:image" content="http://localhost:1313/"/>
+<meta property="og:url" content="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" />
 <meta property="og:title" content="Containers Not Mounting Longhorn Volumes" />
 <meta property="og:description" content="Shoutout to derekbit for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t …" />
-<meta property="og:image" content="https://gavriliu.com/" />
+<meta property="og:image" content="http://localhost:1313/" />
   <meta name="keywords" content="longhorn,troubleshooting" />
 
-<link rel="apple-touch-icon" sizes="180x180" href="https://gavriliu.com/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://gavriliu.com/icons/favicon-32x32.png">
-<link rel="manifest" href="https://gavriliu.com/icons/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
+<link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/">
-
-
-
-<link rel="preload" href="https://gavriliu.com/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity = "sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" as="style" crossorigin="anonymous">
+<link rel="canonical" href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/">
 
 
 
-<link rel="preload" href="https://gavriliu.com/en/js/bundle.ad439bd37903dd5dd1f6accba6e8fda9cf0b9c014ef7562a57f6847e460a8cc461593b451b28d377c43f2345f4faa107875ab2d22278ed6ab494912eb78e1be9.js" as="script" integrity=
-"sha512-rUOb03kD3V3R9qzLpuj9qc8LnAFO91YqV/aEfkYKjMRhWTtFGyjTd8Q/I0X0&#43;qEHh1qy0iJ47Wq0lJEut44b6Q==" crossorigin="anonymous">
+<link rel="preload" href="http://localhost:1313/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity = "sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" as="style" crossorigin="anonymous">
 
 
-<link rel="stylesheet" type="text/css" href="https://gavriliu.com/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity="sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" crossorigin="anonymous">
+
+<link rel="preload" href="http://localhost:1313/en/js/bundle.3e473606c531e5319c0a8381660a11aa16477a49cd6f640352a320895b32b6b683d1af282c6196f7dd2a6568b5b9b05cd2f049096b51e6ff1edb28ca25369ea7.js" as="script" integrity=
+"sha512-Pkc2BsUx5TGcCoOBZgoRqhZHeknNb2QDUqMgiVsytraD0a8oLGGW990qZWi1ubBc0vBJCWtR5v8e2yjKJTaepw==" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity="sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" crossorigin="anonymous">
 
   </head>
   <body
@@ -61,7 +57,7 @@
   >
 
 <header class="nav_header" >
-  <nav class="nav"><a href='https://gavriliu.com/' class="nav_brand nav_item" title="gavriliu.com">gavriliu.com
+  <nav class="nav"><a href='http://localhost:1313/' class="nav_brand nav_item" title="gavriliu.com">gavriliu.com
   <div class="nav_close">
     <div><svg class="icon">
   <title>open-menu</title>
@@ -82,13 +78,13 @@
         
 
   <div class="nav_parent">
-    <a href="https://gavriliu.com/" class="nav_item" title="Home">Home </a>
+    <a href="http://localhost:1313/" class="nav_item" title="Home">Home </a>
   </div>
   <div class="nav_parent">
-    <a href="https://gavriliu.com/projects/" class="nav_item" title="Projects">Projects </a>
+    <a href="http://localhost:1313/projects/" class="nav_item" title="Projects">Projects </a>
   </div>
   <div class="nav_parent">
-    <a href="https://gavriliu.com/about/" class="nav_item" title="About">About </a>
+    <a href="http://localhost:1313/about/" class="nav_item" title="About">About </a>
   </div>
       
 <div class='follow'>
@@ -114,7 +110,7 @@
 
   </a>
     
-  <a href="https://gavriliu.com/index.xml">
+  <a href="http://localhost:1313/index.xml">
     <svg class="icon">
   <title>rss</title>
   <use xlink:href="#rss"></use>
@@ -145,8 +141,8 @@
     <span class="post_date">
       Mar 14, 2025	  
     </span>
-    <span class="post_time"> · 2 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/longhorn/' title="longhorn" class="post_tag button button_translucent">longhorn
-        </a><a href='https://gavriliu.com/tags/troubleshooting/' title="troubleshooting" class="post_tag button button_translucent">troubleshooting
+    <span class="post_time"> · 2 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/longhorn/' title="longhorn" class="post_tag button button_translucent">longhorn
+        </a><a href='http://localhost:1313/tags/troubleshooting/' title="troubleshooting" class="post_tag button button_translucent">troubleshooting
         </a>
     </span>
   </div>
@@ -187,9 +183,11 @@
   <h2 class="post_related">Posts in this series</h2>
   <ul>
     
-    <li><a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a></li>
+    <li><a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a></li>
+    <li><a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a></li>
     
   </ul>
 
@@ -244,7 +242,7 @@
       <div class="author_bio">
         Senior IT Consultant | OpenShift @ <a href="https://consol.de">ConSol Consulting &amp; Solutions Software GmbH</a>
       </div>
-      <a href='https://gavriliu.com/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
+      <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
       
@@ -252,42 +250,49 @@
       <ul>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
+          <a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
+          <a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
         </li>
         
       </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
-        <a href="https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/" class="nav-link" title="How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)">How Rearranging a Kid's Room Broke My Zigbee Network (and How I Fixed It)</a>
+        <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/" class="nav-link" title="Waste Collection Schedule in HomeAssistant">Waste Collection Schedule in HomeAssistant</a>
+        <a href="http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/" class="nav-link" title="How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)">How Rearranging a Kid's Room Broke My Zigbee Network (and How I Fixed It)</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
+        <a href="http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/" class="nav-link" title="Waste Collection Schedule in HomeAssistant">Waste Collection Schedule in HomeAssistant</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/" class="nav-link" title="Combine Helm and K8s Manifests in One ArgoCD Application">Combine Helm and K8s Manifests in One ArgoCD Application</a>
+        <a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
+        <a href="http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/" class="nav-link" title="Combine Helm and K8s Manifests in One ArgoCD Application">Combine Helm and K8s Manifests in One ArgoCD Application</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
       </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="series-section">Series</h2>
       <nav class="tags_nav">
-        <a href='https://gavriliu.com/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
-          HOMEASSISTANT
-          <span class="button_tally">2</span>
+        <a href='http://localhost:1313/series/homelab/' class="post_tag button button_translucent" title="homelab">
+          HOMELAB
+          <span class="button_tally">3</span>
         </a>
         
-        <a href='https://gavriliu.com/series/homelab/' class="post_tag button button_translucent" title="homelab">
-          HOMELAB
+        <a href='http://localhost:1313/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
+          HOMEASSISTANT
           <span class="button_tally">2</span>
         </a>
         
@@ -297,67 +302,87 @@
     <div>
       <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
       <nav class="tags_nav">
-        <a href='https://gavriliu.com/tags/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
+        <a href='http://localhost:1313/tags/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
           HOMEASSISTANT
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/application/' class="post_tag button button_translucent" title="application">
+        <a href='http://localhost:1313/tags/application/' class="post_tag button button_translucent" title="application">
           APPLICATION
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/argocd/' class="post_tag button button_translucent" title="argocd">
+        <a href='http://localhost:1313/tags/apt/' class="post_tag button button_translucent" title="apt">
+          APT
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/argocd/' class="post_tag button button_translucent" title="argocd">
           ARGOCD
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/bitnami/' class="post_tag button button_translucent" title="bitnami">
+        <a href='http://localhost:1313/tags/bitnami/' class="post_tag button button_translucent" title="bitnami">
           BITNAMI
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/helm/' class="post_tag button button_translucent" title="helm">
+        <a href='http://localhost:1313/tags/gpg/' class="post_tag button button_translucent" title="gpg">
+          GPG
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/helm/' class="post_tag button button_translucent" title="helm">
           HELM
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/longhorn/' class="post_tag button button_translucent" title="longhorn">
+        <a href='http://localhost:1313/tags/keyring/' class="post_tag button button_translucent" title="keyring">
+          KEYRING
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/legacy/' class="post_tag button button_translucent" title="legacy">
+          LEGACY
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/longhorn/' class="post_tag button button_translucent" title="longhorn">
           LONGHORN
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/sealed-secrets/' class="post_tag button button_translucent" title="sealed-secrets">
+        <a href='http://localhost:1313/tags/sealed-secrets/' class="post_tag button button_translucent" title="sealed-secrets">
           SEALED-SECRETS
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/security/' class="post_tag button button_translucent" title="security">
+        <a href='http://localhost:1313/tags/security/' class="post_tag button button_translucent" title="security">
           SECURITY
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/slzb-06m/' class="post_tag button button_translucent" title="slzb-06m">
+        <a href='http://localhost:1313/tags/slzb-06m/' class="post_tag button button_translucent" title="slzb-06m">
           SLZB-06M
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/troubleshoot/' class="post_tag button button_translucent" title="troubleshoot">
+        <a href='http://localhost:1313/tags/troubleshoot/' class="post_tag button button_translucent" title="troubleshoot">
           TROUBLESHOOT
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/troubleshooting/' class="post_tag button button_translucent" title="troubleshooting">
+        <a href='http://localhost:1313/tags/troubleshooting/' class="post_tag button button_translucent" title="troubleshooting">
           TROUBLESHOOTING
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/waste-collection/' class="post_tag button button_translucent" title="waste-collection">
+        <a href='http://localhost:1313/tags/waste-collection/' class="post_tag button button_translucent" title="waste-collection">
           WASTE-COLLECTION
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/zigbee2mqtt/' class="post_tag button button_translucent" title="zigbee2mqtt">
+        <a href='http://localhost:1313/tags/zigbee2mqtt/' class="post_tag button button_translucent" title="zigbee2mqtt">
           ZIGBEE2MQTT
           <span class="button_tally">1</span>
         </a>
@@ -456,7 +481,7 @@
 
 <footer class="footer">
   <div class="footer_inner wrap pale">
-    <img src='https://gavriliu.com/icons/copy.svg' class="icon icon_2 transparent" alt="gavriliu.com">
+    <img src='http://localhost:1313/icons/copy.svg' class="icon icon_2 transparent" alt="gavriliu.com">
     <p>Copyright&nbsp;2025 -&nbsp;<span class="year"></span>&nbsp;GAVRILIU.COM. All Rights Reserved</p><a class="to_top" href="#documentTop">
   <svg class="icon">
   <title>to-top</title>
@@ -468,9 +493,9 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="https://gavriliu.com/en/js/bundle.ad439bd37903dd5dd1f6accba6e8fda9cf0b9c014ef7562a57f6847e460a8cc461593b451b28d377c43f2345f4faa107875ab2d22278ed6ab494912eb78e1be9.js" integrity="sha512-rUOb03kD3V3R9qzLpuj9qc8LnAFO91YqV/aEfkYKjMRhWTtFGyjTd8Q/I0X0&#43;qEHh1qy0iJ47Wq0lJEut44b6Q==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://localhost:1313/en/js/bundle.3e473606c531e5319c0a8381660a11aa16477a49cd6f640352a320895b32b6b683d1af282c6196f7dd2a6568b5b9b05cd2f049096b51e6ff1edb28ca25369ea7.js" integrity="sha512-Pkc2BsUx5TGcCoOBZgoRqhZHeknNb2QDUqMgiVsytraD0a8oLGGW990qZWi1ubBc0vBJCWtR5v8e2yjKJTaepw==" crossorigin="anonymous"></script>
 
-  <script src="https://gavriliu.com/js/search.min.9d5e38dcb73906849f3712f1758a587e9829a568aa586eae69d7684f6829a46c0084632567291f21ea3ee4a6b14ff0d9e1e6b2a4df73f2e419f4b5e0c30a4f04.js"></script>
+  <script src="http://localhost:1313/js/search.min.9d5e38dcb73906849f3712f1758a587e9829a568aa586eae69d7684f6829a46c0084632567291f21ea3ee4a6b14ff0d9e1e6b2a4df73f2e419f4b5e0c30a4f04.js"></script>
 
   </body>
 </html>

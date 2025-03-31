@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gavriliu.com</title>
-    <link>https://gavriliu.com/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on gavriliu.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Mar 2025 20:35:45 +0200</lastBuildDate><atom:link href="https://gavriliu.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)</title>
-      <link>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
+      <link>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
       <pubDate>Fri, 28 Mar 2025 10:38:06 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
+      <guid>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
       <description>
         
           
@@ -26,10 +26,10 @@
     
     <item>
       <title>Waste Collection Schedule in HomeAssistant</title>
-      <link>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</link>
+      <link>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
+      <guid>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
       <description>
         
           
@@ -42,10 +42,10 @@
     
     <item>
       <title>Containers Not Mounting Longhorn Volumes</title>
-      <link>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
       <description>
         
           
@@ -58,10 +58,10 @@
     
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
-      <link>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <link>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <guid>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
       <description>
         
           
@@ -74,10 +74,10 @@
     
     <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
       <description>
         
           
