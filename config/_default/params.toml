@@ -23,7 +23,7 @@ giscusCategory = "General"
 giscusCategoryId = "DIC_kwDOOJJrSM4ComRe"
 giscusMapping = "og:title"
 giscusReactionsEnabled = "1"
-giscusTheme = "catppuccin_mocha"
+giscusTheme = "light"
 giscusLang = "en"
 
 # configure umami analytics
