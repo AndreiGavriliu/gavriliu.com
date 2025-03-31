@@ -2,10 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gavriliu.com/tags/apt/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
     <loc>https://gavriliu.com/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
+    <loc>https://gavriliu.com/tags/gpg/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/series/homelab/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/keyring/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/legacy/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
     <loc>https://gavriliu.com/post/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/series/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/series/homeassistant/</loc>
@@ -17,13 +41,7 @@
     <loc>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>https://gavriliu.com/series/</loc>
-    <lastmod>2025-03-28T10:38:06+01:00</lastmod>
-  </url><url>
     <loc>https://gavriliu.com/tags/slzb-06m/</loc>
-    <lastmod>2025-03-28T10:38:06+01:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/troubleshoot/</loc>
@@ -39,9 +57,6 @@
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</loc>
-    <lastmod>2025-03-14T21:34:29+01:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/series/homelab/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/longhorn/</loc>

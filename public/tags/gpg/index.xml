@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gpg on gavriliu.com</title>
-    <link>http://localhost:1313/tags/gpg/</link>
+    <link>https://gavriliu.com/tags/gpg/</link>
     <description>Recent content in Gpg on gavriliu.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/gpg/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/gpg/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fix Key Stored in Legacy Trusted Gpg Keyring</title>
-      <link>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
+      <link>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
       <pubDate>Mon, 31 Mar 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
+      <guid>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
       <description>
         
           
