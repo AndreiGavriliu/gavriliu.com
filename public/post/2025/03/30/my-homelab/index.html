@@ -141,7 +141,7 @@
     <span class="post_date">
       Mar 30, 2025	  
     </span>
-    <span class="post_time"> · 2 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
+    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
         </a><a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
         </a><a href='http://localhost:1313/tags/unifi/' title="unifi" class="post_tag button button_translucent">unifi
         </a>
@@ -155,6 +155,7 @@
     <li><a href="#diagram">Diagram</a></li>
     <li><a href="#hardware-components">Hardware Components</a></li>
     <li><a href="#softwareapplications">Software/Applications</a></li>
+    <li><a href="#todos">ToDo's</a></li>
   </ul>
 </nav>
       </div>
@@ -210,60 +211,67 @@
 </ul>
 <h2 id="softwareapplications">Software/Applications</h2>
 <ul>
-<li>Apple MacMini: (loadbalancer.lab):
+<li>Apple MacMini (loadbalancer.lab):
 <ul>
-<li>ha-proxy</li>
-<li>pihole</li>
+<li><a href="https://github.com/haproxy/haproxy">haproxy</a> - The gatekeeper of my homelab, making sure traffic goes where it should (most of the time).</li>
+<li><a href="https://github.com/pi-hole/pi-hole">pihole</a> - Blocks ads so I don’t have to see yet another “One Weird Trick” clickbait.</li>
 </ul>
 </li>
-<li>NUC's (4 node k3s cluster)
+<li>NUC's (hive01.lab, hive02.lab, hive03.lab, hive04.lab):
 <ul>
-<li><a href="https://github.com/pfnet-research/alertmanager-to-github">alertmanager-to-github</a>: Sends alertmanager alerts to my homelab GitHub repository as issues (with autoclose and reopen)</li>
-<li><a href="https://github.com/argoproj/argo-cd">argocd</a>: Takes care of my applications for me</li>
-<li><a href="https://github.com/advplyr/audiobookshelf">audiobookshelf</a>: Small collection of audiobooks, mostly classics and tech</li>
-<li><a href="https://github.com/cert-manager/cert-manager">cert-manager</a>: Manages my Let's Encrypt Certificates</li>
-<li>changedetection</li>
-<li>ddclient</li>
-<li>firefly-iii</li>
-<li>freshrss</li>
-<li>grafana</li>
-<li>graylog</li>
-<li>homeassistant</li>
-<li>hugo-gavriliu-com</li>
-<li>kasten-io</li>
-<li>kube-prometheus-stack</li>
-<li>kubernetes-dashboard</li>
-<li>longhorn</li>
-<li>mealie</li>
-<li>metallb</li>
-<li>netbox</li>
-<li>ntfy</li>
-<li>paperless-ngx</li>
-<li>renovate</li>
-<li>sealed-secrets</li>
-<li>traefik</li>
-<li>umami</li>
-<li>vaultwarden</li>
-<li>wger</li>
+<li><a href="https://github.com/pfnet-research/alertmanager-to-github">alertmanager-to-github</a> - Turns my homelab alerts into GitHub issues, because why not make my monitoring social?</li>
+<li><a href="https://github.com/argoproj/argo-cd">argocd</a> - The automation overlord that keeps my apps in check so I don’t have to.</li>
+<li><a href="https://github.com/advplyr/audiobookshelf">audiobookshelf</a> - A small collection of audiobooks, mostly classics and tech, because sometimes it’s just nicer to listen than to read.</li>
+<li><a href="https://github.com/cert-manager/cert-manager">cert-manager</a> - Keeps my Let’s Encrypt certificates fresh, like a good barista with coffee beans.</li>
+<li><a href="https://github.com/dgtlmoon/changedetection.io">changedetection</a> - Stalking bike park schedules so I never miss an event.</li>
+<li><a href="https://github.com/ddclient/ddclient">ddclient</a> - Telling the world my ever-changing IP, one update at a time.</li>
+<li><a href="https://github.com/firefly-iii/firefly-iii">firefly-iii</a> - Managing my finances so I don’t end up questioning my life choices at the end of the month.</li>
+<li><a href="https://github.com/FreshRSS/FreshRSS">freshrss</a> - Curating tech news so I can pretend I’m up-to-date.</li>
+<li><a href="https://github.com/grafana/grafana">grafana</a> - Drowning in metrics but making them look pretty.</li>
+<li><a href="https://github.com/graylog2">graylog</a> - Because everything that happens needs to be logged… forever.</li>
+<li><a href="https://github.com/home-assistant">homeassistant</a> - The true ruler of my home, keeping me organized (and slightly paranoid).</li>
+<li><a href="https://github.com/gohugoio/hugo">hugo</a> - hosts <a href="https://gavriliu.com">gavriliu.com</a> like a minimalist champ.</li>
+<li><a href="https://docs.kasten.io/latest/index.html">kasten-io</a> - Because having backups is cool, but restoring them is even cooler.</li>
+<li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">kube-prometheus-stack</a> - Alerting me when things go wrong (which is always at 3 AM).</li>
+<li><a href="https://github.com/kubernetes/dashboard">kubernetes-dashboard</a> - I don’t need it, but it looks good.</li>
+<li><a href="https://github.com/longhorn/longhorn">longhorn</a> - Because my cluster needs storage, and NFS felt too mainstream.</li>
+<li><a href="https://github.com/mealie-recipes/mealie">mealie</a> - Saving recipes from my inevitable paper chaos.</li>
+<li><a href="https://github.com/metallb/metallb">metallb</a> - Assigning external IPs like a generous ISP.</li>
+<li><a href="https://github.com/netbox-community/netbox">netbox-community</a> - Helping me pretend I have my network under control.</li>
+<li><a href="https://github.com/binwiederhier/ntfy">ntfy</a> - The homelab’s personal notification messenger.</li>
+<li><a href="https://github.com/paperless-ngx/paperless-ngx">paperless-ngx</a> - Because paper is so last century.</li>
+<li><a href="https://github.com/renovatebot/renovate">renovate</a> - Updates my manifests so I don’t have to, like a personal assistant for my containers.</li>
+<li><a href="https://github.com/bitnami-labs/sealed-secrets">sealed-secrets</a> - Encrypting my secrets so they stay secret (hopefully).</li>
+<li><a href="https://github.com/traefik/traefik">traefik</a> - The traffic cop of my cluster.</li>
+<li><a href="https://github.com/umami-software/umami">umami</a> - Watching over my website visitors (but in a totally ethical way).</li>
+<li><a href="https://github.com/dani-garcia/vaultwarden">vaultwarden</a> - Because reusing passwords is a bad idea (no matter how tempting).</li>
+<li><a href="https://github.com/wger-project/wger">wger</a> - Tracking workouts, but mostly tracking how often I skip them.</li>
 </ul>
 </li>
-<li>1x RaspberryPi 3b:
+<li>RaspberryPi 3b:
 <ul>
-<li>raspberrymatic)</li>
+<li><a href="https://github.com/jens-maus/RaspberryMatic">raspberrymatic</a> - Keeping my smart home smart, even after my old Homematic CCU3 decided to ghost me.</li>
 </ul>
 </li>
-<li>1x RaspberryPi 4b:
+<li>RaspberryPi 2:
 <ul>
-<li>replacement pihole</li>
+<li><a href="https://github.com/pi-hole/pi-hole">pihole</a> - Because online ads are the digital equivalent of mosquitoes.</li>
 </ul>
 </li>
-<li>Synology 918+
+<li>Synology 918+:
 <ul>
 <li>Plex</li>
 <li>Backup Location</li>
 <li>Paperless-NGX export for quick access</li>
 </ul>
 </li>
+</ul>
+<h2 id="todos">ToDo's</h2>
+<ul>
+<li>update diagram to include all devices</li>
+<li>update diagram to include applications</li>
+<li>move <code>slbz-06m.lab</code> to the IoT VLAN (<code>slzb-06m.iot</code>)</li>
+<li>move <code>raspberrymatic.lab</code> to the IoT VLAN (<code>raspberrymatic.iot</code>)</li>
 </ul>
 
     </div>
@@ -276,6 +284,8 @@
     <li><a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a></li>
     
     <li><a href="http://localhost:1313/post/2025/03/30/my-homelab/" class="nav-link" title="My Homelab">My Homelab</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a></li>
     
   </ul>
 
@@ -349,9 +359,16 @@
           <a href="http://localhost:1313/post/2025/03/30/my-homelab/" class="nav-link" title="My Homelab">My Homelab</a>
         </li>
         
+        <li>
+          <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
+        </li>
+        
       </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
+      <li>
+        <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
+      </li>
       <li>
         <a href="http://localhost:1313/post/2025/03/30/my-homelab/" class="nav-link" title="My Homelab">My Homelab</a>
       </li>
@@ -376,7 +393,7 @@
       <nav class="tags_nav">
         <a href='http://localhost:1313/series/homelab/' class="post_tag button button_translucent" title="homelab">
           HOMELAB
-          <span class="button_tally">3</span>
+          <span class="button_tally">4</span>
         </a>
         
         <a href='http://localhost:1313/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
@@ -400,6 +417,11 @@
           <span class="button_tally">1</span>
         </a>
         
+        <a href='http://localhost:1313/tags/apt/' class="post_tag button button_translucent" title="apt">
+          APT
+          <span class="button_tally">1</span>
+        </a>
+        
         <a href='http://localhost:1313/tags/argocd/' class="post_tag button button_translucent" title="argocd">
           ARGOCD
           <span class="button_tally">1</span>
@@ -407,6 +429,11 @@
         
         <a href='http://localhost:1313/tags/bitnami/' class="post_tag button button_translucent" title="bitnami">
           BITNAMI
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/gpg/' class="post_tag button button_translucent" title="gpg">
+          GPG
           <span class="button_tally">1</span>
         </a>
         
@@ -420,8 +447,18 @@
           <span class="button_tally">1</span>
         </a>
         
+        <a href='http://localhost:1313/tags/keyring/' class="post_tag button button_translucent" title="keyring">
+          KEYRING
+          <span class="button_tally">1</span>
+        </a>
+        
         <a href='http://localhost:1313/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/legacy/' class="post_tag button button_translucent" title="legacy">
+          LEGACY
           <span class="button_tally">1</span>
         </a>
         

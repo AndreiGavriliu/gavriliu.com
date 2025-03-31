@@ -16,16 +16,7 @@
       <description>
         
           
-            &lt;!-- &lt;figure&gt;&lt;img src=&#34;http://localhost:1313/post/2025/03/30/my-homelab/image.png&#34;&gt;
-&lt;/figure&gt;
- --&gt;
-
-
-
-
-&lt;!-- {{ $image := &#34;image.png&#34; }}
-{{ $image := $image.Resize &#34;200px&#34; }} --&gt;
-&lt;p&gt;Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, steal my good ideas, and maybe even tell me how to do things better. After all, half the fun of a homelab is comparing notes with fellow tinkerers who also think ‘just one more server’ is a reasonable life choice.&lt;/p&gt;
+            &lt;p&gt;Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, steal my good ideas, and maybe even tell me how to do things better. After all, half the fun of a homelab is comparing notes with fellow tinkerers who also think ‘just one more server’ is a reasonable life choice.&lt;/p&gt;
           
           
         
