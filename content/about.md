@@ -28,7 +28,7 @@ I started this blog because I figured it’s time to share my knowledge and opin
 
 ## What?
 
-Here are some of the tools I rely on to keep my homelab running smoothly - no particular order, just pure utility. Each one helps me troubleshoot, automate, or manage my setup with less hassle. Because let’s be honest, a well-managed homelab means fewer late-night debugging sessions!
+Here are some of the tools I rely on to keep my [homelab](https://github.com/AndreiGavriliu/homelab) running smoothly - no particular order, just pure utility. Each one helps me troubleshoot, automate, or manage my setup with less hassle. Because let’s be honest, a well-managed homelab means fewer late-night debugging sessions!
 
 [ansible](https://github.com/ansible/ansible), [argocd](https://github.com/argoproj/argo-cd), [fluxcd](https://github.com/fluxcd/flux2), [helm](https://github.com/helm/helm), [k9s](https://k9scli.io/), [kubectl](https://github.com/kubernetes/kubectl), [kubectx](https://github.com/ahmetb/kubectx/), [kubens](https://github.com/ahmetb/kubectx/), [kubeseal](https://github.com/bitnami-labs/sealed-secrets), [oc](https://github.com/openshift/oc), [popeye](https://github.com/derailed/popeye), [renovatebot](https://github.com/renovatebot), [stern](https://github.com/stern/stern), [tmux](https://github.com/tmux/tmux), [velero](https://github.com/vmware-tanzu/velero), [vscode](https://github.com/microsoft/vscode)
 
