@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM nginxinc/nginx-unprivileged
 
 # Copy built Hugo site from the builder stage to Nginx's web root
 COPY /public /usr/share/nginx/html
