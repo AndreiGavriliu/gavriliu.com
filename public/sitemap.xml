@@ -3,15 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gavriliu.com/</loc>
-    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/gpg/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/images/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/kubernetes/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/skopeo/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/</loc>
+    <lastmod>2025-04-15T15:44:57+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/apt/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</loc>
-    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/gpg/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/series/homelab/</loc>
@@ -23,13 +41,7 @@
     <loc>https://gavriliu.com/tags/legacy/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>https://gavriliu.com/post/</loc>
-    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
-  </url><url>
     <loc>https://gavriliu.com/series/</loc>
-    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/series/homeassistant/</loc>
