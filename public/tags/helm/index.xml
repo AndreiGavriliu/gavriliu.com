@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Helm on gavriliu.com</title>
+    <title>Helm on Andrei Gavriliu</title>
     <link>https://gavriliu.com/tags/helm/</link>
-    <description>Recent content in Helm on gavriliu.com</description>
+    <description>Recent content in Helm on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate><atom:link href="https://gavriliu.com/tags/helm/index.xml" rel="self" type="application/rss+xml" />

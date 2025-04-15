@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gavriliu.com/</loc>
+    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
+  </url><url>
     <loc>https://gavriliu.com/tags/apt/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</loc>
-    <lastmod>2025-03-31T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/gpg/</loc>

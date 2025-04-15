@@ -3,6 +3,8 @@
 # logo = "logos/logo.png"
 footerLogo = "icons/copy.svg"
 
+description = "Senior IT Consultant | OpenShift"
+
 mobileNavigation = "right"
 
 # description on sidebar
