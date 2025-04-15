@@ -4,6 +4,7 @@
 footerLogo = "icons/copy.svg"
 
 description = "Senior IT Consultant | OpenShift"
+fallBackOgImage = "logos/logo.png"
 
 mobileNavigation = "right"
 
