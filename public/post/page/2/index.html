@@ -7,7 +7,7 @@
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Unifi | Andrei Gavriliu</title>
+<title>Posts | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -20,10 +20,10 @@
 <meta name="description" content="" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Unifi" />
+<meta name="twitter:title" content="Posts" />
 <meta name="twitter:image" content="http://localhost:1313/logos/logo.png"/>
-<meta property="og:url" content="http://localhost:1313/tags/unifi/" />
-<meta property="og:title" content="Unifi" />
+<meta property="og:url" content="http://localhost:1313/post/" />
+<meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:image" content="http://localhost:1313/logos/logo.png" />
 
@@ -31,8 +31,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/tags/unifi/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/unifi/index.xml" title="Andrei Gavriliu" />
+<link rel="canonical" href="http://localhost:1313/post/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/post/index.xml" title="Andrei Gavriliu" />
 
 
 
@@ -136,7 +136,7 @@
   <div class="excerpt">
     <div class="excerpt_header">
       <h3 class="post_link">
-        <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="My Homelab">My Homelab</a>
+        <a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
       </h3>
       
   <div class="post_meta">
@@ -146,11 +146,11 @@
 </svg>
 </span>
     <span class="post_date">
-      Mar 30, 2025	  
+      Mar 14, 2025	  
     </span>
-    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
-        </a><a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
-        </a><a href='http://localhost:1313/tags/unifi/' title="unifi" class="post_tag button button_translucent">unifi
+    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/bitnami/' title="bitnami" class="post_tag button button_translucent">bitnami
+        </a><a href='http://localhost:1313/tags/sealed-secrets/' title="sealed-secrets" class="post_tag button button_translucent">sealed-secrets
+        </a><a href='http://localhost:1313/tags/security/' title="security" class="post_tag button button_translucent">security
         </a>
     </span>
   </div>
@@ -159,16 +159,37 @@
       <div class="excerpt_footer">
         <div class="pale">
           
-            <p>Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, …</p>
+            <p>I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?
+Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ …</p>
           
           <br>
-          <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="Read More" class="excerpt_more button">Read More</a>
+          <a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" title="Read More" class="excerpt_more button">Read More</a>
         </div>
       </div>
     </div>
   </li>
 
       <li>
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/post/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/post/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
       </li>
     </ul>
   </div>
@@ -178,7 +199,7 @@
     
   
   <div class="search">
-    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='tags'>
+    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='post'>
     <label for="find" class="search_label"><svg class="icon">
   <title>search</title>
   <use xlink:href="#search"></use>
