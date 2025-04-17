@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on Andrei Gavriliu</title>
+    <link>http://localhost:1313/tags/tutorial/</link>
+    <description>Recent content in Tutorial on Andrei Gavriliu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Deployments: Like a Boss (Who Delegates Everything)</title>
+      <link>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
+      <pubDate>Thu, 17 Apr 2025 08:30:35 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
+      <description>
+        
+          
+            &lt;h1 id=&#34;kubernetes-deployments-like-a-boss-who-delegates-everything&#34;&gt;Kubernetes Deployments: Like a Boss (Who Delegates Everything)&lt;/h1&gt;
+&lt;p&gt;So you’ve heard about Kubernetes and now you’re swimming in YAML like it’s alphabet soup. Let’s break down one of its most useful concepts — the almighty &lt;strong&gt;Deployment&lt;/strong&gt; — and figure out how it works without having to learn an arcane spellbook.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;whats-a-deployment-anyway&#34;&gt;What’s a Deployment, Anyway?&lt;/h2&gt;
+&lt;p&gt;A Kubernetes &lt;strong&gt;Deployment&lt;/strong&gt; is like your project manager. It doesn’t do the actual work (that&#39;s what Pods are for), but it makes sure your app:&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
