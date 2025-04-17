@@ -4,10 +4,12 @@
   lang="en"
   data-figures=""
   
+    class="page"
+  
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Homelab | Andrei Gavriliu</title>
+<title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,22 +19,22 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="You’ve learned about Deployments, and now you’re deploying stateless apps like a boss. But then you hit a wall — maybe it’s a database, a cache, or something …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Homelab" />
+<meta name="twitter:title" content="Kubernetes StatefulSets: Because Some Pods Need to Remember Things" />
 <meta name="twitter:image" content="http://localhost:1313/logos/logo.png"/>
-<meta property="og:url" content="http://localhost:1313/tags/homelab/" />
-<meta property="og:title" content="Homelab" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/2025/04/14/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" />
+<meta property="og:title" content="Kubernetes StatefulSets: Because Some Pods Need to Remember Things" />
+<meta property="og:description" content="You’ve learned about Deployments, and now you’re deploying stateless apps like a boss. But then you hit a wall — maybe it’s a database, a cache, or something …" />
 <meta property="og:image" content="http://localhost:1313/logos/logo.png" />
+  <meta name="keywords" content="kubernetes,learn,statefulset" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/tags/homelab/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/homelab/index.xml" title="Andrei Gavriliu" />
+<link rel="canonical" href="http://localhost:1313/post/2025/04/14/kubernetes-statefulsets-because-some-pods-need-to-remember-things/">
 
 
 
@@ -126,19 +128,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="My Homelab">My Homelab</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -146,39 +139,216 @@
 </svg>
 </span>
     <span class="post_date">
-      Mar 30, 2025	  
+      Apr 14, 2025	  
     </span>
-    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
-        </a><a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
-        </a><a href='http://localhost:1313/tags/unifi/' title="unifi" class="post_tag button button_translucent">unifi
+    <span class="post_time"> · 4 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='http://localhost:1313/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='http://localhost:1313/tags/statefulset/' title="statefulset" class="post_tag button button_translucent">statefulset
         </a>
     </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-statefulset">What is a StatefulSet?</a></li>
+    <li><a href="#a-real-life-analogy">A Real-Life Analogy</a></li>
+    <li><a href="#a-basic-statefulset-example">A Basic StatefulSet Example</a></li>
+    <li><a href="#why-the-order-matters">Why the Order Matters</a></li>
+    <li><a href="#persistent-storage-your-pods-sock-drawer">Persistent Storage: Your Pod’s Sock Drawer</a></li>
+    <li><a href="#headless-services-and-dns">Headless Services and DNS</a></li>
+    <li><a href="#statefulset-lifecycle-the-long-orderly-march">StatefulSet Lifecycle: The Long, Orderly March</a></li>
+    <li><a href="#deleting-a-statefulset-what-stays-and-what-goes">Deleting a StatefulSet: What Stays and What Goes</a></li>
+    <li><a href="#what-statefulsets-are-great-for">What StatefulSets Are Great For</a></li>
+    <li><a href="#what-theyre-not-great-for">What They’re Not Great For</a></li>
+    <li><a href="#wrapping-it-up-the-stateful-life">Wrapping It Up: The Stateful Life</a></li>
+  </ul>
+</nav>
       </div>
-    </div>
-  </li>
+    
+    <div class="post_body"><p>You’ve learned about Deployments, and now you’re deploying stateless apps like a boss. But then you hit a wall — maybe it’s a database, a cache, or something that <em>cares</em> about identity and storage. Enter: <strong>StatefulSets</strong>.</p>
+<p>StatefulSets are like that one friend who always insists on sitting in the same seat — and gets mad if they can't.</p>
+<h2 id="what-is-a-statefulset">What is a StatefulSet?</h2>
+<p>A <strong>StatefulSet</strong> is a Kubernetes controller used to manage stateful applications. Unlike Deployments, StatefulSets:</p>
+<ul>
+<li>Give each Pod a <strong>stable, unique network identity</strong></li>
+<li>Retain <strong>persistent storage</strong> even when a Pod is deleted</li>
+<li>Ensure Pods are created, updated, and deleted <strong>in order</strong></li>
+</ul>
+<p>In short, StatefulSets are what you use when your app:</p>
+<ul>
+<li>Can’t just be randomly killed and restarted</li>
+<li>Needs to store and retain data</li>
+<li>Needs stable DNS names to communicate with peer Pods</li>
+</ul>
+<h2 id="a-real-life-analogy">A Real-Life Analogy</h2>
+<ul>
+<li><strong>Deployment:</strong> &quot;Hey, you’re a worker. Grab any desk and get to it.&quot;</li>
+<li><strong>StatefulSet:</strong> &quot;You're Dave. You sit at Desk #3. Your coffee mug is there. If you move, your entire routine is ruined.&quot;</li>
+</ul>
+<h2 id="a-basic-statefulset-example">A Basic StatefulSet Example</h2>
+<p>Here’s a simplified YAML to show what a StatefulSet looks like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StatefulSet</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;redis&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">redis:7</span><span class="w">
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">6379</span><span class="w">
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">  </span><span class="nt">volumeClaimTemplates</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="w">  </span>- <span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">data</span><span class="w">
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="w">      </span><span class="nt">accessModes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;ReadWriteOnce&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="w">        </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">1Gi</span><span class="w">
+</span></span></span></code></pre></div><p>Let’s unpack this like your app depends on it (because it does):</p>
+<ul>
+<li><code>replicas: 3</code> — We want 3 Pods. But not just any Pods. These will be called:
+<ul>
+<li><code>redis-0</code></li>
+<li><code>redis-1</code></li>
+<li><code>redis-2</code></li>
+</ul>
+</li>
+<li><code>serviceName: redis</code> — Each Pod gets a stable DNS name like <code>redis-0.redis.default.svc.cluster.local</code>.</li>
+<li><code>volumeClaimTemplates</code> — Each Pod gets its own PersistentVolumeClaim (PVC), like a personal journal. Data is <strong>not</strong> shared between Pods.</li>
+</ul>
+<h2 id="why-the-order-matters">Why the Order Matters</h2>
+<p>With StatefulSets, <strong>order is everything</strong>:</p>
+<ul>
+<li>Pods are created <em>sequentially</em>: <code>redis-0</code> → <code>redis-1</code> → <code>redis-2</code></li>
+<li>Pods are deleted <em>in reverse</em>: <code>redis-2</code> → <code>redis-1</code> → <code>redis-0</code></li>
+<li>When updating, K8s updates Pods <strong>one at a time</strong>, waiting for each to be ready</li>
+</ul>
+<p>This makes StatefulSets ideal for apps that need quorum, coordination, or recovery — think <strong>databases</strong> like Cassandra, MongoDB, or distributed systems like Zookeeper.</p>
+<hr>
+<h2 id="persistent-storage-your-pods-sock-drawer">Persistent Storage: Your Pod’s Sock Drawer</h2>
+<p>With Deployments, Pods are ephemeral — they come and go, and all local data goes with them. StatefulSets, on the other hand, give each Pod a PVC that sticks around.</p>
+<p>Even if the Pod gets deleted and recreated, its storage (and name) remain the same. It’s like saving a named workspace in the cloud instead of scribbling notes on a whiteboard.</p>
+<hr>
+<h2 id="headless-services-and-dns">Headless Services and DNS</h2>
+<p>A StatefulSet needs a <strong>headless service</strong> to manage DNS for its Pods. Why?</p>
+<p>Because each Pod gets a DNS name like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">redis-0.redis.default.svc.cluster.local
+</span></span></code></pre></div><p>You define the headless service like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">6379</span><span class="w">
+</span></span></span></code></pre></div><p>Notice the <code>clusterIP: None</code>? That’s what makes it headless — so K8s won’t load balance, and DNS queries return <strong>individual Pod IPs</strong>, not a single shared one.</p>
+<hr>
+<h2 id="statefulset-lifecycle-the-long-orderly-march">StatefulSet Lifecycle: The Long, Orderly March</h2>
+<p>Let’s say you create a 3-replica StatefulSet.</p>
+<p>Here’s what happens:</p>
+<ol>
+<li><code>redis-0</code> is created. Kubernetes waits until it’s ready.</li>
+<li><code>redis-1</code> is created next. Again, K8s waits.</li>
+<li>Finally, <code>redis-2</code>.</li>
+</ol>
+<p>If <code>redis-1</code> fails health checks, <code>redis-2</code> will not be created. K8s will just sit patiently, tapping its fingers.</p>
+<p>It’s like assembling IKEA furniture — if Step 2 fails, you don’t even <em>think</em> about Step 3.</p>
+<hr>
+<h2 id="deleting-a-statefulset-what-stays-and-what-goes">Deleting a StatefulSet: What Stays and What Goes</h2>
+<p>Deleting a StatefulSet does <strong>not</strong> delete the PVCs by default.</p>
+<p>So even if your Pods are gone, their data remains — like ghosts in the persistent volume. You can manually clean them up if needed, but Kubernetes is trying to help you avoid accidental data loss.</p>
+<hr>
+<h2 id="what-statefulsets-are-great-for">What StatefulSets Are Great For</h2>
+<ul>
+<li>Databases (Postgres, MySQL, MongoDB)</li>
+<li>Distributed systems (Kafka, Zookeeper, etcd)</li>
+<li>Apps that require stable identities</li>
+<li>Any service where order, identity, and persistent data matter</li>
+</ul>
+<hr>
+<h2 id="what-theyre-not-great-for">What They’re Not Great For</h2>
+<ul>
+<li>Stateless apps (just use Deployments!)</li>
+<li>Services that can scale randomly</li>
+<li>Apps that don’t need individual storage or DNS identity</li>
+</ul>
+<p>If you try to use StatefulSets for a simple web app, you’re probably over-engineering it. It’s like renting a forklift to carry a sandwich.</p>
+<hr>
+<h2 id="wrapping-it-up-the-stateful-life">Wrapping It Up: The Stateful Life</h2>
+<p>Here’s your tl;dr:</p>
+<ul>
+<li>StatefulSets give your Pods stable identities and persistent storage.</li>
+<li>Pods are created and deleted in order.</li>
+<li>Great for stateful apps like databases and clusters.</li>
+<li>Backed by headless services for DNS magic.</li>
+<li>PVCs stick around even if Pods don’t.</li>
+</ul>
+<p>StatefulSets are Kubernetes’ way of saying: <em>“This app has trust issues — let’s treat it with care, give it a fixed name, a personal volume, and never move its stuff without asking.”</em></p>
 
-      <li>
-      </li>
-    </ul>
-  </div>
+    </div>
+
+  <h2 class="post_related">Posts in this series</h2>
+  <ul>
+    
+    <li><a href="http://localhost:1313/post/2025/04/14/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
+    
+  </ul>
+
+<div class="post_comments">
+  
+  
+  
+    
+<script src="https://giscus.app/client.js"
+        data-repo="AndreiGavriliu/gavriliu.com"
+        data-repo-id="R_kgDOOJJrSA"
+        data-category="General"
+        data-category-id="DIC_kwDOOJJrSM4ComRe"
+        data-mapping="og:title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script> 
+ 
+  
+  
+</div>
+
+
+
+
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
     
   
   <div class="search">
-    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='tags'>
+    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='post'>
     <label for="find" class="search_label"><svg class="icon">
   <title>search</title>
   <use xlink:href="#search"></use>
@@ -196,16 +366,29 @@
       <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
+      
+      <h2 class="mt-4">Posts in this series</h2>
+      <ul>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/04/14/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
+        </li>
+        
+      </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
-      <li>
-        <a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
-      </li>
       <li>
         <a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/" class="nav-link" title="Skopeo: The Container Image Swiss Army Knife You Didn&#39;t Know You Needed">Skopeo: The Container Image Swiss Army Knife You Didn't Know You Needed</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/2025/04/14/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
@@ -378,9 +561,8 @@
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

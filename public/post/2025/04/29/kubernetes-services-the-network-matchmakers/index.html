@@ -4,10 +4,12 @@
   lang="en"
   data-figures=""
   
+    class="page"
+  
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Homelab | Andrei Gavriliu</title>
+<title>Kubernetes Services: The Network Matchmakers | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,22 +19,22 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Homelab" />
+<meta name="twitter:title" content="Kubernetes Services: The Network Matchmakers" />
 <meta name="twitter:image" content="http://localhost:1313/logos/logo.png"/>
-<meta property="og:url" content="http://localhost:1313/tags/homelab/" />
-<meta property="og:title" content="Homelab" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" />
+<meta property="og:title" content="Kubernetes Services: The Network Matchmakers" />
+<meta property="og:description" content="So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter …" />
 <meta property="og:image" content="http://localhost:1313/logos/logo.png" />
+  <meta name="keywords" content="kubernetes,learn,services" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/tags/homelab/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/homelab/index.xml" title="Andrei Gavriliu" />
+<link rel="canonical" href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/">
 
 
 
@@ -126,19 +128,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="My Homelab">My Homelab</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Kubernetes Services: The Network Matchmakers</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -146,39 +139,261 @@
 </svg>
 </span>
     <span class="post_date">
-      Mar 30, 2025	  
+      Apr 22, 2025	  
     </span>
-    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
-        </a><a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
-        </a><a href='http://localhost:1313/tags/unifi/' title="unifi" class="post_tag button button_translucent">unifi
+    <span class="post_time"> · 4 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='http://localhost:1313/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='http://localhost:1313/tags/services/' title="services" class="post_tag button button_translucent">services
         </a>
     </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/2025/03/30/my-homelab/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-service">What Is a Service?</a></li>
+    <li><a href="#the-anatomy-of-a-service">The Anatomy of a Service</a></li>
+    <li><a href="#1-clusterip-the-introvert">1. ClusterIP: The Introvert</a></li>
+    <li><a href="#2-nodeport-the-over-sharer">2. NodePort: The Over-sharer</a></li>
+    <li><a href="#3-loadbalancer-the-vip-pass-cloud-only">3. LoadBalancer: The VIP Pass (Cloud Only)</a></li>
+    <li><a href="#4-externalname-the-alias-er">4. ExternalName: The Alias-er</a></li>
+    <li><a href="#5-headless-services-the-no-load-balancer-club">5. Headless Services: The No-Load-Balancer Club</a></li>
+    <li><a href="#a-word-on-selectors">A Word on Selectors</a></li>
+    <li><a href="#hostnetwork-a-not-service-but-still-important">HostNetwork: A Not-Service But Still Important</a></li>
+    <li><a href="#service-discovery-the-dns-magic">Service Discovery: The DNS Magic</a></li>
+    <li><a href="#bonus-traffic-routing-behind-the-scenes">Bonus: Traffic Routing Behind the Scenes</a></li>
+    <li><a href="#quick-comparison-table">Quick Comparison Table</a></li>
+    <li><a href="#wrapping-it-up">Wrapping It Up</a></li>
+  </ul>
+</nav>
       </div>
-    </div>
-  </li>
+    
+    <div class="post_body"><p>So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter <strong>Kubernetes Services</strong> — the built-in matchmakers making sure traffic finds the right Pods without ghosting.</p>
+<p>Let’s unravel all the types of Services, how they work, and when to use which one — in plain speak, with a splash of professional sarcasm.</p>
+<h2 id="what-is-a-service">What Is a Service?</h2>
+<p>A <strong>Service</strong> in Kubernetes is a stable networking abstraction over a set of Pods. Since Pods can die and respawn with different IPs (like mayflies with faster DevOps), you can’t reliably connect to a Pod directly. Services solve this by:</p>
+<ul>
+<li>Giving you a fixed IP and DNS name</li>
+<li>Forwarding traffic to the right Pods via <strong>selectors</strong></li>
+<li>Optionally exposing your app <strong>outside the cluster</strong></li>
+</ul>
+<h2 id="the-anatomy-of-a-service">The Anatomy of a Service</h2>
+<p>Here's the minimalist version:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-service</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">my-app</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li><code>selector</code>: Finds Pods with label <code>app: my-app</code></li>
+<li><code>port</code>: The port your Service listens on</li>
+<li><code>targetPort</code>: Where the traffic actually goes on the Pod</li>
+</ul>
+<h2 id="1-clusterip-the-introvert">1. ClusterIP: The Introvert</h2>
+<p><strong>Default type.</strong> Only accessible <strong>inside</strong> the cluster.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
+</span></span></span></code></pre></div><p>Use when:</p>
+<ul>
+<li>You don’t need external access</li>
+<li>One app (say, a frontend) talks to another (like an API or database)</li>
+</ul>
+<p>Think of it like internal company email — efficient, private, and nobody outside knows it exists.</p>
+<h2 id="2-nodeport-the-over-sharer">2. NodePort: The Over-sharer</h2>
+<p>Exposes the Service on a static port on <strong>every node’s IP</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30007</span><span class="w">
+</span></span></span></code></pre></div><p>Access it via <code>http://&lt;node-ip&gt;:30007</code>.</p>
+<p>Use when:</p>
+<ul>
+<li>You want a quick way to test your app from outside</li>
+<li>You don’t have a cloud LoadBalancer</li>
+</ul>
+<p>Downside:</p>
+<ul>
+<li>Hardcoding ports can lead to conflicts</li>
+<li>Not the prettiest URL</li>
+</ul>
+<p>It’s like taping your home address to every light pole in town — useful, but not exactly graceful.</p>
+<h2 id="3-loadbalancer-the-vip-pass-cloud-only">3. LoadBalancer: The VIP Pass (Cloud Only)</h2>
+<p>If your cluster is running in a cloud provider (AWS, GCP, Azure, etc.), this will provision an external <strong>load balancer</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
+</span></span></span></code></pre></div><p>Access via a cloud-managed IP or hostname.</p>
+<p>Use when:</p>
+<ul>
+<li>You want external users to reach your service</li>
+<li>You're in the cloud and want it done the “cloud native” way</li>
+</ul>
+<p>Kubernetes does all the hard work: it tells your cloud, “Hey, give me a load balancer,” and boom — traffic flows.</p>
+<h2 id="4-externalname-the-alias-er">4. ExternalName: The Alias-er</h2>
+<p>Points to an external DNS name. No selector. No pods. Just DNS aliasing.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ExternalName</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">externalName</span><span class="p">:</span><span class="w"> </span><span class="l">my.db.example.com</span><span class="w">
+</span></span></span></code></pre></div><p>Use when:</p>
+<ul>
+<li>You want to refer to an external service via internal DNS</li>
+<li>You need to abstract something not in the cluster</li>
+</ul>
+<p>No traffic routing here — just DNS voodoo.</p>
+<h2 id="5-headless-services-the-no-load-balancer-club">5. Headless Services: The No-Load-Balancer Club</h2>
+<p>When you want <strong>no cluster IP</strong> — for direct access to individual Pods (e.g. with StatefulSets).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
+</span></span></span></code></pre></div><p>This lets clients resolve A/AAAA records to <strong>each Pod IP</strong> directly. Ideal for:</p>
+<ul>
+<li>StatefulSets</li>
+<li>Peer-to-peer apps</li>
+<li>Custom service discovery</li>
+</ul>
+<p>It’s like saying, “Don’t give me a receptionist. I’ll talk to the team directly.”</p>
+<h2 id="a-word-on-selectors">A Word on Selectors</h2>
+<p>Selectors are how a Service finds which Pods to send traffic to.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">my-api</span><span class="w">
+</span></span></span></code></pre></div><p>Kubernetes continuously watches for Pods matching this label. No match? No traffic. So label your Pods like your uptime depends on it. (Because it might.)</p>
+<h2 id="hostnetwork-a-not-service-but-still-important">HostNetwork: A Not-Service But Still Important</h2>
+<p>When a Pod wants to <strong>skip Kubernetes networking</strong> and use the node's actual network stack.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">hostNetwork</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>Use when:</p>
+<ul>
+<li>You need access to host-level ports (like 80/443)</li>
+<li>You're running something like a CNI plugin or monitoring tool</li>
+</ul>
+<p>But beware:</p>
+<ul>
+<li>No port conflict protection</li>
+<li>Less isolation</li>
+</ul>
+<p>It’s like renting a room <em>and</em> using the landlord’s Wi-Fi, mailbox, and fridge. Cool, but risky.</p>
+<h2 id="service-discovery-the-dns-magic">Service Discovery: The DNS Magic</h2>
+<p>Kubernetes creates DNS names for Services automatically:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">my-service.default.svc.cluster.local
+</span></span></code></pre></div><p>Your Pods can use this to reach Services <strong>without knowing their IP</strong>. It’s like calling someone by name instead of memorizing their phone number.</p>
+<h2 id="bonus-traffic-routing-behind-the-scenes">Bonus: Traffic Routing Behind the Scenes</h2>
+<p>Kubernetes uses <strong>iptables</strong> or <strong>IPVS</strong> under the hood to handle traffic routing. It ensures load balancing, round-robin-style, and uses kube-proxy to make it all work.</p>
+<h2 id="quick-comparison-table">Quick Comparison Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Accessible From</th>
+          <th>Needs Cloud</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ClusterIP</td>
+          <td>Inside Cluster</td>
+          <td>No</td>
+          <td>Internal services</td>
+      </tr>
+      <tr>
+          <td>NodePort</td>
+          <td>External (via node IP)</td>
+          <td>No</td>
+          <td>Dev/test, simple access</td>
+      </tr>
+      <tr>
+          <td>LoadBalancer</td>
+          <td>External (via LB IP)</td>
+          <td>Yes</td>
+          <td>Public-facing apps</td>
+      </tr>
+      <tr>
+          <td>ExternalName</td>
+          <td>Inside Cluster</td>
+          <td>No</td>
+          <td>DNS alias to external services</td>
+      </tr>
+      <tr>
+          <td>Headless</td>
+          <td>Inside Cluster</td>
+          <td>No</td>
+          <td>Stateful apps needing Pod-level DNS</td>
+      </tr>
+      <tr>
+          <td>HostNetwork</td>
+          <td>Anywhere (via node IP)</td>
+          <td>No</td>
+          <td>Low-level access, infra tools</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Kubernetes Services are like networking assistants on Red Bull:</p>
+<ul>
+<li>They watch your Pods</li>
+<li>Match traffic to them</li>
+<li>Give DNS names, IPs, and external access</li>
+<li>Let you scale without reconfiguring apps</li>
+</ul>
+<p>So next time your Pods are lost and lonely, just remember: all they need is a Service to find their happily-ever-after.</p>
 
-      <li>
-      </li>
-    </ul>
-  </div>
+    </div>
+
+  <h2 class="post_related">Posts in this series</h2>
+  <ul>
+    
+    <li><a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
+    
+  </ul>
+
+<div class="post_comments">
+  
+  
+  
+    
+<script src="https://giscus.app/client.js"
+        data-repo="AndreiGavriliu/gavriliu.com"
+        data-repo-id="R_kgDOOJJrSA"
+        data-category="General"
+        data-category-id="DIC_kwDOOJJrSM4ComRe"
+        data-mapping="og:title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script> 
+ 
+  
+  
+</div>
+
+
+
+
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
     
   
   <div class="search">
-    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='tags'>
+    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='post'>
     <label for="find" class="search_label"><svg class="icon">
   <title>search</title>
   <use xlink:href="#search"></use>
@@ -196,8 +411,28 @@
       <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
+      
+      <h2 class="mt-4">Posts in this series</h2>
+      <ul>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+        </li>
+        
+      </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
+      <li>
+        <a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
+      </li>
       <li>
         <a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
       </li>
@@ -219,9 +454,6 @@
       <li>
         <a href="http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/" class="nav-link" title="Waste Collection Schedule in HomeAssistant">Waste Collection Schedule in HomeAssistant</a>
       </li>
-      <li>
-        <a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
-      </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="series-section">Series</h2>
@@ -231,13 +463,13 @@
           <span class="button_tally">4</span>
         </a>
         
-        <a href='http://localhost:1313/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
-          HOMEASSISTANT
-          <span class="button_tally">2</span>
-        </a>
-        
         <a href='http://localhost:1313/series/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
+          <span class="button_tally">3</span>
+        </a>
+        
+        <a href='http://localhost:1313/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
+          HOMEASSISTANT
           <span class="button_tally">2</span>
         </a>
         
@@ -249,7 +481,12 @@
       <nav class="tags_nav">
         <a href='http://localhost:1313/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class="button_tally">4</span>
+          <span class="button_tally">5</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/learn/' class="post_tag button button_translucent" title="learn">
+          LEARN
+          <span class="button_tally">3</span>
         </a>
         
         <a href='http://localhost:1313/tags/gpg/' class="post_tag button button_translucent" title="gpg">
@@ -259,11 +496,6 @@
         
         <a href='http://localhost:1313/tags/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
           HOMEASSISTANT
-          <span class="button_tally">2</span>
-        </a>
-        
-        <a href='http://localhost:1313/tags/learn/' class="post_tag button button_translucent" title="learn">
-          LEARN
           <span class="button_tally">2</span>
         </a>
         
@@ -332,6 +564,11 @@
           <span class="button_tally">1</span>
         </a>
         
+        <a href='http://localhost:1313/tags/services/' class="post_tag button button_translucent" title="services">
+          SERVICES
+          <span class="button_tally">1</span>
+        </a>
+        
         <a href='http://localhost:1313/tags/skopeo/' class="post_tag button button_translucent" title="skopeo">
           SKOPEO
           <span class="button_tally">1</span>
@@ -378,9 +615,8 @@
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
