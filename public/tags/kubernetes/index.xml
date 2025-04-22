@@ -6,7 +6,26 @@
     <description>Recent content in Kubernetes on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things</title>
+      <link>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
+      <pubDate>Tue, 22 Apr 2025 08:30:35 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
+      <description>
+        
+          
+            &lt;p&gt;You’ve learned about Deployments, and now you’re deploying stateless apps like a boss. But then you hit a wall - maybe it’s a database, a cache, or something that &lt;em&gt;cares&lt;/em&gt; about identity and storage. Enter: &lt;strong&gt;StatefulSets&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;StatefulSets are like that one friend who always insists on sitting in the same seat - and gets mad if they can&#39;t.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-a-statefulset&#34;&gt;What is a StatefulSet?&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;StatefulSet&lt;/strong&gt; is a Kubernetes controller used to manage stateful applications. Unlike Deployments, StatefulSets:&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes Deployments: Like a Boss (Who Delegates Everything)</title>
       <link>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>

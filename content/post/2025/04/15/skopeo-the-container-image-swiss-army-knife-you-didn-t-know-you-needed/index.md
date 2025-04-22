@@ -9,7 +9,15 @@ usePageBundles: true
 toc: true
 draft: false
 
-usePageBundles: false
+# featureImage: 'image.png'
+# featureImageAlt: 'Rack by ChatGPT'
+# featureImageCap: 'Rack by ChatGPT'
+# thumbnail: 'image.png'
+# shareImage: 'image.png'
+
+# series: kubernetes
+# showRelatedInArticle:  true
+# showRelatedInSidebar: true
 ---
 
 Ever found yourself needing to peek inside a container image without the hassle of pulling it? Or perhaps you wished for a smoother way to transfer images between registries without the Docker daemon breathing down your neck? Enter Skopeo — the command-line tool that lets you inspect, copy, and even sign container images, all without the need for a local container runtime.

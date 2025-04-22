@@ -1,15 +1,24 @@
-+++
-title = "Containers Not Mounting Longhorn Volumes"
-date = "2025-03-14T21:34:29+01:00"
-tags = ["longhorn", "troubleshooting"]
-hideComments = false
-showShare = false
-showReadTime = true
-ToC = true
-series = "homelab"
-showRelatedInArticle = true
-showRelatedInSidebar = true
-+++
+---
+title: "Containers Not Mounting Longhorn Volumes"
+date: 2025-03-14T21:34:29+01:00
+tags: ["longhorn", "troubleshooting"]
+
+showShare: false
+showReadTime: true
+usePageBundles: true
+toc: true
+draft: false
+
+# featureImage: 'image.png'
+# featureImageAlt: 'Rack by ChatGPT'
+# featureImageCap: 'Rack by ChatGPT'
+# thumbnail: 'image.png'
+# shareImage: 'image.png'
+
+series: homelab
+showRelatedInArticle:  true
+showRelatedInSidebar: true
+---
 
 Shoutout to [derekbit](https://github.com/derekbit) for saving my cluster from a tragic post-power-outage existential crisis. My entire homelab went down for a few hours, and Longhorn wasn’t exactly in a hurry to come back. More details on the saga can be found [here](https://github.com/longhorn/longhorn/issues/7183) and in this lifesaving [comment](https://github.com/longhorn/longhorn/issues/7183#issuecomment-1823715359).<br>
 <!--more-->

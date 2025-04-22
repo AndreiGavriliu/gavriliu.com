@@ -1,11 +1,24 @@
-+++
-title = "Combine Helm and K8s Manifests in One ArgoCD Application"
-date = "2025-03-14T18:34:06+01:00"
-tags = ["argocd", "application", "helm"]
-hideComments = false
-showShare = false
-showReadTime = true
-+++
+---
+title: "Combine Helm and K8s Manifests in One ArgoCD Application"
+date: 2025-03-14T18:34:06+01:00
+tags: ["argocd", "application", "helm"]
+
+showShare: false
+showReadTime: true
+usePageBundles: true
+toc: true
+draft: false
+
+# featureImage: 'image.png'
+# featureImageAlt: 'Rack by ChatGPT'
+# featureImageCap: 'Rack by ChatGPT'
+# thumbnail: 'image.png'
+# shareImage: 'image.png'
+
+# series: kubernetes
+# showRelatedInArticle:  true
+# showRelatedInSidebar: true
+---
 
 I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup!<br>
 <!--more-->

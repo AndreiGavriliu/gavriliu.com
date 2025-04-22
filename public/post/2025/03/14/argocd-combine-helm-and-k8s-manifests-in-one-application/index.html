@@ -152,6 +152,11 @@
     </span>
   </div>
 
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents"></nav>
+      </div>
+    
     <div class="post_body"><p>I feel pretty dumb right now. I used 2 ArgoCD applications for the same thing—one for my Helm chart, the other for flat manifest YAML files. Apparently, thinking isn’t my strong suit. I mean, I could barely remember where I put my coffee, let alone plan a proper ArgoCD setup!<br></p>
 <p>So, like any reasonable person, I had to RTFM (read the fine manual, of course), and eventually stumbled upon the brilliant solution.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">argoproj.io/v1alpha1</span><span class="w">
@@ -238,6 +243,9 @@
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
+        <a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+      </li>
+      <li>
         <a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
       </li>
       <li>
@@ -258,9 +266,6 @@
       <li>
         <a href="https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/" class="nav-link" title="Combine Helm and K8s Manifests in One ArgoCD Application">Combine Helm and K8s Manifests in One ArgoCD Application</a>
       </li>
-      <li>
-        <a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
-      </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="series-section">Series</h2>
@@ -277,7 +282,7 @@
         
         <a href='https://gavriliu.com/series/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class="button_tally">1</span>
+          <span class="button_tally">2</span>
         </a>
         
         
@@ -286,6 +291,11 @@
     <div>
       <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
       <nav class="tags_nav">
+        <a href='https://gavriliu.com/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+          KUBERNETES
+          <span class="button_tally">3</span>
+        </a>
+        
         <a href='https://gavriliu.com/tags/gpg/' class="post_tag button button_translucent" title="gpg">
           GPG
           <span class="button_tally">2</span>
@@ -296,8 +306,8 @@
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
-          KUBERNETES
+        <a href='https://gavriliu.com/tags/learn/' class="post_tag button button_translucent" title="learn">
+          LEARN
           <span class="button_tally">2</span>
         </a>
         
@@ -341,11 +351,6 @@
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/learn/' class="post_tag button button_translucent" title="learn">
-          LEARN
-          <span class="button_tally">1</span>
-        </a>
-        
         <a href='https://gavriliu.com/tags/legacy/' class="post_tag button button_translucent" title="legacy">
           LEGACY
           <span class="button_tally">1</span>
@@ -373,6 +378,11 @@
         
         <a href='https://gavriliu.com/tags/slzb-06m/' class="post_tag button button_translucent" title="slzb-06m">
           SLZB-06M
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='https://gavriliu.com/tags/statefulset/' class="post_tag button button_translucent" title="statefulset">
+          STATEFULSET
           <span class="button_tally">1</span>
         </a>
         

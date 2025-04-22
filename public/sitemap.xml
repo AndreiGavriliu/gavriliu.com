@@ -8,25 +8,31 @@
     <loc>https://gavriliu.com/post/</loc>
     <lastmod>2025-04-29T08:30:35+02:00</lastmod>
   </url><url>
+    <loc>https://gavriliu.com/series/kubernetes/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/kubernetes/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/learn/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/series/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/statefulset/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/</loc>
+    <lastmod>2025-04-22T08:30:35+02:00</lastmod>
+  </url><url>
     <loc>https://gavriliu.com/tags/deployment/</loc>
     <lastmod>2025-04-17T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>https://gavriliu.com/series/kubernetes/</loc>
-    <lastmod>2025-04-17T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/kubernetes/</loc>
-    <lastmod>2025-04-17T08:30:35+02:00</lastmod>
-  </url><url>
     <loc>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</loc>
-    <lastmod>2025-04-17T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/learn/</loc>
-    <lastmod>2025-04-17T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/series/</loc>
-    <lastmod>2025-04-17T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-04-17T08:30:35+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/gpg/</loc>
