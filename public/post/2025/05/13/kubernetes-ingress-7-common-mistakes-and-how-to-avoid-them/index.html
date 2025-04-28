@@ -9,7 +9,7 @@
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>My Homelab | Andrei Gavriliu</title>
+<title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them) | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -19,22 +19,24 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, …" />
+<meta name="description" content="You&#39;ve finally tamed Kubernetes Ingress — or so you think. Then weird routing errors, downtime, and mysterious 404s show up. Welcome to the club! 🎩
+Let&#39;s save …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="My Homelab" />
+<meta name="twitter:title" content="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)" />
 <meta name="twitter:image" content="http://localhost:1313/logos/logo.png"/>
-<meta property="og:url" content="http://localhost:1313/post/2025/03/30/my-homelab/" />
-<meta property="og:title" content="My Homelab" />
-<meta property="og:description" content="Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, …" />
+<meta property="og:url" content="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" />
+<meta property="og:title" content="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)" />
+<meta property="og:description" content="You&#39;ve finally tamed Kubernetes Ingress — or so you think. Then weird routing errors, downtime, and mysterious 404s show up. Welcome to the club! 🎩
+Let&#39;s save …" />
 <meta property="og:image" content="http://localhost:1313/logos/logo.png" />
-  <meta name="keywords" content="homelab,kubernetes,unifi" />
+  <meta name="keywords" content="kubernetes,learn,ingress" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/post/2025/03/30/my-homelab/">
+<link rel="canonical" href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/">
 
 
 
@@ -131,7 +133,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">My Homelab</h1>
+    <h1 class="post_title">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -139,11 +141,11 @@
 </svg>
 </span>
     <span class="post_date">
-      Mar 30, 2025	  
+      May 13, 2025	  
     </span>
-    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/homelab/' title="homelab" class="post_tag button button_translucent">homelab
-        </a><a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
-        </a><a href='http://localhost:1313/tags/unifi/' title="unifi" class="post_tag button button_translucent">unifi
+    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='http://localhost:1313/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='http://localhost:1313/tags/ingress/' title="ingress" class="post_tag button button_translucent">ingress
         </a>
     </span>
   </div>
@@ -152,144 +154,271 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#diagram">Diagram</a></li>
-    <li><a href="#hardware-components">Hardware Components</a></li>
-    <li><a href="#softwareapplications">Software/Applications</a></li>
-    <li><a href="#todos">ToDo's</a></li>
+    <li><a href="#quick-mistakes-checklist">Quick Mistakes Checklist</a>
+      <ul>
+        <li><a href="#forgetting-to-deploy-an-ingress-controller">Forgetting to Deploy an Ingress Controller</a></li>
+        <li><a href="#mixing-up-path-vs-host-routing">Mixing Up Path vs Host Routing</a></li>
+        <li><a href="#ignoring-pathtype">Ignoring PathType</a></li>
+        <li><a href="#tls-configuration-failures">TLS Configuration Failures</a></li>
+        <li><a href="#wrong-or-missing-ingressclass">Wrong or Missing IngressClass</a></li>
+        <li><a href="#incorrect-backend-service-configuration">Incorrect Backend Service Configuration</a></li>
+        <li><a href="#overlooking-health-checks">Overlooking Health Checks</a></li>
+      </ul>
+    </li>
+    <li><a href="#bonus-pro-moves">Bonus: Pro Moves</a></li>
+    <li><a href="#wrapping-up">Wrapping Up</a></li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><p>Why would anyone write about their homelab? Well, for one, so future me can remember why I set things up the way I did (and why it inevitably broke). But also, because homelabbing is a mix of art, science, and just enough chaos to keep things interesting. By sharing my setup, I hope others can learn from my mistakes, steal my good ideas, and maybe even tell me how to do things better. After all, half the fun of a homelab is comparing notes with fellow tinkerers who also think ‘just one more server’ is a reasonable life choice.</p>
-<h2 id="diagram">Diagram</h2>
-<p>
-  <figure>
-  <picture>
+    <div class="post_body"><p>You've finally tamed Kubernetes Ingress — or so you think. Then weird routing errors, downtime, and mysterious 404s show up. Welcome to the club! 🎩</p>
+<p>Let's save you some headaches. Here are <strong>7 common Kubernetes Ingress mistakes</strong>, how they happen, and how to dodge them like a pro.</p>
+<hr>
+<h2 id="quick-mistakes-checklist">Quick Mistakes Checklist</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Mistake</th>
+          <th style="text-align: left">Symptom</th>
+          <th style="text-align: left">Quick Fix</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">No Ingress Controller</td>
+          <td style="text-align: left">No traffic reaching apps</td>
+          <td style="text-align: left">Install a controller (NGINX, Traefik, etc.)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Mixing Path and Host</td>
+          <td style="text-align: left">Wrong backend routing</td>
+          <td style="text-align: left">Match host <strong>then</strong> path properly</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Missing PathType</td>
+          <td style="text-align: left">Paths don't match</td>
+          <td style="text-align: left">Set <code>pathType: Prefix</code> or <code>Exact</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">TLS Failures</td>
+          <td style="text-align: left">HTTPS broken</td>
+          <td style="text-align: left">Create &amp; reference correct TLS Secret</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Missing IngressClass</td>
+          <td style="text-align: left">Ingress ignored</td>
+          <td style="text-align: left">Set <code>spec.ingressClassName</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Backend Service Issues</td>
+          <td style="text-align: left">502/503 errors</td>
+          <td style="text-align: left">Verify Service names, ports, selectors</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Health Check Problems</td>
+          <td style="text-align: left">504 Gateway Timeout</td>
+          <td style="text-align: left">Add <code>/health</code>, tune timeouts</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="forgetting-to-deploy-an-ingress-controller">Forgetting to Deploy an Ingress Controller</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Your Ingress resource is happily created... but no traffic ever reaches your app.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Ingress <strong>needs a controller</strong> (like NGINX, Traefik, HAProxy).</li>
+<li>Kubernetes doesn't come with one by default.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>Install an Ingress Controller manually.</li>
+<li>Use something like:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+</span></span></code></pre></div><ul>
+<li>Make sure it’s running and ready.</li>
+</ul>
+<p><strong>Pro Tip:</strong> If you see <code>no matches for kind &quot;Ingress&quot;</code>, check your controller is alive.</p>
+<hr>
+<h3 id="mixing-up-path-vs-host-routing">Mixing Up Path vs Host Routing</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Traffic goes to the wrong backend.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Forgetting that Ingress matches <strong>hosts first</strong>, <strong>then paths</strong>.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>
+<p>Know the flow:</p>
+<ol>
+<li>Match <code>host</code></li>
+<li>Then match <code>path</code></li>
+</ol>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl">- <span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">api.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span>- <span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">shop.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/cart</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Wrong:</strong> expecting <code>/cart</code> at <code>api.example.com</code> to route!</p>
+<p><strong>Right:</strong> set both host and path carefully.</p>
+<hr>
+<h3 id="ignoring-pathtype">Ignoring PathType</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Ingress works on some URLs but not others.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Kubernetes <strong>requires <code>pathType</code></strong> (since v1.18+).</li>
+<li>Defaults aren't what you expect.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<p>Set your pathType!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l">Prefix</span><span class="w">
+</span></span></span></code></pre></div><p>Options:</p>
+<ul>
+<li><code>Prefix</code>: Match any path starting with <code>/foo</code></li>
+<li><code>Exact</code>: Match exactly <code>/foo</code></li>
+<li><code>ImplementationSpecific</code>: (aka Controller decides — spooky)</li>
+</ul>
+<p>Prefer <code>Prefix</code> unless you love surprises.</p>
+<hr>
+<h3 id="tls-configuration-failures">TLS Configuration Failures</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>HTTPS connections fail. Browser shows &quot;Connection not secure.&quot;</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Missing or invalid TLS secret.</li>
+<li>Wrong secret name.</li>
+<li>Controller not picking it up.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>Create your TLS secret:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubectl create secret tls my-tls-secret --cert<span class="o">=</span>cert.pem --key<span class="o">=</span>key.pem
+</span></span></code></pre></div><ul>
+<li>Reference it properly:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span>- <span class="nt">hosts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span>- <span class="l">myapp.example.com</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">    </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">my-tls-secret</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Checklist:</strong></p>
+<ul>
+<li>Secret in the <strong>same namespace</strong> as the Ingress!</li>
+<li>Correct secret name.</li>
+<li>Controller supports TLS (NGINX, Traefik do).</li>
+</ul>
+<hr>
+<h3 id="wrong-or-missing-ingressclass">Wrong or Missing IngressClass</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Ingress resource is ignored.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Kubernetes 1.18+ uses <code>spec.ingressClassName</code> to match Controllers.</li>
+<li>If it doesn’t match, your Ingress won’t be picked up.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>Set it explicitly:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">ingressClassName</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>Match whatever your Controller reports as <code>IngressClass</code>.</li>
+</ul>
+<p>You can check installed classes:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubectl get ingressclass
+</span></span></code></pre></div><hr>
+<h3 id="incorrect-backend-service-configuration">Incorrect Backend Service Configuration</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Ingress routes traffic but you get 502/503 errors.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Ingress is fine, but the <strong>Service</strong> points to nowhere.</li>
+<li>Wrong service name or port.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>Double-check backend services.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">backend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">service</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">api-service</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">number</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>Service must exist.</li>
+<li>Service must target Pods correctly (selectors right).</li>
+</ul>
+<p><strong>Debug Tip:</strong></p>
+<ul>
+<li>Check your service endpoints:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubectl get endpoints
+</span></span></code></pre></div><ul>
+<li>If it's empty, your Pods don't match.</li>
+</ul>
+<hr>
+<h3 id="overlooking-health-checks">Overlooking Health Checks</h3>
+<p><strong>Symptom:</strong></p>
+<ul>
+<li>Random 504 Gateway Timeouts.</li>
+</ul>
+<p><strong>Why:</strong></p>
+<ul>
+<li>Ingress Controllers perform health checks on Services.</li>
+<li>If your app doesn’t respond fast enough, it’s marked unhealthy.</li>
+</ul>
+<p><strong>How to Avoid:</strong></p>
+<ul>
+<li>Make sure your app is ready!</li>
+<li>Expose health endpoints (<code>/health</code>, <code>/readyz</code>)</li>
+<li>Tune Controller's timeout settings via annotations:</li>
+</ul>
+<p>Example for NGINX:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-read-timeout</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;30&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span><span class="nt">nginx.ingress.kubernetes.io/proxy-send-timeout</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;30&#34;</span><span class="w">
+</span></span></span></code></pre></div><hr>
+<h2 id="bonus-pro-moves">Bonus: Pro Moves</h2>
+<ul>
+<li><strong>Version mismatch:</strong> Check your Ingress resource version (<code>networking.k8s.io/v1</code>)!</li>
+<li><strong>Custom error pages:</strong> Many Controllers allow custom 404/503 pages. Nice for UX.</li>
+<li><strong>Rate limiting:</strong> Protect your services from abuse with Controller-specific options.</li>
+</ul>
+<hr>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>Kubernetes Ingress is powerful but a little... temperamental. 😉</p>
+<p>Avoid these 7 common mistakes and your cluster will reward you with:</p>
+<ul>
+<li>Faster deployments</li>
+<li>Cleaner networking</li>
+<li>Happier users (and fewer 2 a.m. calls)</li>
+</ul>
+<p>You got this!</p>
 
-    
-      
-        
-        
-        
-        
-        
-        
-    <img
-      loading="lazy"
-      decoding="async"
-      alt="My homelab diagram (Work in progress)"
-      
-        class="image_figure image_internal image_processed"
-        width="592"
-        height="552"
-        src="http://localhost:1313/post/2025/03/30/my-homelab/homelab-diagram.png"
-      
-      
-    />
-
-    </picture>
-</figure>
-</p>
-<h2 id="hardware-components">Hardware Components</h2>
-<ul>
-<li>1x <a href="https://eu.store.ui.com/eu/en/products/udm-pro">Unifi DreamMachine Pro</a></li>
-<li>1x <a href="https://eu.store.ui.com/eu/en/products/usw-pro-max-24-poe">Unifi Switch Pro Max 24 PoE</a></li>
-<li>1x <a href="https://eu.store.ui.com/eu/en/products/usw-flex-mini">Unifi Switch Flex Mini</a></li>
-<li>2x <a href="https://eu.store.ui.com/eu/en/products/uap-ac-pro">Unifi UAP AC Pro</a></li>
-<li>1x <a href="https://eu.store.ui.com/eu/en/products/u6-pro">Unifi UAP U6 Pro</a></li>
-<li>k3s cluster:
-<ul>
-<li>3x <a href="https://www.intel.de/content/www/de/de/content-details/810135">Intel NUCs</a> (4 Cores, 32GB RAM, 2x NVMe 250GB)</li>
-<li>1x <a href="https://www.intel.de/content/www/de/de/content-details/810135">Intel NUCs</a> (4 Cores, 16GB RAM, 1x NVMe 250GB)</li>
-</ul>
-</li>
-<li>1x <a href="https://support.apple.com/en-gb/111926">Apple MacMini 2012</a></li>
-<li>1x <a href="https://www.raspberrypi.com/products/raspberry-pi-3-model-b/">RaspberryPi 3b</a></li>
-<li>1x <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">RaspberryPi 4b</a></li>
-<li>1x <a href="https://www.vertiv.com/en-emea/support/software-download/power-distribution/avocent-managed-rack-pdu---pm-1000-2000-3000-software-downloads/">Avocent PM3000 PDU</a></li>
-<li>1x <a href="https://global.synologydownload.com/download/Document/Hardware/DataSheet/DiskStation/18-year/DS918%2B/ger/Synology_DS918_Plus_Data_Sheet_ger.pdf">Synology 918+</a> (4x 8TB)</li>
-</ul>
-<h2 id="softwareapplications">Software/Applications</h2>
-<ul>
-<li>Apple MacMini (loadbalancer.lab):
-<ul>
-<li><a href="https://github.com/haproxy/haproxy">haproxy</a> - The gatekeeper of my homelab, making sure traffic goes where it should (most of the time).</li>
-<li><a href="https://github.com/pi-hole/pi-hole">pihole</a> - Blocks ads so I don’t have to see yet another “One Weird Trick” clickbait.</li>
-</ul>
-</li>
-<li>NUC's (hive01.lab, hive02.lab, hive03.lab, hive04.lab):
-<ul>
-<li><a href="https://github.com/pfnet-research/alertmanager-to-github">alertmanager-to-github</a> - Turns my homelab alerts into GitHub issues, because why not make my monitoring social?</li>
-<li><a href="https://github.com/argoproj/argo-cd">argocd</a> - The automation overlord that keeps my apps in check so I don’t have to.</li>
-<li><a href="https://github.com/advplyr/audiobookshelf">audiobookshelf</a> - A small collection of audiobooks, mostly classics and tech, because sometimes it’s just nicer to listen than to read.</li>
-<li><a href="https://github.com/cert-manager/cert-manager">cert-manager</a> - Keeps my Let’s Encrypt certificates fresh, like a good barista with coffee beans.</li>
-<li><a href="https://github.com/dgtlmoon/changedetection.io">changedetection</a> - Stalking bike park schedules so I never miss an event.</li>
-<li><a href="https://github.com/ddclient/ddclient">ddclient</a> - Telling the world my ever-changing IP, one update at a time.</li>
-<li><a href="https://github.com/firefly-iii/firefly-iii">firefly-iii</a> - Managing my finances so I don’t end up questioning my life choices at the end of the month.</li>
-<li><a href="https://github.com/FreshRSS/FreshRSS">freshrss</a> - Curating tech news so I can pretend I’m up-to-date.</li>
-<li><a href="https://github.com/grafana/grafana">grafana</a> - Drowning in metrics but making them look pretty.</li>
-<li><a href="https://github.com/graylog2">graylog</a> - Because everything that happens needs to be logged… forever.</li>
-<li><a href="https://github.com/home-assistant">homeassistant</a> - The true ruler of my home, keeping me organized (and slightly paranoid).</li>
-<li><a href="https://github.com/gohugoio/hugo">hugo</a> - hosts <a href="https://gavriliu.com">gavriliu.com</a> like a minimalist champ.</li>
-<li><a href="https://docs.kasten.io/latest/index.html">kasten-io</a> - Because having backups is cool, but restoring them is even cooler.</li>
-<li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">kube-prometheus-stack</a> - Alerting me when things go wrong (which is always at 3 AM).</li>
-<li><a href="https://github.com/kubernetes/dashboard">kubernetes-dashboard</a> - I don’t need it, but it looks good.</li>
-<li><a href="https://github.com/longhorn/longhorn">longhorn</a> - Because my cluster needs storage, and NFS felt too mainstream.</li>
-<li><a href="https://github.com/mealie-recipes/mealie">mealie</a> - Saving recipes from my inevitable paper chaos.</li>
-<li><a href="https://github.com/metallb/metallb">metallb</a> - Assigning external IPs like a generous ISP.</li>
-<li><a href="https://github.com/netbox-community/netbox">netbox-community</a> - Helping me pretend I have my network under control.</li>
-<li><a href="https://github.com/binwiederhier/ntfy">ntfy</a> - The homelab’s personal notification messenger.</li>
-<li><a href="https://github.com/paperless-ngx/paperless-ngx">paperless-ngx</a> - Because paper is so last century.</li>
-<li><a href="https://github.com/renovatebot/renovate">renovate</a> - Updates my manifests so I don’t have to, like a personal assistant for my containers.</li>
-<li><a href="https://github.com/bitnami-labs/sealed-secrets">sealed-secrets</a> - Encrypting my secrets so they stay secret (hopefully).</li>
-<li><a href="https://github.com/traefik/traefik">traefik</a> - The traffic cop of my cluster.</li>
-<li><a href="https://github.com/umami-software/umami">umami</a> - Watching over my website visitors (but in a totally ethical way).</li>
-<li><a href="https://github.com/dani-garcia/vaultwarden">vaultwarden</a> - Because reusing passwords is a bad idea (no matter how tempting).</li>
-<li><a href="https://github.com/wger-project/wger">wger</a> - Tracking workouts, but mostly tracking how often I skip them.</li>
-</ul>
-</li>
-<li>RaspberryPi 3b:
-<ul>
-<li><a href="https://github.com/jens-maus/RaspberryMatic">raspberrymatic</a> - Keeping my smart home smart, even after my old Homematic CCU3 decided to ghost me.</li>
-</ul>
-</li>
-<li>RaspberryPi 2:
-<ul>
-<li><a href="https://github.com/pi-hole/pi-hole">pihole</a> - Because online ads are the digital equivalent of mosquitoes.</li>
-</ul>
-</li>
-<li>Synology 918+:
-<ul>
-<li>Plex</li>
-<li>Backup Location</li>
-<li>Paperless-NGX export for quick access</li>
-</ul>
-</li>
-</ul>
-<h2 id="todos">ToDo's</h2>
-<ul>
-<li>update diagram to include all devices</li>
-<li>update diagram to include applications</li>
-<li>move <code>slbz-06m.lab</code> to the IoT VLAN (<code>slzb-06m.iot</code>)</li>
-<li>move <code>raspberrymatic.lab</code> to the IoT VLAN (<code>raspberrymatic.iot</code>)</li>
-</ul>
-
-    </div>
-
-  <h2 class="post_related">Posts in this series</h2>
-  <ul>
-    
-    <li><a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a></li>
-    
-    <li><a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a></li>
-    
-    <li><a href="http://localhost:1313/post/2025/03/30/my-homelab/" class="nav-link" title="My Homelab">My Homelab</a></li>
-    
-    <li><a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a></li>
-    
-  </ul>
-
-<div class="post_comments">
+    </div><div class="post_comments">
   
   
   
@@ -343,34 +472,13 @@
       <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
-      
-      <h2 class="mt-4">Posts in this series</h2>
-      <ul>
-        
-        <li>
-          <a href="http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
-        </li>
-        
-        <li>
-          <a href="http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
-        </li>
-        
-        <li>
-          <a href="http://localhost:1313/post/2025/03/30/my-homelab/" class="nav-link" title="My Homelab">My Homelab</a>
-        </li>
-        
-        <li>
-          <a href="http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
-        </li>
-        
-      </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
-        <a href="http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+        <a href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+        <a href="http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
