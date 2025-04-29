@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Services on Andrei Gavriliu</title>
-    <link>http://localhost:1313/tags/services/</link>
+    <link>https://gavriliu.com/tags/services/</link>
     <description>Recent content in Services on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/services/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/services/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Services: The Network Matchmakers</title>
-      <link>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
+      <link>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
       <pubDate>Tue, 29 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
+      <guid>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
       <description>
         
           

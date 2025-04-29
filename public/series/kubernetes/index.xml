@@ -6,7 +6,24 @@
     <description>Recent content in Kubernetes on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 22 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Apr 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Services: The Network Matchmakers</title>
+      <link>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
+      <pubDate>Tue, 29 Apr 2025 08:30:35 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
+      <description>
+        
+          
+            &lt;p&gt;So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter &lt;strong&gt;Kubernetes Services&lt;/strong&gt; — the built-in matchmakers making sure traffic finds the right Pods without ghosting.&lt;/p&gt;
+&lt;p&gt;Let’s unravel all the types of Services, how they work, and when to use which one — in plain speak, with a splash of professional sarcasm.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things</title>
       <link>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
