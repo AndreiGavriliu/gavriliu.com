@@ -6,7 +6,75 @@
     <description>Recent content in Ingress on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 06 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
+      <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
+      <pubDate>Tue, 13 May 2025 03:00:00 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
+      <description>
+        
+          
+            &lt;p&gt;You&#39;ve finally tamed Kubernetes Ingress — or so you think. Then weird routing errors, downtime, and mysterious 404s show up. Welcome to the club! 🎩&lt;/p&gt;
+&lt;p&gt;Let&#39;s save you some headaches. Here are &lt;strong&gt;7 common Kubernetes Ingress mistakes&lt;/strong&gt;, how they happen, and how to dodge them like a pro.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;quick-mistakes-checklist&#34;&gt;Quick Mistakes Checklist&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Mistake&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Symptom&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Quick Fix&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No Ingress Controller&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No traffic reaching apps&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Install a controller (NGINX, Traefik, etc.)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Mixing Path and Host&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Wrong backend routing&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Match host &lt;strong&gt;then&lt;/strong&gt; path properly&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Missing PathType&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Paths don&#39;t match&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Set &lt;code&gt;pathType: Prefix&lt;/code&gt; or &lt;code&gt;Exact&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TLS Failures&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;HTTPS broken&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Create &amp;amp; reference correct TLS Secret&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Missing IngressClass&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ingress ignored&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Set &lt;code&gt;spec.ingressClassName&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Backend Service Issues&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;502/503 errors&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Verify Service names, ports, selectors&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Health Check Problems&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;504 Gateway Timeout&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Add &lt;code&gt;/health&lt;/code&gt;, tune timeouts&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;forgetting-to-deploy-an-ingress-controller&#34;&gt;Forgetting to Deploy an Ingress Controller&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Symptom:&lt;/strong&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes Ingress: Your Cluster&#39;s Traffic Director</title>
       <link>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
