@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ingress on Andrei Gavriliu</title>
-    <link>http://localhost:1313/tags/ingress/</link>
+    <link>https://gavriliu.com/tags/ingress/</link>
     <description>Recent content in Ingress on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/ingress/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
-      <link>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
+      <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
       <pubDate>Tue, 13 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
+      <guid>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
       <description>
         
           
@@ -77,10 +77,10 @@
     
     <item>
       <title>Kubernetes Ingress: Your Cluster&#39;s Traffic Director</title>
-      <link>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
+      <link>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
       <pubDate>Tue, 06 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
+      <guid>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
       <description>
         
           

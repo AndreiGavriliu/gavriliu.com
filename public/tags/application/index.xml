@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Application on Andrei Gavriliu</title>
-    <link>http://localhost:1313/tags/application/</link>
+    <link>https://gavriliu.com/tags/application/</link>
     <description>Recent content in Application on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate><atom:link href="http://localhost:1313/tags/application/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Mar 2025 18:34:06 +0100</lastBuildDate><atom:link href="https://gavriliu.com/tags/application/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
-      <link>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <link>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
       <description>
         
           

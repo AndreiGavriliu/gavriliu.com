@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Andrei Gavriliu</title>
-    <link>http://localhost:1313/</link>
+    <link>https://gavriliu.com/</link>
     <description>Recent content on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
-      <link>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
+      <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
       <pubDate>Tue, 13 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
+      <guid>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
       <description>
         
           
@@ -77,10 +77,10 @@
     
     <item>
       <title>Kubernetes Ingress: Your Cluster&#39;s Traffic Director</title>
-      <link>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
+      <link>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
       <pubDate>Tue, 06 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
+      <guid>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
       <description>
         
           
@@ -97,10 +97,10 @@
     
     <item>
       <title>Kubernetes Services: The Network Matchmakers</title>
-      <link>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
+      <link>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
       <pubDate>Tue, 29 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
+      <guid>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
       <description>
         
           
@@ -114,10 +114,10 @@
     
     <item>
       <title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things</title>
-      <link>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
+      <link>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
       <pubDate>Tue, 22 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
+      <guid>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
       <description>
         
           
@@ -133,10 +133,10 @@
     
     <item>
       <title>Kubernetes Deployments: Like a Boss (Who Delegates Everything)</title>
-      <link>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
+      <link>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
       <pubDate>Thu, 17 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
+      <guid>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
       <description>
         
           
@@ -151,10 +151,10 @@
     
     <item>
       <title>Skopeo: The Container Image Swiss Army Knife You Didn&#39;t Know You Needed</title>
-      <link>http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</link>
+      <link>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</link>
       <pubDate>Tue, 15 Apr 2025 15:44:57 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</guid>
+      <guid>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</guid>
       <description>
         
           
@@ -177,10 +177,10 @@
     
     <item>
       <title>Fix Key Stored in Legacy Trusted Gpg Keyring</title>
-      <link>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
+      <link>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
       <pubDate>Mon, 31 Mar 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
+      <guid>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
       <description>
         
           
@@ -204,10 +204,10 @@
     
     <item>
       <title>How Rearranging a Kid&#39;s Room Broke My Zigbee Network (and How I Fixed It)</title>
-      <link>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
+      <link>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</link>
       <pubDate>Fri, 28 Mar 2025 10:38:06 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
+      <guid>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</guid>
       <description>
         
           
@@ -221,10 +221,10 @@
     
     <item>
       <title>Waste Collection Schedule in HomeAssistant</title>
-      <link>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</link>
+      <link>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</link>
       <pubDate>Fri, 14 Mar 2025 22:19:55 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</guid>
       <description>
         
           
@@ -237,10 +237,10 @@
     
     <item>
       <title>Containers Not Mounting Longhorn Volumes</title>
-      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <link>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
       <description>
         
           
@@ -253,10 +253,10 @@
     
     <item>
       <title>Combine Helm and K8s Manifests in One ArgoCD Application</title>
-      <link>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
+      <link>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</link>
       <pubDate>Fri, 14 Mar 2025 18:34:06 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</guid>
       <description>
         
           
@@ -269,10 +269,10 @@
     
     <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <link>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
       <description>
         
           

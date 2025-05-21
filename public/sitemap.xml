@@ -2,144 +2,144 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://gavriliu.com/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ingress/</loc>
+    <loc>https://gavriliu.com/tags/ingress/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/kubernetes/</loc>
+    <loc>https://gavriliu.com/series/kubernetes/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</loc>
+    <loc>https://gavriliu.com/tags/kubernetes/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/learn/</loc>
+    <loc>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://gavriliu.com/tags/learn/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://gavriliu.com/post/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</loc>
+    <loc>https://gavriliu.com/series/</loc>
+    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/</loc>
+    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</loc>
     <lastmod>2025-05-06T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/kubernetes/</loc>
+    <loc>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</loc>
     <lastmod>2025-04-29T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</loc>
+    <loc>https://gavriliu.com/tags/services/</loc>
     <lastmod>2025-04-29T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
-    <lastmod>2025-04-29T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/services/</loc>
-    <lastmod>2025-04-29T08:30:35+02:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</loc>
+    <loc>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</loc>
     <lastmod>2025-04-22T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/statefulset/</loc>
+    <loc>https://gavriliu.com/tags/statefulset/</loc>
     <lastmod>2025-04-22T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/deployment/</loc>
+    <loc>https://gavriliu.com/tags/deployment/</loc>
     <lastmod>2025-04-17T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</loc>
+    <loc>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</loc>
     <lastmod>2025-04-17T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/gpg/</loc>
+    <loc>https://gavriliu.com/tags/gpg/</loc>
     <lastmod>2025-04-15T15:44:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/images/</loc>
+    <loc>https://gavriliu.com/tags/images/</loc>
     <lastmod>2025-04-15T15:44:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/skopeo/</loc>
+    <loc>https://gavriliu.com/tags/skopeo/</loc>
     <lastmod>2025-04-15T15:44:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</loc>
+    <loc>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</loc>
     <lastmod>2025-04-15T15:44:57+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/apt/</loc>
+    <loc>https://gavriliu.com/tags/apt/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</loc>
+    <loc>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/homelab/</loc>
+    <loc>https://gavriliu.com/series/homelab/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/keyring/</loc>
+    <loc>https://gavriliu.com/tags/keyring/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/legacy/</loc>
+    <loc>https://gavriliu.com/tags/legacy/</loc>
     <lastmod>2025-03-31T08:30:35+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/homeassistant/</loc>
+    <loc>https://gavriliu.com/series/homeassistant/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/homeassistant/</loc>
+    <loc>https://gavriliu.com/tags/homeassistant/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</loc>
+    <loc>https://gavriliu.com/post/2025/03/28/how-rearranging-a-kid-s-room-broke-my-zigbee-network-and-how-i-fixed-it/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/slzb-06m/</loc>
+    <loc>https://gavriliu.com/tags/slzb-06m/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/troubleshoot/</loc>
+    <loc>https://gavriliu.com/tags/troubleshoot/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/zigbee2mqtt/</loc>
+    <loc>https://gavriliu.com/tags/zigbee2mqtt/</loc>
     <lastmod>2025-03-28T10:38:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/14/waste-collection-schedule-in-ha/</loc>
+    <loc>https://gavriliu.com/post/2025/03/14/waste-collection-schedule-in-ha/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/waste-collection/</loc>
+    <loc>https://gavriliu.com/tags/waste-collection/</loc>
     <lastmod>2025-03-14T22:19:55+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</loc>
+    <loc>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/longhorn/</loc>
+    <loc>https://gavriliu.com/tags/longhorn/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/troubleshooting/</loc>
+    <loc>https://gavriliu.com/tags/troubleshooting/</loc>
     <lastmod>2025-03-14T21:34:29+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/application/</loc>
+    <loc>https://gavriliu.com/tags/application/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/argocd/</loc>
+    <loc>https://gavriliu.com/tags/argocd/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</loc>
+    <loc>https://gavriliu.com/post/2025/03/14/argocd-combine-helm-and-k8s-manifests-in-one-application/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/helm/</loc>
+    <loc>https://gavriliu.com/tags/helm/</loc>
     <lastmod>2025-03-14T18:34:06+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/bitnami/</loc>
+    <loc>https://gavriliu.com/tags/bitnami/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</loc>
+    <loc>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sealed-secrets/</loc>
+    <loc>https://gavriliu.com/tags/sealed-secrets/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/security/</loc>
+    <loc>https://gavriliu.com/tags/security/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://gavriliu.com/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://gavriliu.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://gavriliu.com/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://gavriliu.com/search/</loc>
   </url>
 </urlset>

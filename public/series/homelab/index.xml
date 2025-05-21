@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homelab on Andrei Gavriliu</title>
-    <link>http://localhost:1313/series/homelab/</link>
+    <link>https://gavriliu.com/series/homelab/</link>
     <description>Recent content in Homelab on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="http://localhost:1313/series/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Mar 2025 08:30:35 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/homelab/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fix Key Stored in Legacy Trusted Gpg Keyring</title>
-      <link>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
+      <link>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</link>
       <pubDate>Mon, 31 Mar 2025 08:30:35 +0200</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
+      <guid>https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/</guid>
       <description>
         
           
@@ -36,10 +36,10 @@
     
     <item>
       <title>Containers Not Mounting Longhorn Volumes</title>
-      <link>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
+      <link>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</link>
       <pubDate>Fri, 14 Mar 2025 21:34:29 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/</guid>
       <description>
         
           
@@ -52,10 +52,10 @@
     
     <item>
       <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
+      <link>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
       <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
       
-      <guid>http://localhost:1313/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
+      <guid>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
       <description>
         
           
