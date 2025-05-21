@@ -9,11 +9,11 @@ usePageBundles: true
 toc: true
 draft: false
 
-# featureImage: 'image.png'
-# featureImageAlt: 'Rack by ChatGPT'
-# featureImageCap: 'Rack by ChatGPT'
-# thumbnail: 'image.png'
-# shareImage: 'image.png'
+featureImage: 'header.png'
+featureImageAlt: 'by ChatGPT'
+featureImageCap: 'by ChatGPT'
+thumbnail: 'header.png'
+shareImage: 'header.png'
 
 # series: kubernetes
 # showRelatedInArticle:  true
