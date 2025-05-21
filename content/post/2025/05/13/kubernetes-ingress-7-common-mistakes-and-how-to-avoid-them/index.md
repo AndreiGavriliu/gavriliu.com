@@ -9,15 +9,15 @@ usePageBundles: true
 toc: true
 draft: false
 
-featureImage: 'header.png'
-featureImageAlt: 'by ChatGPT'
-featureImageCap: 'by ChatGPT'
+# featureImage: 'header.png'
+# featureImageAlt: 'by ChatGPT'
+# featureImageCap: 'by ChatGPT'
 thumbnail: 'header.png'
 shareImage: 'header.png'
 
-# series: kubernetes
-# showRelatedInArticle:  true
-# showRelatedInSidebar: true
+series: kubernetes
+showRelatedInArticle:  true
+showRelatedInSidebar: true
 ---
 
 You've finally tamed Kubernetes Ingress — or so you think. Then weird routing errors, downtime, and mysterious 404s show up. Welcome to the club! 🎩

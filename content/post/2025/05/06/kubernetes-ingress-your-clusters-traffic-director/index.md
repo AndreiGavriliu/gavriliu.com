@@ -9,15 +9,15 @@ usePageBundles: true
 toc: true
 draft: false
 
-featureImage: 'header.png'
-featureImageAlt: 'by ChatGPT'
-featureImageCap: 'by ChatGPT'
+# featureImage: 'header.png'
+# featureImageAlt: 'by ChatGPT'
+# featureImageCap: 'by ChatGPT'
 thumbnail: 'header.png'
 shareImage: 'header.png'
 
-# series: kubernetes
-# showRelatedInArticle:  true
-# showRelatedInSidebar: true
+series: kubernetes
+showRelatedInArticle:  true
+showRelatedInSidebar: true
 ---
 
 Your app is running in Kubernetes. Great! But now you want users to actually reach it — without remembering 15 different NodePorts or manually messing with LoadBalancers. Enter the hero we need but rarely understand at first: **Ingress**.

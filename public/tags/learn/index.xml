@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Learn on Andrei Gavriliu</title>
-    <link>https://gavriliu.com/tags/learn/</link>
+    <link>http://localhost:1313/tags/learn/</link>
     <description>Recent content in Learn on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/learn/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
-      <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
+      <link>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
       <pubDate>Tue, 13 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
+      <guid>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
       <description>
         
           
@@ -77,10 +77,10 @@
     
     <item>
       <title>Kubernetes Ingress: Your Cluster&#39;s Traffic Director</title>
-      <link>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
+      <link>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
       <pubDate>Tue, 06 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
+      <guid>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
       <description>
         
           
@@ -97,10 +97,10 @@
     
     <item>
       <title>Kubernetes Services: The Network Matchmakers</title>
-      <link>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
+      <link>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
       <pubDate>Tue, 29 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
+      <guid>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
       <description>
         
           
@@ -114,10 +114,10 @@
     
     <item>
       <title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things</title>
-      <link>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
+      <link>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
       <pubDate>Tue, 22 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
+      <guid>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
       <description>
         
           
@@ -133,10 +133,10 @@
     
     <item>
       <title>Kubernetes Deployments: Like a Boss (Who Delegates Everything)</title>
-      <link>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
+      <link>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
       <pubDate>Thu, 17 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
+      <guid>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
       <description>
         
           
