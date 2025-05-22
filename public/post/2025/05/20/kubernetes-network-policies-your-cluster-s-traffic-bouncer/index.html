@@ -4,10 +4,12 @@
   lang="en"
   data-figures=""
   
+    class="page"
+  
   
   >
   <head>
-<title>Categories | Andrei Gavriliu</title>
+<title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -21,22 +23,24 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="What Are Network Policies?
+In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’s allowed to talk to whom and kicks out anything not on …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Categories" />
-<meta name="twitter:image" content="https://gavriliu.com/logos/logo.png"/>
-<meta property="og:url" content="https://gavriliu.com/categories/" />
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
-<meta property="og:image" content="https://gavriliu.com/logos/logo.png" />
+<meta name="twitter:title" content="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer" />
+<meta name="twitter:image" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png"/>
+<meta property="og:url" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" />
+<meta property="og:title" content="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer" />
+<meta property="og:description" content="What Are Network Policies?
+In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’s allowed to talk to whom and kicks out anything not on …" />
+<meta property="og:image" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png" />
+  <meta name="keywords" content="kubernetes,learn,networking,security" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://gavriliu.com/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://gavriliu.com/icons/favicon-32x32.png">
 <link rel="manifest" href="https://gavriliu.com/icons/site.webmanifest">
 
-<link rel="canonical" href="https://gavriliu.com/categories/">
-<link rel="alternate" type="application/rss+xml" href="https://gavriliu.com/categories/index.xml" title="Andrei Gavriliu" />
+<link rel="canonical" href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/">
 
 
 
@@ -130,23 +134,247 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-      <li>
-      </li>
-    </ul>
+  <article class="post_content">
+    <h1 class="post_title">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <title>calendar</title>
+  <use xlink:href="#calendar"></use>
+</svg>
+</span>
+    <span class="post_date">
+      May 21, 2025	  
+    </span>
+    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='https://gavriliu.com/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='https://gavriliu.com/tags/networking/' title="networking" class="post_tag button button_translucent">networking
+        </a><a href='https://gavriliu.com/tags/security/' title="security" class="post_tag button button_translucent">security
+        </a>
+    </span>
   </div>
+
+      <div class="post_toc">
+        <h2>Overview</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-are-network-policies">What Are Network Policies?</a></li>
+    <li><a href="#default-behavior-open-doors">Default Behavior: Open Doors</a></li>
+    <li><a href="#a-basic-network-policy-example">A Basic Network Policy Example</a></li>
+    <li><a href="#lets-talk-egress-because-your-pod-wants-to-talk-too">Let’s Talk Egress (Because Your Pod Wants to Talk Too)</a></li>
+    <li><a href="#locking-it-down-no-ingress-no-egress">Locking It Down: No Ingress, No Egress</a></li>
+    <li><a href="#using-namespaces-in-policies">Using Namespaces in Policies</a></li>
+    <li><a href="#ingress-vs-egress-the-tldr">Ingress vs. Egress: The TL;DR</a></li>
+    <li><a href="#cni-plugins-the-real-muscle">CNI Plugins: The Real Muscle</a></li>
+    <li><a href="#best-practices-aka-how-not-to-break-everything">Best Practices (aka “How Not to Break Everything”)</a></li>
+    <li><a href="#wrapping-it-up">Wrapping It Up</a></li>
+  </ul>
+</nav>
+      </div>
+    
+    <div class="post_body"><h2 id="what-are-network-policies">What Are Network Policies?</h2>
+<p>In Kubernetes, a <code>NetworkPolicy</code> is like a bouncer for your pods. It checks who’s allowed to talk to whom and kicks out anything not on the guest list.</p>
+<p>By default, Kubernetes is a friendly party where everyone can chat with everyone else—great for sociability, terrible for security. Network Policies let you enforce boundaries, like:</p>
+<ul>
+<li>Only letting frontend pods sweet-talk the backend</li>
+<li>Blocking pods from gossiping with the internet</li>
+<li>Keeping your top-secret service away from curious neighbors</li>
+</ul>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Official Docs</a></p>
+<hr>
+<h2 id="default-behavior-open-doors">Default Behavior: Open Doors</h2>
+<p>Out of the box, Kubernetes is basically a mosh pit. Every pod can talk to every other pod. No firewalls. No curfews. Chaos.</p>
+<p>But the moment you apply a <code>NetworkPolicy</code> to a pod, it’s like hiring a security team with a clipboard: only explicitly allowed traffic is permitted. Everything else? Hard no.</p>
+<hr>
+<h2 id="a-basic-network-policy-example">A Basic Network Policy Example</h2>
+<p>Say you want to restrict access to your backend pods so that only frontend pods can call them. Here's how you write that policy:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">NetworkPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">allow-frontend</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">backend</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">ingress</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="nt">from</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span>- <span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">          </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">frontend</span><span class="w">
+</span></span></span></code></pre></div><p>What this does:</p>
+<ul>
+<li>Allows pods labeled <code>app: frontend</code> to talk to pods labeled <code>app: backend</code></li>
+<li>Blocks everything else from talking to those backend pods</li>
+</ul>
+<p>If your database tries to get chatty with the backend? Nope. Denied. This policy is all about that frontend-backend duo and nobody else.</p>
+<h2 id="lets-talk-egress-because-your-pod-wants-to-talk-too">Let’s Talk Egress (Because Your Pod Wants to Talk Too)</h2>
+<p>Now imagine you have a pod that should only talk to your in-cluster database, and not go surfing the internet for cat memes.</p>
+<p>Here’s an egress policy to block all outbound traffic except traffic to a pod labeled app: database:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">NetworkPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">restrict-egress</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">backend</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">egress</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="nt">to</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span>- <span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">          </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">database</span><span class="w">
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">  </span>- <span class="l">Egress</span><span class="w">
+</span></span></span></code></pre></div><p>Once applied, your backend pods can no longer egress to the internet, other services, or anything not labeled <code>app: database</code>. No more unauthorized outbound traffic.</p>
+<h2 id="locking-it-down-no-ingress-no-egress">Locking It Down: No Ingress, No Egress</h2>
+<p>Sometimes, you want a pod that’s completely isolated. No calls in. No calls out. Just a digital monk meditating in the corner of your cluster.</p>
+<p>Behold:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">NetworkPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">complete-isolation</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">hermit</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">policyTypes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="l">Ingress</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">  </span>- <span class="l">Egress</span><span class="w">
+</span></span></span></code></pre></div><p>No ingress or egress rules are defined, so everything is blocked. This is perfect for honeypots, air-gapped workloads, or that one app you’re just not sure you trust yet.</p>
+<h2 id="using-namespaces-in-policies">Using Namespaces in Policies</h2>
+<p>Sometimes, you don’t want to define rules by pod label, but by namespace. Maybe your monitoring namespace is allowed to scrape metrics, and nothing else.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">NetworkPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">allow-monitoring</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">app-space</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">web</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">ingress</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="nt">from</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span>- <span class="nt">namespaceSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">        </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">          </span><span class="nt">team</span><span class="p">:</span><span class="w"> </span><span class="l">monitoring</span><span class="w">
+</span></span></span></code></pre></div><p>Now pods in the app-space namespace with label app: web will only accept connections from pods in a namespace labeled team: monitoring.</p>
+<p>Namespaces = powerful boundaries. Use them wisely.</p>
+<h2 id="ingress-vs-egress-the-tldr">Ingress vs. Egress: The TL;DR</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Rule Type</th>
+          <th style="text-align: left">Controls</th>
+          <th style="text-align: left">Default Without Rules</th>
+          <th style="text-align: left">Effect When Rule Exists</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Ingress</td>
+          <td style="text-align: left">Who can talk to your pod</td>
+          <td style="text-align: left">Anyone</td>
+          <td style="text-align: left">Only what’s explicitly allowed</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Egress</td>
+          <td style="text-align: left">Who your pod can talk to</td>
+          <td style="text-align: left">Anyone</td>
+          <td style="text-align: left">Only what’s explicitly allowed</td>
+      </tr>
+  </tbody>
+</table>
+<p>Just remember: as soon as you define a rule of one type, it overrides the default. So define them carefully—especially egress, which can break things in wonderfully confusing ways.</p>
+<h2 id="cni-plugins-the-real-muscle">CNI Plugins: The Real Muscle</h2>
+<p>Kubernetes doesn’t actually enforce these rules itself. That’s the job of your CNI plugin. If your CNI doesn’t support <code>NetworkPolicy</code>, then you’re basically writing love letters no one reads.</p>
+<p>Here are some CNIs that do enforce Network Policies:</p>
+<ul>
+<li>Calico – Reliable, fast, and popular in production</li>
+<li>Cilium – Uses eBPF for fancy L7 (Layer 7) controls and shiny observability</li>
+<li>Weave Net – Simpler but still policy-aware</li>
+<li>Kube-Router – Not super common, but supports policies too</li>
+</ul>
+<p>Before rolling out policies, make sure your cluster is using a policy-aware CNI—or you’ll be left wondering why nothing is being blocked.</p>
+<h2 id="best-practices-aka-how-not-to-break-everything">Best Practices (aka “How Not to Break Everything”)</h2>
+<ul>
+<li>Start in audit mode: Use network monitoring tools before enforcing anything. Understand the traffic first.</li>
+<li>Label everything: Labels are your friends. Policies without proper labels are like locks with no keys.</li>
+<li>Use namespaces for segmentation: Divide and conquer your traffic.</li>
+<li>Incrementally apply policies: Don’t YOLO a full lockdown. Apply one policy at a time.</li>
+<li>Use visualization tools: Tools like Hubble help you see what your policies are doing.</li>
+<li>Document your intentions: Future-you (and teammates) will thank you.</li>
+</ul>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Network Policies are Kubernetes’ version of a velvet rope. They keep the right packets in, the wrong packets out, and your cluster just a little bit saner.</p>
+<p>Remember:</p>
+<ul>
+<li>Without policies, it’s a free-for-all</li>
+<li>With them, it’s a carefully curated social circle</li>
+<li>They’re only as good as your CNI and your labels</li>
+</ul>
+<p>So label thoughtfully, start small, and don’t be afraid to lock it down. Your cluster deserves some boundaries.</p>
+<p>No label? No entry.</p>
+
+    </div>
+
+  <h2 class="post_related">Posts in this series</h2>
+  <ul>
+    
+    <li><a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster&#39;s Traffic Director</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a></li>
+    
+  </ul>
+
+<div class="post_comments">
+  
+  
+  
+    
+<script src="https://giscus.app/client.js"
+        data-repo="AndreiGavriliu/gavriliu.com"
+        data-repo-id="R_kgDOOJJrSA"
+        data-category="General"
+        data-category-id="DIC_kwDOOJJrSM4ComRe"
+        data-mapping="og:title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script> 
+ 
+  
+  
+</div>
+
+
+
+
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
     
   
   <div class="search">
-    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='categories'>
+    <input type="search" class="search_field form_field" placeholder='Search...' id="find" autocomplete="off" data-scope='post'>
     <label for="find" class="search_label"><svg class="icon">
   <title>search</title>
   <use xlink:href="#search"></use>
@@ -164,6 +392,35 @@
       <a href='https://gavriliu.com/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
+      
+      <h2 class="mt-4">Posts in this series</h2>
+      <ul>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
+        </li>
+        
+      </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
@@ -351,9 +608,8 @@
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

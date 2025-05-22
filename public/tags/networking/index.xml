@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Security on Andrei Gavriliu</title>
-    <link>https://gavriliu.com/tags/security/</link>
-    <description>Recent content in Security on Andrei Gavriliu</description>
+    <title>Networking on Andrei Gavriliu</title>
+    <link>https://gavriliu.com/tags/networking/</link>
+    <description>Recent content in Networking on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 21 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/networking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</title>
       <link>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</link>
@@ -25,22 +25,6 @@
 &lt;li&gt;Keeping your top-secret service away from curious neighbors&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/network-policies/&#34;&gt;Official Docs&lt;/a&gt;&lt;/p&gt;
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>How to seal and unseal secrets with Bitnami Sealed-Secrets</title>
-      <link>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</link>
-      <pubDate>Fri, 14 Mar 2025 16:41:25 +0100</pubDate>
-      
-      <guid>https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/</guid>
-      <description>
-        
-          
-            &lt;p&gt;I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?&lt;br&gt;&lt;/p&gt;
           
           
         

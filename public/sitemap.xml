@@ -3,30 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://gavriliu.com/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/series/kubernetes/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/kubernetes/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/learn/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/networking/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/post/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/security/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/series/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/</loc>
+    <lastmod>2025-05-21T03:00:00+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/ingress/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://gavriliu.com/series/kubernetes/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/kubernetes/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
     <loc>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/learn/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/post/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/series/</loc>
-    <lastmod>2025-05-13T03:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-05-13T03:00:00+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</loc>
@@ -129,9 +138,6 @@
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/sealed-secrets/</loc>
-    <lastmod>2025-03-14T16:41:25+01:00</lastmod>
-  </url><url>
-    <loc>https://gavriliu.com/tags/security/</loc>
     <lastmod>2025-03-14T16:41:25+01:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/about/</loc>

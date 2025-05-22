@@ -6,7 +6,31 @@
     <description>Recent content in Kubernetes on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</title>
+      <link>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</link>
+      <pubDate>Wed, 21 May 2025 03:00:00 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</guid>
+      <description>
+        
+          
+            &lt;h2 id=&#34;what-are-network-policies&#34;&gt;What Are Network Policies?&lt;/h2&gt;
+&lt;p&gt;In Kubernetes, a &lt;code&gt;NetworkPolicy&lt;/code&gt; is like a bouncer for your pods. It checks who’s allowed to talk to whom and kicks out anything not on the guest list.&lt;/p&gt;
+&lt;p&gt;By default, Kubernetes is a friendly party where everyone can chat with everyone else—great for sociability, terrible for security. Network Policies let you enforce boundaries, like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Only letting frontend pods sweet-talk the backend&lt;/li&gt;
+&lt;li&gt;Blocking pods from gossiping with the internet&lt;/li&gt;
+&lt;li&gt;Keeping your top-secret service away from curious neighbors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/network-policies/&#34;&gt;Official Docs&lt;/a&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
       <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
