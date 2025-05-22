@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Network Policies: Your Cluster’s Traffic Bouncer"
-date: 2025-05-21T03:00:00+02:00
+date: 2025-05-20T03:00:00+02:00
 tags: ["kubernetes", "learn", "networking", "security"]
 
 showShare: false
