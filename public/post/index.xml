@@ -6,7 +6,28 @@
     <description>Recent content in Posts on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 May 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</title>
+      <link>https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/</link>
+      <pubDate>Tue, 27 May 2025 03:00:00 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/</guid>
+      <description>
+        
+          
+            &lt;h2 id=&#34;what-are-endpoints&#34;&gt;What Are Endpoints?&lt;/h2&gt;
+&lt;p&gt;Ever wondered how a &lt;code&gt;Service&lt;/code&gt; in Kubernetes actually knows which pods to forward traffic to? Enter the &lt;strong&gt;Endpoint&lt;/strong&gt;, Kubernetes’ behind-the-scenes phonebook.&lt;/p&gt;
+&lt;p&gt;When you create a &lt;code&gt;Service&lt;/code&gt;, Kubernetes auto-generates an &lt;code&gt;Endpoint&lt;/code&gt; object. It’s a simple list of pod IPs and ports that match the &lt;code&gt;Service&lt;/code&gt;’s selector. Basically:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Hey Service X, your pods are at 10.42.0.12:8080 and 10.42.0.15:8080. Go get ‘em, tiger.”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;You can check them out with:&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</title>
       <link>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</link>
