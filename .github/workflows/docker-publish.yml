@@ -135,7 +135,8 @@ jobs:
             patch="${BASH_REMATCH[3]}"
             patch=$((patch + 1))
             new_tag="v$major.$minor.$patch"
-            echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
+            echo "new_tag=$new_tag"
+            echo "new_tag=$new_tag" >> "$GITHUB_ENV"
           else
             echo "Invalid tag format: $latest"
             exit 1
