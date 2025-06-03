@@ -105,19 +105,19 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
-  bump_version:
+  tag_version:
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'post-')
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Automated Version Bump
-        uses: phips28/gh-action-bump-version@v11.0.2
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v6.1
         with:
-          tag-prefix: "v"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: "v"
   # bump-version:
   #   if: >
   #     github.event.pull_request.merged == true &&
