@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>Kubernetes Services: The Network Matchmakers | Andrei Gavriliu</title>
+<title>Kubernetes Volumes: Where Pods Keep Their Stuff | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,22 +23,24 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter …" />
+<meta name="description" content="Or: “How to Give Your Containers a Place to Put Their Shoes”
+In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Kubernetes Services: The Network Matchmakers" />
-<meta name="twitter:image" content="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/header.png"/>
-<meta property="og:url" content="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" />
-<meta property="og:title" content="Kubernetes Services: The Network Matchmakers" />
-<meta property="og:description" content="So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter …" />
-<meta property="og:image" content="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/header.png" />
-  <meta name="keywords" content="kubernetes,learn,services" />
+<meta name="twitter:title" content="Kubernetes Volumes: Where Pods Keep Their Stuff" />
+<meta name="twitter:image" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/header.png"/>
+<meta property="og:url" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" />
+<meta property="og:title" content="Kubernetes Volumes: Where Pods Keep Their Stuff" />
+<meta property="og:description" content="Or: “How to Give Your Containers a Place to Put Their Shoes”
+In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a …" />
+<meta property="og:image" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/header.png" />
+  <meta name="keywords" content="kubernetes,learn,storage" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://gavriliu.com/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://gavriliu.com/icons/favicon-32x32.png">
 <link rel="manifest" href="https://gavriliu.com/icons/site.webmanifest">
 
-<link rel="canonical" href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/">
+<link rel="canonical" href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/">
 
 
 
@@ -135,7 +137,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">Kubernetes Services: The Network Matchmakers</h1>
+    <h1 class="post_title">Kubernetes Volumes: Where Pods Keep Their Stuff</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -143,11 +145,11 @@
 </svg>
 </span>
     <span class="post_date">
-      Apr 29, 2025	  
+      Jun 3, 2025	  
     </span>
-    <span class="post_time"> · 4 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
         </a><a href='https://gavriliu.com/tags/learn/' title="learn" class="post_tag button button_translucent">learn
-        </a><a href='https://gavriliu.com/tags/services/' title="services" class="post_tag button button_translucent">services
+        </a><a href='https://gavriliu.com/tags/storage/' title="storage" class="post_tag button button_translucent">storage
         </a>
     </span>
   </div>
@@ -156,197 +158,207 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-a-service">What Is a Service?</a></li>
-    <li><a href="#the-anatomy-of-a-service">The Anatomy of a Service</a></li>
-    <li><a href="#1-clusterip-the-introvert">1. ClusterIP: The Introvert</a></li>
-    <li><a href="#2-nodeport-the-over-sharer">2. NodePort: The Over-sharer</a></li>
-    <li><a href="#3-loadbalancer-the-vip-pass-cloud-only">3. LoadBalancer: The VIP Pass (Cloud Only)</a></li>
-    <li><a href="#4-externalname-the-alias-er">4. ExternalName: The Alias-er</a></li>
-    <li><a href="#5-headless-services-the-no-load-balancer-club">5. Headless Services: The No-Load-Balancer Club</a></li>
-    <li><a href="#a-word-on-selectors">A Word on Selectors</a></li>
-    <li><a href="#hostnetwork-a-not-service-but-still-important">HostNetwork: A Not-Service But Still Important</a></li>
-    <li><a href="#service-discovery-the-dns-magic">Service Discovery: The DNS Magic</a></li>
-    <li><a href="#bonus-traffic-routing-behind-the-scenes">Bonus: Traffic Routing Behind the Scenes</a></li>
-    <li><a href="#quick-comparison-table">Quick Comparison Table</a></li>
+    <li><a href="#why-volumes-matter-aka-the-tragic-tale-of-tmp">Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)</a></li>
+    <li><a href="#a-quick-look-at-volume-types">A Quick Look at Volume Types</a></li>
+    <li><a href="#emptydir--the-not-so-permanent-roommate">emptyDir – The Not-So-Permanent Roommate</a></li>
+    <li><a href="#hostpath--mounting-the-nodes-basement">hostPath – Mounting the Node's Basement</a></li>
+    <li><a href="#persistent-volume-claims--now-were-talking-durable">Persistent Volume Claims – Now We’re Talking Durable</a>
+      <ul>
+        <li><a href="#pvc-example">PVC Example</a></li>
+        <li><a href="#bonus-storageclass-for-dynamic-provisioning">Bonus: StorageClass for Dynamic Provisioning</a></li>
+      </ul>
+    </li>
+    <li><a href="#readwriteonce-readonlymany-whats-with-these-modes">ReadWriteOnce? ReadOnlyMany? What’s With These Modes?</a></li>
+    <li><a href="#volumes-in-multi-container-pods">Volumes in Multi-Container Pods</a></li>
+    <li><a href="#configmap--secret-volumes--mounting-configuration-like-a-pro">ConfigMap &amp; Secret Volumes – Mounting Configuration Like a Pro</a></li>
+    <li><a href="#gotchas-to-avoid">Gotchas to Avoid</a></li>
+    <li><a href="#pro-tips">Pro Tips</a></li>
     <li><a href="#wrapping-it-up">Wrapping It Up</a></li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><p>So you’ve got Pods doing great things — calculating, serving, storing, or maybe just vibing. But how do they talk to each other, or to the outside world? Enter <strong>Kubernetes Services</strong> — the built-in matchmakers making sure traffic finds the right Pods without ghosting.</p>
-<p>Let’s unravel all the types of Services, how they work, and when to use which one — in plain speak, with a splash of professional sarcasm.</p>
-<h2 id="what-is-a-service">What Is a Service?</h2>
-<p>A <strong>Service</strong> in Kubernetes is a stable networking abstraction over a set of Pods. Since Pods can die and respawn with different IPs (like mayflies with faster DevOps), you can’t reliably connect to a Pod directly. Services solve this by:</p>
-<ul>
-<li>Giving you a fixed IP and DNS name</li>
-<li>Forwarding traffic to the right Pods via <strong>selectors</strong></li>
-<li>Optionally exposing your app <strong>outside the cluster</strong></li>
-</ul>
-<h2 id="the-anatomy-of-a-service">The Anatomy of a Service</h2>
-<p>Here's the minimalist version:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-service</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">my-app</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
-</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span></span></span></code></pre></div><ul>
-<li><code>selector</code>: Finds Pods with label <code>app: my-app</code></li>
-<li><code>port</code>: The port your Service listens on</li>
-<li><code>targetPort</code>: Where the traffic actually goes on the Pod</li>
-</ul>
-<h2 id="1-clusterip-the-introvert">1. ClusterIP: The Introvert</h2>
-<p><strong>Default type.</strong> Only accessible <strong>inside</strong> the cluster.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIP</span><span class="w">
-</span></span></span></code></pre></div><p>Use when:</p>
-<ul>
-<li>You don’t need external access</li>
-<li>One app (say, a frontend) talks to another (like an API or database)</li>
-</ul>
-<p>Think of it like internal company email — efficient, private, and nobody outside knows it exists.</p>
-<h2 id="2-nodeport-the-over-sharer">2. NodePort: The Over-sharer</h2>
-<p>Exposes the Service on a static port on <strong>every node’s IP</strong>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">NodePort</span><span class="w">
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30007</span><span class="w">
-</span></span></span></code></pre></div><p>Access it via <code>http://&lt;node-ip&gt;:30007</code>.</p>
-<p>Use when:</p>
-<ul>
-<li>You want a quick way to test your app from outside</li>
-<li>You don’t have a cloud LoadBalancer</li>
-</ul>
-<p>Downside:</p>
-<ul>
-<li>Hardcoding ports can lead to conflicts</li>
-<li>Not the prettiest URL</li>
-</ul>
-<p>It’s like taping your home address to every light pole in town — useful, but not exactly graceful.</p>
-<h2 id="3-loadbalancer-the-vip-pass-cloud-only">3. LoadBalancer: The VIP Pass (Cloud Only)</h2>
-<p>If your cluster is running in a cloud provider (AWS, GCP, Azure, etc.), this will provision an external <strong>load balancer</strong>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
-</span></span></span></code></pre></div><p>Access via a cloud-managed IP or hostname.</p>
-<p>Use when:</p>
-<ul>
-<li>You want external users to reach your service</li>
-<li>You're in the cloud and want it done the “cloud native” way</li>
-</ul>
-<p>Kubernetes does all the hard work: it tells your cloud, “Hey, give me a load balancer,” and boom — traffic flows.</p>
-<h2 id="4-externalname-the-alias-er">4. ExternalName: The Alias-er</h2>
-<p>Points to an external DNS name. No selector. No pods. Just DNS aliasing.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ExternalName</span><span class="w">
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">externalName</span><span class="p">:</span><span class="w"> </span><span class="l">my.db.example.com</span><span class="w">
-</span></span></span></code></pre></div><p>Use when:</p>
-<ul>
-<li>You want to refer to an external service via internal DNS</li>
-<li>You need to abstract something not in the cluster</li>
-</ul>
-<p>No traffic routing here — just DNS voodoo.</p>
-<h2 id="5-headless-services-the-no-load-balancer-club">5. Headless Services: The No-Load-Balancer Club</h2>
-<p>When you want <strong>no cluster IP</strong> — for direct access to individual Pods (e.g. with StatefulSets).</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
-</span></span></span></code></pre></div><p>This lets clients resolve A/AAAA records to <strong>each Pod IP</strong> directly. Ideal for:</p>
-<ul>
-<li>StatefulSets</li>
-<li>Peer-to-peer apps</li>
-<li>Custom service discovery</li>
-</ul>
-<p>It’s like saying, “Don’t give me a receptionist. I’ll talk to the team directly.”</p>
-<h2 id="a-word-on-selectors">A Word on Selectors</h2>
-<p>Selectors are how a Service finds which Pods to send traffic to.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">my-api</span><span class="w">
-</span></span></span></code></pre></div><p>Kubernetes continuously watches for Pods matching this label. No match? No traffic. So label your Pods like your uptime depends on it. (Because it might.)</p>
-<h2 id="hostnetwork-a-not-service-but-still-important">HostNetwork: A Not-Service But Still Important</h2>
-<p>When a Pod wants to <strong>skip Kubernetes networking</strong> and use the node's actual network stack.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">hostNetwork</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span></code></pre></div><p>Use when:</p>
-<ul>
-<li>You need access to host-level ports (like 80/443)</li>
-<li>You're running something like a CNI plugin or monitoring tool</li>
-</ul>
-<p>But beware:</p>
-<ul>
-<li>No port conflict protection</li>
-<li>Less isolation</li>
-</ul>
-<p>It’s like renting a room <em>and</em> using the landlord’s Wi-Fi, mailbox, and fridge. Cool, but risky.</p>
-<h2 id="service-discovery-the-dns-magic">Service Discovery: The DNS Magic</h2>
-<p>Kubernetes creates DNS names for Services automatically:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">my-service.default.svc.cluster.local
-</span></span></code></pre></div><p>Your Pods can use this to reach Services <strong>without knowing their IP</strong>. It’s like calling someone by name instead of memorizing their phone number.</p>
-<h2 id="bonus-traffic-routing-behind-the-scenes">Bonus: Traffic Routing Behind the Scenes</h2>
-<p>Kubernetes uses <strong>iptables</strong> or <strong>IPVS</strong> under the hood to handle traffic routing. It ensures load balancing, round-robin-style, and uses kube-proxy to make it all work.</p>
-<h2 id="quick-comparison-table">Quick Comparison Table</h2>
+    <div class="post_body"><p><em>Or: “How to Give Your Containers a Place to Put Their Shoes”</em></p>
+<p>In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a temporary pop-up tent in the cloud. But then… someone said, “Hey, where do I put my logs? My files? My database?”</p>
+<p>Enter <strong>Kubernetes Volumes</strong> — the answer to the age-old question: <em>“Where does my pod keep its stuff?”</em></p>
+<h2 id="why-volumes-matter-aka-the-tragic-tale-of-tmp">Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)</h2>
+<p>Let’s say you write a file in your container, and the pod restarts. Surprise! The file’s gone. That’s because containers are built for immutability. Any data written inside the container is gone when it crashes or gets rescheduled.</p>
+<p><strong>Volumes provide a stable place for data that outlives the container.</strong></p>
+<blockquote>
+<p>A Volume in Kubernetes is like a shared hard drive your containers can access. It's attached to a Pod, not the individual container.</p></blockquote>
+<h2 id="a-quick-look-at-volume-types">A Quick Look at Volume Types</h2>
+<p>There are several volume types, each with different behaviors. Here's a table to keep your brain organized:</p>
 <table>
   <thead>
       <tr>
-          <th>Type</th>
-          <th>Accessible From</th>
-          <th>Needs Cloud</th>
-          <th>Use Case</th>
+          <th>Volume Type</th>
+          <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>ClusterIP</td>
-          <td>Inside Cluster</td>
-          <td>No</td>
-          <td>Internal services</td>
+          <td><code>emptyDir</code></td>
+          <td>Temporary directory, wiped on pod deletion</td>
       </tr>
       <tr>
-          <td>NodePort</td>
-          <td>External (via node IP)</td>
-          <td>No</td>
-          <td>Dev/test, simple access</td>
+          <td><code>hostPath</code></td>
+          <td>Mounts a file or dir from the node’s filesystem (risky!)</td>
       </tr>
       <tr>
-          <td>LoadBalancer</td>
-          <td>External (via LB IP)</td>
-          <td>Yes</td>
-          <td>Public-facing apps</td>
+          <td><code>persistentVolumeClaim (PVC)</code></td>
+          <td>Connects to persistent storage like a cloud disk or NFS</td>
       </tr>
       <tr>
-          <td>ExternalName</td>
-          <td>Inside Cluster</td>
-          <td>No</td>
-          <td>DNS alias to external services</td>
+          <td><code>configMap</code> / <code>secret</code></td>
+          <td>Mounts ConfigMaps or Secrets as files in the container</td>
       </tr>
       <tr>
-          <td>Headless</td>
-          <td>Inside Cluster</td>
-          <td>No</td>
-          <td>Stateful apps needing Pod-level DNS</td>
+          <td><code>nfs</code>, <code>awsElasticBlockStore</code>, <code>longhorn-storage</code>, etc.</td>
+          <td>Specific storage providers</td>
       </tr>
       <tr>
-          <td>HostNetwork</td>
-          <td>Anywhere (via node IP)</td>
-          <td>No</td>
-          <td>Low-level access, infra tools</td>
+          <td><code>projected</code></td>
+          <td>Combines several sources into one volume</td>
+      </tr>
+      <tr>
+          <td><code>ephemeral</code></td>
+          <td>Like a PVC but declared inline in the pod spec</td>
       </tr>
   </tbody>
 </table>
-<h2 id="wrapping-it-up">Wrapping It Up</h2>
-<p>Kubernetes Services are like networking assistants on Red Bull:</p>
+<p>Let’s dive into a few common ones.</p>
+<h2 id="emptydir--the-not-so-permanent-roommate">emptyDir – The Not-So-Permanent Roommate</h2>
+<p>This is the simplest volume type. It’s created when a Pod is assigned to a Node and exists as long as the Pod lives.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">scratch-space</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span></code></pre></div><p>Mount it like this in a container:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">scratch-space</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/tmp/data</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Great for</strong>: temporary files, caches, or sharing data between containers in the same pod.</p>
+<p><strong>Bad for</strong>: storing anything you want to keep after the pod is deleted or moved.</p>
+<h2 id="hostpath--mounting-the-nodes-basement">hostPath – Mounting the Node's Basement</h2>
+<p>You can mount a file or directory from the node directly:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">log-storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/log/myapp</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">DirectoryOrCreate</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Warning</strong>: This is very node-specific. If your pod gets moved to another node, and the directory isn’t there...</p>
+<h2 id="persistent-volume-claims--now-were-talking-durable">Persistent Volume Claims – Now We’re Talking Durable</h2>
+<p>This is where Kubernetes gets serious about storage. Instead of directly mounting a volume, you:</p>
+<ol>
+<li>Create a <code>PersistentVolume</code> (PV) – like a cloud disk or NFS share.</li>
+<li>Request it via a <code>PersistentVolumeClaim</code> (PVC).</li>
+<li>Mount the PVC to your pod.</li>
+</ol>
+<h3 id="pvc-example">PVC Example</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-pvc</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">5Gi</span><span class="w">
+</span></span></span></code></pre></div><p>Mount it in your pod:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">my-pvc</span><span class="w">
+</span></span></span></code></pre></div><p>And in your container:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/data</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Perfect for</strong>: databases, file uploads, or any data that needs to stick around even if your pod doesn’t.</p>
+<h3 id="bonus-storageclass-for-dynamic-provisioning">Bonus: StorageClass for Dynamic Provisioning</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/aws-ebs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span><span class="nt">parameters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">gp2</span><span class="w">
+</span></span></span></code></pre></div><p>PVC with StorageClass:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">10Gi</span><span class="w">
+</span></span></span></code></pre></div><p>Kubernetes automatically provisions a volume when the PVC is created. Magic!</p>
+<h2 id="readwriteonce-readonlymany-whats-with-these-modes">ReadWriteOnce? ReadOnlyMany? What’s With These Modes?</h2>
 <ul>
-<li>They watch your Pods</li>
-<li>Match traffic to them</li>
-<li>Give DNS names, IPs, and external access</li>
-<li>Let you scale without reconfiguring apps</li>
+<li><code>ReadWriteOnce</code> (RWO): One node can read/write.</li>
+<li><code>ReadOnlyMany</code> (ROX): Multiple nodes can read (but not write).</li>
+<li><code>ReadWriteMany</code> (RWX): Multiple nodes can read/write (great for shared filesystems like NFS or CephFS).</li>
 </ul>
-<p>So next time your Pods are lost and lonely, just remember: all they need is a Service to find their happily-ever-after.</p>
+<h2 id="volumes-in-multi-container-pods">Volumes in Multi-Container Pods</h2>
+<p>Got a pod with two containers that need to talk? Volumes to the rescue!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">      </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/var/log/myapp</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sidecar</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">      </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/data/logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span></code></pre></div><p>Your app writes logs. The sidecar reads and ships them elsewhere. Classic.</p>
+<h2 id="configmap--secret-volumes--mounting-configuration-like-a-pro">ConfigMap &amp; Secret Volumes – Mounting Configuration Like a Pro</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-config</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">db-credentials</span><span class="w">
+</span></span></span></code></pre></div><p>Mounting in containers:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/config</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/secrets</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>These volumes are ideal for mounting configuration files, TLS certs, and other secrets.</p>
+<h2 id="gotchas-to-avoid">Gotchas to Avoid</h2>
+<ul>
+<li>Mounting the same volume to the same path in multiple containers without coordination? Race conditions.</li>
+<li>Writing secrets to a PVC that doesn’t get cleaned up? That's how breaches happen.</li>
+<li>Assuming your volume is replicated or backed up? Check your storage class—<strong>assume nothing</strong>.</li>
+<li>Using <code>emptyDir</code> for anything you actually care about.</li>
+</ul>
+<h2 id="pro-tips">Pro Tips</h2>
+<ul>
+<li>Use <strong>StorageClasses</strong> to automate PVC provisioning.</li>
+<li>Use <strong>init containers</strong> to set up volume contents before your main container starts.</li>
+<li>Mount <strong>readOnly: true</strong> if the container doesn’t need to write. It’s safer.</li>
+<li>Monitor your disk usage. It’s easy to run out of space when you store <em>everything</em> in <code>/data</code>.</li>
+<li>Consider volume <strong>expansion</strong> if your PVC supports it:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">20Gi</span><span class="w">
+</span></span></span></code></pre></div><h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Kubernetes Volumes give your containers somewhere to put their things—and not just temporary things that go poof when the pod dies. With Volumes and PersistentVolumeClaims, you unlock <strong>stateful apps</strong>, <strong>shared logs</strong>, <strong>sidecar patterns</strong>, and <strong>secure configuration delivery</strong>.</p>
+<p>📦 So remember:</p>
+<ul>
+<li><code>emptyDir</code> is temporary.</li>
+<li><code>hostPath</code> is dangerous.</li>
+<li>PVCs are durable (and sane).</li>
+<li>Volume types abound—choose wisely.</li>
+</ul>
+<p>Let your pods keep their stuff, but make sure they clean up after themselves.</p>
 
     </div>
 

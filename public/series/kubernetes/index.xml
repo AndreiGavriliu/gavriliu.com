@@ -33,6 +33,26 @@
     </item>
     
     <item>
+      <title>Kubernetes Volumes: Where Pods Keep Their Stuff</title>
+      <link>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</link>
+      <pubDate>Tue, 03 Jun 2025 03:00:00 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</guid>
+      <description>
+        
+          
+            &lt;p&gt;&lt;em&gt;Or: “How to Give Your Containers a Place to Put Their Shoes”&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a temporary pop-up tent in the cloud. But then… someone said, “Hey, where do I put my logs? My files? My database?”&lt;/p&gt;
+&lt;p&gt;Enter &lt;strong&gt;Kubernetes Volumes&lt;/strong&gt; — the answer to the age-old question: &lt;em&gt;“Where does my pod keep its stuff?”&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;why-volumes-matter-aka-the-tragic-tale-of-tmp&#34;&gt;Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)&lt;/h2&gt;
+&lt;p&gt;Let’s say you write a file in your container, and the pod restarts. Surprise! The file’s gone. That’s because containers are built for immutability. Any data written inside the container is gone when it crashes or gets rescheduled.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
       <title>Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</title>
       <link>https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/</link>
       <pubDate>Tue, 27 May 2025 03:00:00 +0200</pubDate>
