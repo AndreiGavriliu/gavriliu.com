@@ -1,10 +1,5 @@
-FROM nginxinc/nginx-unprivileged
+FROM hugomods/hugo:exts
 
-# Copy built Hugo site from the builder stage to Nginx's web root
-COPY /public /usr/share/nginx/html
+COPY . /src
 
-# Expose HTTP port
-EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+RUN hugo --minify
