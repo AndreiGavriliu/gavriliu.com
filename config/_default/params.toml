@@ -36,6 +36,8 @@ giscusLang = "en"
 [author]
 name = "Andrei Gavriliu"
 
-[umami_analytics]
-id = "cf2e457b-8928-4ded-add0-4418eada5c79"
-src = "https://umami.gavriliu.com/script.js"
+[params]
+  [params.services]
+    [params.services.umami_analytics]
+    id = "cf2e457b-8928-4ded-add0-4418eada5c79"
+    script_url = "https://umami.gavriliu.com/script.js"
