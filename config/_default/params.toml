@@ -30,14 +30,14 @@ giscusTheme = "light"
 giscusLang = "en"
 
 # configure umami analytics
-# umami_data_website_id = "cf2e457b-8928-4ded-add0-4418eada5c79"
-# umami_script_url = "https://umami.gavriliu.com/script.js"
+umami_data_website_id = "cf2e457b-8928-4ded-add0-4418eada5c79"
+umami_script_url = "https://umami.gavriliu.com/script.js"
 
 [author]
 name = "Andrei Gavriliu"
 
-[params]
-  [params.services]
-    [params.services.umami_analytics]
-    id = "cf2e457b-8928-4ded-add0-4418eada5c79"
-    script_url = "https://umami.gavriliu.com/script.js"
+# [params]
+#   [params.services]
+#     [params.services.umami_analytics]
+#     id = "cf2e457b-8928-4ded-add0-4418eada5c79"
+#     script_url = "https://umami.gavriliu.com/script.js"
