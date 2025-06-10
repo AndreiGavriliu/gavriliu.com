@@ -6,7 +6,25 @@
     <description>Recent content in Learn on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 03 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</title>
+      <link>https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</link>
+      <pubDate>Tue, 10 Jun 2025 03:00:00 +0200</pubDate>
+      
+      <guid>https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</guid>
+      <description>
+        
+          
+            &lt;p&gt;Imagine Kubernetes as a big party where pods are the guests. Some guests (pods) want to sit together — they’re best friends! Others… well, they’d rather not be anywhere near each other. Kubernetes, being the polite party host it is, lets you manage these social dynamics using Pod Affinity and Pod Anti-Affinity.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-pod-affinity&#34;&gt;What Is Pod Affinity?&lt;/h2&gt;
+&lt;p&gt;Pod Affinity lets you tell the scheduler: “&lt;em&gt;Hey, I want my pod to be placed on the same node (or zone) as another pod — they get along.&lt;/em&gt;”&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes RBAC: Who Can Do What, and Where?</title>
       <link>https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/</link>
