@@ -9,7 +9,7 @@
   
   >
   <head>
-<title>How to seal and unseal secrets with Bitnami Sealed-Secrets | Andrei Gavriliu</title>
+<title>Kubernetes Volumes: Where Pods Keep Their Stuff | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,22 +23,24 @@
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what …" />
+<meta name="description" content="Or: “How to Give Your Containers a Place to Put Their Shoes”
+In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a …" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="How to seal and unseal secrets with Bitnami Sealed-Secrets" />
-<meta name="twitter:image" content="https://gavriliu.com/logos/logo.png"/>
-<meta property="og:url" content="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" />
-<meta property="og:title" content="How to seal and unseal secrets with Bitnami Sealed-Secrets" />
-<meta property="og:description" content="I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what …" />
-<meta property="og:image" content="https://gavriliu.com/logos/logo.png" />
-  <meta name="keywords" content="bitnami,sealed-secrets,security" />
+<meta name="twitter:title" content="Kubernetes Volumes: Where Pods Keep Their Stuff" />
+<meta name="twitter:image" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/header.png"/>
+<meta property="og:url" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" />
+<meta property="og:title" content="Kubernetes Volumes: Where Pods Keep Their Stuff" />
+<meta property="og:description" content="Or: “How to Give Your Containers a Place to Put Their Shoes”
+In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a …" />
+<meta property="og:image" content="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/header.png" />
+  <meta name="keywords" content="kubernetes,learn,storage" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="https://gavriliu.com/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://gavriliu.com/icons/favicon-32x32.png">
 <link rel="manifest" href="https://gavriliu.com/icons/site.webmanifest">
 
-<link rel="canonical" href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/">
+<link rel="canonical" href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/">
 
 
 
@@ -135,7 +137,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">How to seal and unseal secrets with Bitnami Sealed-Secrets</h1>
+    <h1 class="post_title">Kubernetes Volumes: Where Pods Keep Their Stuff</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -143,11 +145,11 @@
 </svg>
 </span>
     <span class="post_date">
-      Mar 14, 2025	  
+      Jun 3, 2025	  
     </span>
-    <span class="post_time"> · 3 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/bitnami/' title="bitnami" class="post_tag button button_translucent">bitnami
-        </a><a href='https://gavriliu.com/tags/sealed-secrets/' title="sealed-secrets" class="post_tag button button_translucent">sealed-secrets
-        </a><a href='https://gavriliu.com/tags/security/' title="security" class="post_tag button button_translucent">security
+    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='https://gavriliu.com/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='https://gavriliu.com/tags/storage/' title="storage" class="post_tag button button_translucent">storage
         </a>
     </span>
   </div>
@@ -156,114 +158,230 @@
         <h2>Overview</h2>
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-are-bitnamis-sealed-secrets">What are Bitnami’s Sealed Secrets?</a></li>
-    <li><a href="#how-to-seal-secrets">How to seal secrets</a>
+    <li><a href="#why-volumes-matter-aka-the-tragic-tale-of-tmp">Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)</a></li>
+    <li><a href="#a-quick-look-at-volume-types">A Quick Look at Volume Types</a></li>
+    <li><a href="#emptydir--the-not-so-permanent-roommate">emptyDir – The Not-So-Permanent Roommate</a></li>
+    <li><a href="#hostpath--mounting-the-nodes-basement">hostPath – Mounting the Node's Basement</a></li>
+    <li><a href="#persistent-volume-claims--now-were-talking-durable">Persistent Volume Claims – Now We’re Talking Durable</a>
       <ul>
-        <li><a href="#sensitive-information">Sensitive information</a></li>
-        <li><a href="#create-a-secret">Create a secret</a></li>
-        <li><a href="#seal-the-secret">Seal the secret</a></li>
-        <li><a href="#check-the-sealed-secret-file">Check the sealed secret file</a></li>
+        <li><a href="#pvc-example">PVC Example</a></li>
+        <li><a href="#bonus-storageclass-for-dynamic-provisioning">Bonus: StorageClass for Dynamic Provisioning</a></li>
       </ul>
     </li>
-    <li><a href="#how-to-unseal-secrets">How to unseal secrets</a>
-      <ul>
-        <li><a href="#download-sealed-secret-key">Download sealed secret key</a></li>
-        <li><a href="#unseal-secret-using-downloaded-key">Unseal secret using downloaded key</a></li>
-      </ul>
-    </li>
+    <li><a href="#readwriteonce-readonlymany-whats-with-these-modes">ReadWriteOnce? ReadOnlyMany? What’s With These Modes?</a></li>
+    <li><a href="#volumes-in-multi-container-pods">Volumes in Multi-Container Pods</a></li>
+    <li><a href="#configmap--secret-volumes--mounting-configuration-like-a-pro">ConfigMap &amp; Secret Volumes – Mounting Configuration Like a Pro</a></li>
+    <li><a href="#gotchas-to-avoid">Gotchas to Avoid</a></li>
+    <li><a href="#pro-tips">Pro Tips</a></li>
+    <li><a href="#wrapping-it-up">Wrapping It Up</a></li>
   </ul>
 </nav>
       </div>
     
-    <div class="post_body"><p>I decided to push my Kubernetes manifests to GitHub because running Git locally on the same k3s cluster as ArgoCD seemed like asking for trouble. I mean, what happens if something goes wrong?<br></p>
-<p>Suddenly, you’re locked out of your repository, and your applications just sit there looking sad, like ‘Hey, I need a home!’ Pushing everything - including secrets — straight to GitHub? That’s like sending your passwords in a postcard: ‘Hey, here’s all my private stuff for the world to see!’ So, I decided to use Bitnami’s Sealed Secrets. At least now, my secrets are sealed tighter than my New Year’s resolution to work out!</p>
-<h2 id="what-are-bitnamis-sealed-secrets">What are Bitnami’s Sealed Secrets?</h2>
+    <div class="post_body"><p><em>Or: “How to Give Your Containers a Place to Put Their Shoes”</em></p>
+<p>In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a temporary pop-up tent in the cloud. But then… someone said, “Hey, where do I put my logs? My files? My database?”</p>
+<p>Enter <strong>Kubernetes Volumes</strong> — the answer to the age-old question: <em>“Where does my pod keep its stuff?”</em></p>
+<h2 id="why-volumes-matter-aka-the-tragic-tale-of-tmp">Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)</h2>
+<p>Let’s say you write a file in your container, and the pod restarts. Surprise! The file’s gone. That’s because containers are built for immutability. Any data written inside the container is gone when it crashes or gets rescheduled.</p>
+<p><strong>Volumes provide a stable place for data that outlives the container.</strong></p>
 <blockquote>
-<p><strong>Problem</strong>: &quot;I can manage all my K8s config in git, except Secrets.&quot;<br>
-<strong>Solution</strong>: Encrypt your Secret into a SealedSecret, which is safe to store - even inside a public repository. The SealedSecret can be decrypted only by the controller running in the target cluster and nobody else (not even the original author) is able to obtain the original Secret from the SealedSecret. (from the official <a href="https://github.com/bitnami-labs/sealed-secrets">project's GitHub Repository</a>)</p></blockquote>
-<p>You might be wondering what it actually looks like</p>
-<h2 id="how-to-seal-secrets">How to seal secrets</h2>
-<h3 id="sensitive-information">Sensitive information</h3>
-<p>For instance, if you need to seal the following credentials:</p>
-<ul>
-<li><code>POSTGRES_HOST</code>: <code>10.20.1.45</code></li>
-<li><code>POSTGRES_PORT</code>: <code>5432</code></li>
-<li><code>POSTGRES_DB</code>: <code>fbi_undercover_agents</code></li>
-<li><code>POSTGRES_USER</code>: <code>admin</code></li>
-<li><code>POSTGRES_PASSWORD</code>: <code>superSecr3tPassw0rd</code></li>
-</ul>
-<h3 id="create-a-secret">Create a secret</h3>
-<p>The values of each key in <code>secret.yaml</code> must be base64 encoded</p>
+<p>A Volume in Kubernetes is like a shared hard drive your containers can access. It's attached to a Pod, not the individual container.</p></blockquote>
+<h2 id="a-quick-look-at-volume-types">A Quick Look at Volume Types</h2>
+<p>There are several volume types, each with different behaviors. Here's a table to keep your brain organized:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Volume Type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>emptyDir</code></td>
+          <td>Temporary directory, wiped on pod deletion</td>
+      </tr>
+      <tr>
+          <td><code>hostPath</code></td>
+          <td>Mounts a file or dir from the node’s filesystem (risky!)</td>
+      </tr>
+      <tr>
+          <td><code>persistentVolumeClaim (PVC)</code></td>
+          <td>Connects to persistent storage like a cloud disk or NFS</td>
+      </tr>
+      <tr>
+          <td><code>configMap</code> / <code>secret</code></td>
+          <td>Mounts ConfigMaps or Secrets as files in the container</td>
+      </tr>
+      <tr>
+          <td><code>nfs</code>, <code>awsElasticBlockStore</code>, <code>longhorn-storage</code>, etc.</td>
+          <td>Specific storage providers</td>
+      </tr>
+      <tr>
+          <td><code>projected</code></td>
+          <td>Combines several sources into one volume</td>
+      </tr>
+      <tr>
+          <td><code>ephemeral</code></td>
+          <td>Like a PVC but declared inline in the pod spec</td>
+      </tr>
+  </tbody>
+</table>
+<p>Let’s dive into a few common ones.</p>
+<h2 id="emptydir--the-not-so-permanent-roommate">emptyDir – The Not-So-Permanent Roommate</h2>
+<p>This is the simplest volume type. It’s created when a Pod is assigned to a Node and exists as long as the Pod lives.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">scratch-space</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span></code></pre></div><p>Mount it like this in a container:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">scratch-space</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/tmp/data</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Great for</strong>: temporary files, caches, or sharing data between containers in the same pod.</p>
+<p><strong>Bad for</strong>: storing anything you want to keep after the pod is deleted or moved.</p>
+<h2 id="hostpath--mounting-the-nodes-basement">hostPath – Mounting the Node's Basement</h2>
+<p>You can mount a file or directory from the node directly:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">log-storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/log/myapp</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">DirectoryOrCreate</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Warning</strong>: This is very node-specific. If your pod gets moved to another node, and the directory isn’t there...</p>
+<h2 id="persistent-volume-claims--now-were-talking-durable">Persistent Volume Claims – Now We’re Talking Durable</h2>
+<p>This is where Kubernetes gets serious about storage. Instead of directly mounting a volume, you:</p>
+<ol>
+<li>Create a <code>PersistentVolume</code> (PV) – like a cloud disk or NFS share.</li>
+<li>Request it via a <code>PersistentVolumeClaim</code> (PVC).</li>
+<li>Mount the PVC to your pod.</li>
+</ol>
+<h3 id="pvc-example">PVC Example</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
 </span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">MTAuMjAuMS40NQ==</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_PORT</span><span class="p">:</span><span class="w"> </span><span class="l">NTQzMg==</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">ZmJpX3VuZGVyY292ZXJfYWdlbnRz</span><span class="w">
-</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">YWRtaW4=</span><span class="w">
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">c3VwZXJTZWNyM3RQYXNzdzByZA==</span><span class="w">
-</span></span></span></code></pre></div><h3 id="seal-the-secret">Seal the secret</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">cat secret.yaml <span class="p">|</span> kubeseal <span class="se">\
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>  --controller-name<span class="o">=</span>sealed-secrets <span class="se">\
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  --controller-namespace<span class="o">=</span>sealed-secrets <span class="se">\
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="se"></span>  --format<span class="o">=</span>yaml <span class="se">\
-</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="se"></span>  --scope<span class="o">=</span>cluster-wide &gt; sealed-secret.yaml
-</span></span></code></pre></div><ul>
-<li><code>--controller-name</code>: Name of sealed-secrets controller. (default &quot;sealed-secrets-controller&quot;). Since I installed via helm, the controller name is <code>sealed-secrets</code></li>
-<li><code>--controller-namespace</code>: Namespace of sealed-secrets controller. (default &quot;kube-system&quot;)</li>
-<li><code>--format</code>: Output format for sealed secret. Either json or yaml (default &quot;json&quot;)</li>
-<li><code>--scope</code>: Set the scope of the sealed secret: <code>strict</code>, <code>namespace-wide</code>, <code>cluster-wide</code> (defaults to <code>strict</code>). Mandatory for <code>--raw</code>, otherwise the <code>sealedsecrets.bitnami.com/cluster-wide</code> and <code>sealedsecrets.bitnami.com/namespace-wide</code> annotations on the input secret can be used to select the scope. (default <code>strict</code>)</li>
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-pvc</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">5Gi</span><span class="w">
+</span></span></span></code></pre></div><p>Mount it in your pod:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">my-pvc</span><span class="w">
+</span></span></span></code></pre></div><p>And in your container:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">storage</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/data</span><span class="w">
+</span></span></span></code></pre></div><p><strong>Perfect for</strong>: databases, file uploads, or any data that needs to stick around even if your pod doesn’t.</p>
+<h3 id="bonus-storageclass-for-dynamic-provisioning">Bonus: StorageClass for Dynamic Provisioning</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/aws-ebs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w"></span><span class="nt">parameters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">gp2</span><span class="w">
+</span></span></span></code></pre></div><p>PVC with StorageClass:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l">standard</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">10Gi</span><span class="w">
+</span></span></span></code></pre></div><p>Kubernetes automatically provisions a volume when the PVC is created. Magic!</p>
+<h2 id="readwriteonce-readonlymany-whats-with-these-modes">ReadWriteOnce? ReadOnlyMany? What’s With These Modes?</h2>
+<ul>
+<li><code>ReadWriteOnce</code> (RWO): One node can read/write.</li>
+<li><code>ReadOnlyMany</code> (ROX): Multiple nodes can read (but not write).</li>
+<li><code>ReadWriteMany</code> (RWX): Multiple nodes can read/write (great for shared filesystems like NFS or CephFS).</li>
 </ul>
-<p>This generates the file <code>sealed-secret.yaml</code></p>
-<h3 id="check-the-sealed-secret-file">Check the sealed secret file</h3>
-<p>Check <code>metadata.name</code>, <code>metadata.namespace</code>, <code>spec.template.metadata.name</code> and <code>spec.template.metadata.namespace</code> are correct. Ensure these match your intended Secret deployment to avoid issues when applying the SealedSecret</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">bitnami.com/v1alpha1</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">SealedSecret</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w">    </span><span class="nt">sealedsecrets.bitnami.com/cluster-wide</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
-</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">  </span><span class="nt">encryptedData</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l">AgCimSDyG7/fDlP9f6lLjr1iVfL2UDcOYsrdkGAUipqIMO+Nd9/aVokfWVveKqAmF0ZFx1tDp2BO8YGv54A7oJVKCiLE3EYVMcsAa76Q3IrUtfbY3Qp5Kk9dLP0IuDn8zykZqpG4RSYqC4ZT+9hnaPRDp+BoeQysJJEoL5txyr/b39LbkUXmH/fuwbHT8ZmYZ7p1wkBxRVKL6vXnqO0GEYi9X8wxBw2ptQuvrt/JD9VUPByLoJTvqLXMfkGcnJ3Is6l5S54vU5Z9HQIodVSVBI34o1WUcP48K1Kj96MXvJ2UgremjmgNgFmrpc0T2cLsIIMAPhWj8g2KTDy2aB5zW2P48wVNW7Uu0foAP9rXgybPexSSA52Vv06ZYwED9zzVQJvvZlAt0Q78+7goB8MzlsU31R4LDs2FcKV1uxATKau+CKe+kKhAN/GBI+vLaLFHdmVIDdmNT3jIapoY00iFL9Xcrv7GdecWrMrov3ZC2co//1E2eZnb+aX71Jl9riYCNXP7J/TXlGc+LcQ4RPxQyWfJ8/r83MipMTfB+iqUjuvOTgVE/5Qf2HtU/1HPWOHgmGJTmiglyRYeLLzug45NBTeFimcIX/2JwqTJwF/sHcdqwu/iotNHNmYf1O/vbjIeWgHFVX8DqtZ/j/0G6zTWPBdEE0tcuKwwvGwYzhcQgj4SjVb9NoYpzkXZXH/p2NXHSnIIBcEynwsNphx71Q9FjtEkGCax5OQ=</span><span class="w">
-</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">AgBQFZiZaZCeRVzWqAqOaxGuoSRAGPHmITd6XvW5K0NTvA8ZE+yrheKK4sQHS7htQQeFzBOEz99GrRxNLmhQbMDgA0GGd7qCm/kGsVEpNcf8C8yJ6KzRlCCyQdP9PcOIjwAvPxpisGJvStobcsxQXl9VWlCh/4VpkWED7JYJh8TlYd0XaXMR2i+6Q581C3cVPUH0V07EUPiPxstI4w18l8HqAfFqKZiT+uk9EsVXl/IPOqg9Dxg/SksrWuY7EP3R1lrubzQr+RM02LInw5cLh6iX9x3ZNiuF3BbnKKDgA5/tT1+qOP4bljE2JwHMOdo1oJZnrvw2ny4/x9nKOzkAa8KjogSTdFonDnlBV0bRXZ4G3RSZPNcp9l2TG5Q7itZNX1WcOMa+o5OJQUsVf6Y6aSTr+QB1LxeCk8tASPsu1HnaZSSzECr3fxMJ1gDRz6l8SFHLM9XQ0j9MN6QrnNSmWOUWnhAsa22uX+nYM43jGm6oELrlXo/fNLn0oPuY2xaKpO+5YNZ3AM+xGFFioPs+e2Hl+gBsXwY4ZmEou7vZ5/mSIVuTMBkmedi/sdhfpYmOwhVXfqsVa7Rh+ov6Ab6zOEC+xEnVmyxclesEY7wHonCNK4M4YiIXQalHo1M0mi4q78HvvXrOSzmqqRWBg3V8R8mwhypgg1aIgkx7Jti1HRqvXb9hg2rFU+R+fx3vnravYmNO4mt3ePs274GZ</span><span class="w">
-</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">AgCEGEVwbWu4GeNgqJDWPO+XgdsMj5j5vMguARiMLFIEz3asEqETItVqMoY+TaF4Cb0jQ51SuhpQYQwy/0LBJbriy9Nj/YxHEBg9q2M11kkd15S4Lwrnan44PiLKYwLjkpM5GkzHek60eT56MxeT2O4gX9muGfYvRle5W71eGba2JMktu8ERXnMStulOUf0Oqfx4DCD7YRgvhsdlFqBMLs9uAcefrXkWjXKuyJhkIdFJBIS9JLjbw68DyQXPWmwHTAbhXWetKIQHYAe+Yr//VZUolAfeqb7xW2NwcLr5WKrdbk9fHgxWKUwPP6KpcmlF2MlwJbntEzOF6ZYBy9IY1Gw4XEu+4ayT8KXYTK8y1gXzBgbFUINs0YNlJoxK7XMIcTj3gBCpg2e4cPHolBpi7bGhAuHJ5vh7d9HZ4KhhxXqcbQ6cin/V5zEK91okpFUyBtiZphlFWJTcgwnaqGbvuCTuh7XHYTEUKWaE+1ha4PV0qLqHzz9d6P2/lobYZyJ+xsczwrdaUyKz7/WgHlDk4Y/xy79ZL9xIOTyUYymEwrzgO2mSN3PAof87ryTM49cpQZd25BxtSa1Y/asYmd6FrpHdaQmxMndAPATugSp4t3XJoKpCVn7+JN4K5dEawAqJyKVqoB/8URcjHnPcgx/Fp4LOJ919WvmR/+wZpjx3eFnOC/+QOqE3H/DzPVhVwsOOUWWbktS2rHM0afy8YATqRI6W8Eja</span><span class="w">
-</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_PORT</span><span class="p">:</span><span class="w"> </span><span class="l">AgAOH0MigGUSP2Dh88jMdLV0aFURvlYNM9OChDHCeZSSELa0vnAR7f4rAMLQhO00EupMZj+EcVozXTY2ZoB8u1PKC0/WxjoHTvzHARwFHGMW/SjZFw4YXsBP8lIcFz0aHIHQcGE/vkF0KYPOgH3Gi9r7x3zT8bpHaDrSWtgcsw2Ijzx5bidBcvuGIPfi4R6bMrZxBhz1F+/AY360IVRwXxluCVoXmb+2X2Bp01XqAk2f6fh4dQDz9G+kDyvV7O0eW5KxLqmYHME+AzpEq+M7zE1xlPzE6vb1TB7DOJBBeeejGu/Iq3Yx26D8jAoSAMHsj4kPKEiYTwYZ0mbq6H789MYnnn/PIOkPHqo/2i6lHwJbxoAkGzIkBI6wKZGP5um1PCJFJv2n2DPMEDsTlxkL8j1l0TI607R00jJ5gc7f7Czepi+BXhyadn+wbnmEu/7yAEO13uKNa8M4DKcKUzuTFg/PghjLjK8PnUw14NdAcP8XjEvWtqtjo4QkPFsalAUmvEYZEODol0DiaG0jT50d8IYgXp6Hx5qlC1L1g0p3xPrO6QH8BVda8h/NePISB4rBo/PmQgvz1GyTRSgs14stt1RsjNAKzpNBACysCY0+MNpeAsqg8bLsGkBcl7bfac5HdrY45fR4lS6dIDLlLbW6htEWwBlDeOPX3HznSnnxDvf2ywdakpMzVLsLVII9qmcgDf4riTNo</span><span class="w">
-</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="w">    </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l">AgBC8nVi5UKfNCOzMnzGm1GPafXu2TgAYHqlEfCyHD5DA8btqX8dWpbJehUuXhG39qJnrZe/f3vUwpUIWfgTma2+HUfBz71cyUgrrcvY0HczAvzqs8pz34KjeuZF5GD64rkcWgc0aP663F8ANGsFklsq3fsHzY2xH3dFiKukH6b2jLcitwfrhm55JcUtmnHfeGqwMYSj3MXwf49f07E84zdFH5PgImUOoA4KgzdlcnBzzyqutjSF8omTbTcAq4nmjO8Qa3+pN+gjxU5B2ATC6mtYdfO87DXEG60SasnTsWcS9vR9AKH8CpUX1VR/Q72KyJf5DNCSZsXUVm9kag6RC4KAH3P7xUX5OTlTHZkZsGUi0jI7wP6QtxSdQK9E8t7fHuvlBd7oEwdFYo6gOlLFanO8vHbGE1ZeJSYg3Fhl+bCevXnPRBU7xrqhnvg7VG/Ek9ctmjZHGGen/XrDa7cMpExjjVPuW6Ax+MFQmB+tryHwxDSJ0VTzFbax4yJK84iyvqmxai5xdedetAI6ZbQqcCZx/Hn8QfaKLAObEruA2ryBmyOIbo7Ymx5TLb0E8ZaAoPqW3Joa3dBd+OMhCEGZ0ts0CXKqBaIEEPs6rdz78afCd2WAFcCNJgT+KH596Z5OEfg9q3nD/Gs+WN4HKy+M20CkPo19kQlbcnIpTLNY5oSRGJSpvn9lovYvp6kN8ZQnlKtBmaDJfA==</span><span class="w">
-</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="w">      </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="w">        </span><span class="nt">sealedsecrets.bitnami.com/cluster-wide</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="w">      </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fbi-agents</span><span class="w">
-</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">fbi</span><span class="w">
-</span></span></span></code></pre></div><h2 id="how-to-unseal-secrets">How to unseal secrets</h2>
-<h3 id="download-sealed-secret-key">Download sealed secret key</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubectl get secret <span class="se">\
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>  -n sealed-secrets <span class="se">\
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  -l sealedsecrets.bitnami.com/sealed-secrets-key&lt;uniqueId&gt; <span class="se">\
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="se"></span>  -o yaml &gt; sealed-secrets-key.yaml
-</span></span></code></pre></div><h3 id="unseal-secret-using-downloaded-key">Unseal secret using downloaded key</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">kubeseal --controller-name<span class="o">=</span>sealed-secrets <span class="se">\
-</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="se"></span>  --controller-namespace<span class="o">=</span>sealed-secrets &lt; sealed-secret.yaml <span class="se">\
-</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="se"></span>  --recovery-unseal <span class="se">\
-</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="se"></span>  --recovery-private-key<span class="o">=</span>sealed-secrets-key -o yaml
-</span></span></code></pre></div>
+<h2 id="volumes-in-multi-container-pods">Volumes in Multi-Container Pods</h2>
+<p>Got a pod with two containers that need to talk? Volumes to the rescue!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="w">    </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="w"></span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="w">      </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/var/log/myapp</span><span class="w">
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sidecar</span><span class="w">
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="w">      </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/data/logs</span><span class="w">
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-logs</span><span class="w">
+</span></span></span></code></pre></div><p>Your app writes logs. The sidecar reads and ships them elsewhere. Classic.</p>
+<h2 id="configmap--secret-volumes--mounting-configuration-like-a-pro">ConfigMap &amp; Secret Volumes – Mounting Configuration Like a Pro</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-config</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">db-credentials</span><span class="w">
+</span></span></span></code></pre></div><p>Mounting in containers:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">config-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/config</span><span class="w">
+</span></span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">secret-vol</span><span class="w">
+</span></span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/secrets</span><span class="w">
+</span></span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>These volumes are ideal for mounting configuration files, TLS certs, and other secrets.</p>
+<h2 id="gotchas-to-avoid">Gotchas to Avoid</h2>
+<ul>
+<li>Mounting the same volume to the same path in multiple containers without coordination? Race conditions.</li>
+<li>Writing secrets to a PVC that doesn’t get cleaned up? That's how breaches happen.</li>
+<li>Assuming your volume is replicated or backed up? Check your storage class—<strong>assume nothing</strong>.</li>
+<li>Using <code>emptyDir</code> for anything you actually care about.</li>
+</ul>
+<h2 id="pro-tips">Pro Tips</h2>
+<ul>
+<li>Use <strong>StorageClasses</strong> to automate PVC provisioning.</li>
+<li>Use <strong>init containers</strong> to set up volume contents before your main container starts.</li>
+<li>Mount <strong>readOnly: true</strong> if the container doesn’t need to write. It’s safer.</li>
+<li>Monitor your disk usage. It’s easy to run out of space when you store <em>everything</em> in <code>/data</code>.</li>
+<li>Consider volume <strong>expansion</strong> if your PVC supports it:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="w">  </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">20Gi</span><span class="w">
+</span></span></span></code></pre></div><h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Kubernetes Volumes give your containers somewhere to put their things—and not just temporary things that go poof when the pod dies. With Volumes and PersistentVolumeClaims, you unlock <strong>stateful apps</strong>, <strong>shared logs</strong>, <strong>sidecar patterns</strong>, and <strong>secure configuration delivery</strong>.</p>
+<p>📦 So remember:</p>
+<ul>
+<li><code>emptyDir</code> is temporary.</li>
+<li><code>hostPath</code> is dangerous.</li>
+<li>PVCs are durable (and sane).</li>
+<li>Volume types abound—choose wisely.</li>
+</ul>
+<p>Let your pods keep their stuff, but make sure they clean up after themselves.</p>
+
     </div>
 
   <h2 class="post_related">Posts in this series</h2>
   <ul>
     
-    <li><a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a></li>
+    <li><a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a></li>
+    <li><a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a></li>
+    <li><a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster&#39;s Traffic Director</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a></li>
+    
+    <li><a href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a></li>
     
   </ul>
 
@@ -326,23 +444,44 @@
       <ul>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/03/14/how-to-seal-and-unseal-secrets-with-bitnami-sealed-secrets/" class="nav-link" title="How to seal and unseal secrets with Bitnami Sealed-Secrets">How to seal and unseal secrets with Bitnami Sealed-Secrets</a>
+          <a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/03/14/containers-not-mounting-longhorn-volumes/" class="nav-link" title="Containers Not Mounting Longhorn Volumes">Containers Not Mounting Longhorn Volumes</a>
+          <a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/03/31/fix-key-stored-in-legacy-trusted-gpg-keyring/" class="nav-link" title="Fix Key Stored in Legacy Trusted Gpg Keyring">Fix Key Stored in Legacy Trusted Gpg Keyring</a>
+          <a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
+        </li>
+        
+        <li>
+          <a href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a>
         </li>
         
       </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
-      <li>
-        <a href="https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/" class="nav-link" title="Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style">Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</a>
-      </li>
       <li>
         <a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
       </li>
@@ -474,11 +613,6 @@
         
         <a href='https://gavriliu.com/tags/longhorn/' class="post_tag button button_translucent" title="longhorn">
           LONGHORN
-          <span class="button_tally">1</span>
-        </a>
-        
-        <a href='https://gavriliu.com/tags/scheduling/' class="post_tag button button_translucent" title="scheduling">
-          SCHEDULING
           <span class="button_tally">1</span>
         </a>
         

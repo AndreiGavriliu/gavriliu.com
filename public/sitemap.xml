@@ -14,6 +14,9 @@
     <loc>https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</loc>
     <lastmod>2025-06-10T03:00:00+02:00</lastmod>
   </url><url>
+    <loc>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</loc>
+    <lastmod>2025-06-03T03:00:00+02:00</lastmod>
+  </url><url>
     <loc>https://gavriliu.com/tags/learn/</loc>
     <lastmod>2025-06-10T03:00:00+02:00</lastmod>
   </url><url>
@@ -25,6 +28,9 @@
   </url><url>
     <loc>https://gavriliu.com/series/</loc>
     <lastmod>2025-06-10T03:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://gavriliu.com/tags/storage/</loc>
+    <lastmod>2025-06-03T03:00:00+02:00</lastmod>
   </url><url>
     <loc>https://gavriliu.com/tags/</loc>
     <lastmod>2025-06-10T03:00:00+02:00</lastmod>
