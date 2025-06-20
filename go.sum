@@ -2,3 +2,5 @@ github.com/chipzoller/hugo-clarity v0.0.0-20250328112150-ff8ac149f364 h1:Dd/Obbj
 github.com/chipzoller/hugo-clarity v0.0.0-20250328112150-ff8ac149f364/go.mod h1:v1JkaKdcLRibyUCalLP2CNeFo6FGzfd4ipEr4dK0+Zg=
 github.com/chipzoller/hugo-clarity v0.0.0-20250411201404-a8ce0375e8cb h1:cHV21WWSy+E4WSSIr1DcIFnNQGM1McRanewQmQFgTSc=
 github.com/chipzoller/hugo-clarity v0.0.0-20250411201404-a8ce0375e8cb/go.mod h1:v1JkaKdcLRibyUCalLP2CNeFo6FGzfd4ipEr4dK0+Zg=
+github.com/hugomods/umami-analytics v0.3.1 h1:C4B1oKRBvCRamH3muiWK+QNbehmxd+7DiK80jHCdMJo=
+github.com/hugomods/umami-analytics v0.3.1/go.mod h1:nlZGLPH5L+H25+HwmuzHsEfM869+tMTUTcSUBcOQEm4=
