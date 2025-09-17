@@ -1,7 +1,11 @@
-baseURL = 'https://gavriliu.com'
+baseURL = 'https://andreigavriliu.github.io/gavriliu.com'
 languageCode = 'en-us'
 title = 'Andrei Gavriliu'
 DefaultContentLanguage = "en"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 [menus]
 [[menus.main]]
