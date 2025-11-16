@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Andrei Gavriliu'
 DefaultContentLanguage = "en"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [menus]
 [[menus.main]]
     name = "Home"
