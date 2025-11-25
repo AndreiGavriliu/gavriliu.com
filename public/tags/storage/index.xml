@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Storage on Andrei Gavriliu</title>
-    <link>https://gavriliu.com/tags/storage/</link>
+    <link>http://localhost:1313/tags/storage/</link>
     <description>Recent content in Storage on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 03 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/storage/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/storage/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kubernetes Volumes: Where Pods Keep Their Stuff</title>
-      <link>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</link>
-      <pubDate>Tue, 03 Jun 2025 03:00:00 +0200</pubDate>
+      <link>http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</link>
+      <pubDate>Tue, 17 Jun 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</guid>
+      <guid>http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</guid>
       <description>
         
           

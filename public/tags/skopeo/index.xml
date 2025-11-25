@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Skopeo on Andrei Gavriliu</title>
-    <link>https://gavriliu.com/tags/skopeo/</link>
+    <link>http://localhost:1313/tags/skopeo/</link>
     <description>Recent content in Skopeo on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Apr 2025 15:44:57 +0200</lastBuildDate><atom:link href="https://gavriliu.com/tags/skopeo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Apr 2025 15:44:57 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/skopeo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Skopeo: The Container Image Swiss Army Knife You Didn&#39;t Know You Needed</title>
-      <link>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</link>
+      <link>http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</link>
       <pubDate>Tue, 15 Apr 2025 15:44:57 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</guid>
+      <guid>http://localhost:1313/post/2025/04/15/skopeo-the-container-image-swiss-army-knife-you-didn-t-know-you-needed/</guid>
       <description>
         
           

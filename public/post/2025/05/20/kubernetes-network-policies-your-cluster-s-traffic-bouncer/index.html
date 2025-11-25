@@ -8,16 +8,12 @@
   
   
   >
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 <title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer | Andrei Gavriliu</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
-<script defer src="https://umami.gavriliu.com/script.js" data-website-id="cf2e457b-8928-4ded-add0-4418eada5c79"></script>
-
 
 
 <meta property="og:locale" content="en" />
@@ -28,31 +24,31 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
 <meta name="twitter:title" content="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer" />
-<meta name="twitter:image" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png"/>
-<meta property="og:url" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" />
+<meta name="twitter:image" content="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png"/>
+<meta property="og:url" content="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" />
 <meta property="og:title" content="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer" />
 <meta property="og:description" content="What Are Network Policies?
 In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’s allowed to talk to whom and kicks out anything not on …" />
-<meta property="og:image" content="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png" />
+<meta property="og:image" content="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/header.png" />
   <meta name="keywords" content="kubernetes,learn,networking,security" />
 
-<link rel="apple-touch-icon" sizes="180x180" href="https://gavriliu.com/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://gavriliu.com/icons/favicon-32x32.png">
-<link rel="manifest" href="https://gavriliu.com/icons/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
+<link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/">
-
-
-
-<link rel="preload" href="https://gavriliu.com/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity = "sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" as="style" crossorigin="anonymous">
+<link rel="canonical" href="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/">
 
 
 
-<link rel="preload" href="https://gavriliu.com/en/js/bundle.ad439bd37903dd5dd1f6accba6e8fda9cf0b9c014ef7562a57f6847e460a8cc461593b451b28d377c43f2345f4faa107875ab2d22278ed6ab494912eb78e1be9.js" as="script" integrity=
-"sha512-rUOb03kD3V3R9qzLpuj9qc8LnAFO91YqV/aEfkYKjMRhWTtFGyjTd8Q/I0X0&#43;qEHh1qy0iJ47Wq0lJEut44b6Q==" crossorigin="anonymous">
+<link rel="preload" href="http://localhost:1313/css/styles.dc38388a8f0b890e788bd3a99b7495d14e7d5ac4359ed3b49abeb778497863b284ad4cc7e496ef58c84139295f9bafed82f5a41345eda86bd2d429cccb7c2596.css" integrity = "sha512-3Dg4io8LiQ54i9Opm3SV0U59WsQ1ntO0mr63eEl4Y7KErUzH5JbvWMhBOSlfm6/tgvWkE0XtqGvS1CnMy3wllg==" as="style" crossorigin="anonymous">
 
 
-<link rel="stylesheet" type="text/css" href="https://gavriliu.com/css/styles.78f7ee2ed9b09db5e3f7ebff8f55dfec2373c3f7625d61a0aaf4cb9edbb3049d03ec709c9008095363e3bb4cdbe02ad3fd6ad3281787c5fcedfe0506d5e2f58d.css" integrity="sha512-ePfuLtmwnbXj9&#43;v/j1Xf7CNzw/diXWGgqvTLntuzBJ0D7HCckAgJU2Pju0zb4CrT/WrTKBeHxfzt/gUG1eL1jQ==" crossorigin="anonymous">
+
+<link rel="preload" href="http://localhost:1313/en/js/bundle.a648a2e7a84a5fad9dfbfa1bd3eca6366125738bd2dfb3d4b2df9175a8613079538a9a1fbc904801670565a1b672d9235a26b15fff7abafc33c4652d20006a9d.js" as="script" integrity=
+"sha512-pkii56hKX62d&#43;/ob0&#43;ymNmElc4vS37PUst&#43;RdahhMHlTipofvJBIAWcFZaG2ctkjWiaxX/96uvwzxGUtIABqnQ==" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.dc38388a8f0b890e788bd3a99b7495d14e7d5ac4359ed3b49abeb778497863b284ad4cc7e496ef58c84139295f9bafed82f5a41345eda86bd2d429cccb7c2596.css" integrity="sha512-3Dg4io8LiQ54i9Opm3SV0U59WsQ1ntO0mr63eEl4Y7KErUzH5JbvWMhBOSlfm6/tgvWkE0XtqGvS1CnMy3wllg==" crossorigin="anonymous">
 
   </head>
   <body
@@ -63,7 +59,7 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
   >
 
 <header class="nav_header" >
-  <nav class="nav"><a href='https://gavriliu.com/' class="nav_brand nav_item" title="Andrei Gavriliu">Andrei Gavriliu
+  <nav class="nav"><a href='http://localhost:1313/' class="nav_brand nav_item" title="Andrei Gavriliu">Andrei Gavriliu
   <div class="nav_close">
     <div><svg class="icon">
   <title>open-menu</title>
@@ -84,13 +80,13 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
         
 
   <div class="nav_parent">
-    <a href="https://gavriliu.com/" class="nav_item" title="Home">Home </a>
+    <a href="http://localhost:1313/" class="nav_item" title="Home">Home </a>
   </div>
   <div class="nav_parent">
-    <a href="https://gavriliu.com/projects/" class="nav_item" title="Projects">Projects </a>
+    <a href="http://localhost:1313/projects/" class="nav_item" title="Projects">Projects </a>
   </div>
   <div class="nav_parent">
-    <a href="https://gavriliu.com/about/" class="nav_item" title="About">About </a>
+    <a href="http://localhost:1313/about/" class="nav_item" title="About">About </a>
   </div>
       
 <div class='follow'>
@@ -116,7 +112,7 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
 
   </a>
     
-  <a href="https://gavriliu.com/index.xml">
+  <a href="http://localhost:1313/index.xml">
     <svg class="icon">
   <title>rss</title>
   <use xlink:href="#rss"></use>
@@ -147,10 +143,10 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
     <span class="post_date">
       May 20, 2025	  
     </span>
-    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='https://gavriliu.com/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
-        </a><a href='https://gavriliu.com/tags/learn/' title="learn" class="post_tag button button_translucent">learn
-        </a><a href='https://gavriliu.com/tags/networking/' title="networking" class="post_tag button button_translucent">networking
-        </a><a href='https://gavriliu.com/tags/security/' title="security" class="post_tag button button_translucent">security
+    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/kubernetes/' title="kubernetes" class="post_tag button button_translucent">kubernetes
+        </a><a href='http://localhost:1313/tags/learn/' title="learn" class="post_tag button button_translucent">learn
+        </a><a href='http://localhost:1313/tags/networking/' title="networking" class="post_tag button button_translucent">networking
+        </a><a href='http://localhost:1313/tags/security/' title="security" class="post_tag button button_translucent">security
         </a>
     </span>
   </div>
@@ -324,23 +320,27 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
   <h2 class="post_related">Posts in this series</h2>
   <ul>
     
-    <li><a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
+    <li><a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
+    <li><a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a></li>
+    <li><a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster&#39;s Traffic Director</a></li>
+    <li><a href="http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster&#39;s Traffic Director</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a></li>
+    <li><a href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a></li>
+    <li><a href="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a></li>
+    <li><a href="http://localhost:1313/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a></li>
+    <li><a href="http://localhost:1313/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a></li>
     
-    <li><a href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a></li>
+    <li><a href="http://localhost:1313/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/" class="nav-link" title="Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style">Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a></li>
+    
+    <li><a href="http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/" class="nav-link" title="How I Broke My Homelab Before Breakfast (Thanks, Renovate!)">How I Broke My Homelab Before Breakfast (Thanks, Renovate!)</a></li>
     
   </ul>
 
@@ -393,9 +393,9 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
 
         <h2>Andrei Gavriliu</h2>
       <div class="author_bio">
-        Senior IT Consultant | OpenShift @ <a href="https://consol.de">ConSol Consulting &amp; Solutions Software GmbH</a>
+        System Engineer @ <a href="https://sva.de">SVA System Vertrieb Alexander GmbH</a>
       </div>
-      <a href='https://gavriliu.com/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
+      <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='Read More'>Read More</a>
 
     
       
@@ -403,86 +403,91 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
       <ul>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
+          <a href="http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/" class="nav-link" title="Kubernetes Deployments: Like a Boss (Who Delegates Everything)">Kubernetes Deployments: Like a Boss (Who Delegates Everything)</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+          <a href="http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
+          <a href="http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+          <a href="http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
+          <a href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
+          <a href="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a>
+          <a href="http://localhost:1313/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
+          <a href="http://localhost:1313/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
         </li>
         
         <li>
-          <a href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a>
+          <a href="http://localhost:1313/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/" class="nav-link" title="Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style">Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a>
+        </li>
+        
+        <li>
+          <a href="http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/" class="nav-link" title="How I Broke My Homelab Before Breakfast (Thanks, Renovate!)">How I Broke My Homelab Before Breakfast (Thanks, Renovate!)</a>
         </li>
         
       </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
-        <a href="https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/" class="nav-link" title="Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style">Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</a>
+        <a href="http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/" class="nav-link" title="How I Broke My Homelab Before Breakfast (Thanks, Renovate!)">How I Broke My Homelab Before Breakfast (Thanks, Renovate!)</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
+        <a href="http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/" class="nav-link" title="Kubernetes Volumes: Where Pods Keep Their Stuff">Kubernetes Volumes: Where Pods Keep Their Stuff</a>
+        <a href="http://localhost:1313/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/" class="nav-link" title="Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style">Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a>
+        <a href="http://localhost:1313/post/2025/06/03/kubernetes-rbac-roles-bindings/" class="nav-link" title="Kubernetes RBAC: Who Can Do What, and Where?">Kubernetes RBAC: Who Can Do What, and Where?</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
+        <a href="http://localhost:1313/post/2025/05/27/kubernetes-endpoints-endpointslices/" class="nav-link" title="Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?">Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
+        <a href="http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/" class="nav-link" title="Kubernetes Network Policies: Your Cluster’s Traffic Bouncer">Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
+        <a href="http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/" class="nav-link" title="Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)">Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</a>
       </li>
       <li>
-        <a href="https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/" class="nav-link" title="Kubernetes Services: The Network Matchmakers">Kubernetes Services: The Network Matchmakers</a>
-      </li>
-      <li>
-        <a href="https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/" class="nav-link" title="Kubernetes StatefulSets: Because Some Pods Need to Remember Things">Kubernetes StatefulSets: Because Some Pods Need to Remember Things</a>
+        <a href="http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/" class="nav-link" title="Kubernetes Ingress: Your Cluster&#39;s Traffic Director">Kubernetes Ingress: Your Cluster's Traffic Director</a>
       </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="series-section">Series</h2>
       <nav class="tags_nav">
-        <a href='https://gavriliu.com/series/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+        <a href='http://localhost:1313/series/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
-          <span class="button_tally">9</span>
+          <span class="button_tally">11</span>
         </a>
         
-        <a href='https://gavriliu.com/series/homelab/' class="post_tag button button_translucent" title="homelab">
+        <a href='http://localhost:1313/series/homelab/' class="post_tag button button_translucent" title="homelab">
           HOMELAB
           <span class="button_tally">3</span>
         </a>
         
-        <a href='https://gavriliu.com/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
+        <a href='http://localhost:1313/series/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
           HOMEASSISTANT
           <span class="button_tally">2</span>
         </a>
@@ -493,142 +498,152 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
     <div>
       <h2 class="mt-4 taxonomy" id="tags-section">Tags</h2>
       <nav class="tags_nav">
-        <a href='https://gavriliu.com/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
+        <a href='http://localhost:1313/tags/kubernetes/' class="post_tag button button_translucent" title="kubernetes">
           KUBERNETES
+          <span class="button_tally">12</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/learn/' class="post_tag button button_translucent" title="learn">
+          LEARN
           <span class="button_tally">10</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/learn/' class="post_tag button button_translucent" title="learn">
-          LEARN
-          <span class="button_tally">9</span>
-        </a>
-        
-        <a href='https://gavriliu.com/tags/security/' class="post_tag button button_translucent" title="security">
+        <a href='http://localhost:1313/tags/security/' class="post_tag button button_translucent" title="security">
           SECURITY
           <span class="button_tally">3</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/gpg/' class="post_tag button button_translucent" title="gpg">
+        <a href='http://localhost:1313/tags/gpg/' class="post_tag button button_translucent" title="gpg">
           GPG
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
+        <a href='http://localhost:1313/tags/homeassistant/' class="post_tag button button_translucent" title="homeassistant">
           HOMEASSISTANT
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/ingress/' class="post_tag button button_translucent" title="ingress">
+        <a href='http://localhost:1313/tags/ingress/' class="post_tag button button_translucent" title="ingress">
           INGRESS
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/networking/' class="post_tag button button_translucent" title="networking">
+        <a href='http://localhost:1313/tags/longhorn/' class="post_tag button button_translucent" title="longhorn">
+          LONGHORN
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/networking/' class="post_tag button button_translucent" title="networking">
           NETWORKING
           <span class="button_tally">2</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/application/' class="post_tag button button_translucent" title="application">
+        <a href='http://localhost:1313/tags/application/' class="post_tag button button_translucent" title="application">
           APPLICATION
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/apt/' class="post_tag button button_translucent" title="apt">
+        <a href='http://localhost:1313/tags/apt/' class="post_tag button button_translucent" title="apt">
           APT
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/argocd/' class="post_tag button button_translucent" title="argocd">
+        <a href='http://localhost:1313/tags/argocd/' class="post_tag button button_translucent" title="argocd">
           ARGOCD
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/bitnami/' class="post_tag button button_translucent" title="bitnami">
+        <a href='http://localhost:1313/tags/bitnami/' class="post_tag button button_translucent" title="bitnami">
           BITNAMI
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/deployment/' class="post_tag button button_translucent" title="deployment">
+        <a href='http://localhost:1313/tags/deployment/' class="post_tag button button_translucent" title="deployment">
           DEPLOYMENT
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/helm/' class="post_tag button button_translucent" title="helm">
+        <a href='http://localhost:1313/tags/helm/' class="post_tag button button_translucent" title="helm">
           HELM
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/images/' class="post_tag button button_translucent" title="images">
+        <a href='http://localhost:1313/tags/images/' class="post_tag button button_translucent" title="images">
           IMAGES
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/keyring/' class="post_tag button button_translucent" title="keyring">
+        <a href='http://localhost:1313/tags/keyring/' class="post_tag button button_translucent" title="keyring">
           KEYRING
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/legacy/' class="post_tag button button_translucent" title="legacy">
+        <a href='http://localhost:1313/tags/legacy/' class="post_tag button button_translucent" title="legacy">
           LEGACY
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/longhorn/' class="post_tag button button_translucent" title="longhorn">
-          LONGHORN
+        <a href='http://localhost:1313/tags/multipath/' class="post_tag button button_translucent" title="multipath">
+          MULTIPATH
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/scheduling/' class="post_tag button button_translucent" title="scheduling">
+        <a href='http://localhost:1313/tags/renovate/' class="post_tag button button_translucent" title="renovate">
+          RENOVATE
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/scheduling/' class="post_tag button button_translucent" title="scheduling">
           SCHEDULING
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/sealed-secrets/' class="post_tag button button_translucent" title="sealed-secrets">
+        <a href='http://localhost:1313/tags/sealed-secrets/' class="post_tag button button_translucent" title="sealed-secrets">
           SEALED-SECRETS
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/services/' class="post_tag button button_translucent" title="services">
+        <a href='http://localhost:1313/tags/services/' class="post_tag button button_translucent" title="services">
           SERVICES
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/skopeo/' class="post_tag button button_translucent" title="skopeo">
+        <a href='http://localhost:1313/tags/skopeo/' class="post_tag button button_translucent" title="skopeo">
           SKOPEO
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/slzb-06m/' class="post_tag button button_translucent" title="slzb-06m">
+        <a href='http://localhost:1313/tags/slzb-06m/' class="post_tag button button_translucent" title="slzb-06m">
           SLZB-06M
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/statefulset/' class="post_tag button button_translucent" title="statefulset">
+        <a href='http://localhost:1313/tags/statefulset/' class="post_tag button button_translucent" title="statefulset">
           STATEFULSET
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/storage/' class="post_tag button button_translucent" title="storage">
+        <a href='http://localhost:1313/tags/storage/' class="post_tag button button_translucent" title="storage">
           STORAGE
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/troubleshoot/' class="post_tag button button_translucent" title="troubleshoot">
+        <a href='http://localhost:1313/tags/troubleshoot/' class="post_tag button button_translucent" title="troubleshoot">
           TROUBLESHOOT
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/troubleshooting/' class="post_tag button button_translucent" title="troubleshooting">
+        <a href='http://localhost:1313/tags/troubleshooting/' class="post_tag button button_translucent" title="troubleshooting">
           TROUBLESHOOTING
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/waste-collection/' class="post_tag button button_translucent" title="waste-collection">
+        <a href='http://localhost:1313/tags/waste-collection/' class="post_tag button button_translucent" title="waste-collection">
           WASTE-COLLECTION
           <span class="button_tally">1</span>
         </a>
         
-        <a href='https://gavriliu.com/tags/zigbee2mqtt/' class="post_tag button button_translucent" title="zigbee2mqtt">
+        <a href='http://localhost:1313/tags/zigbee2mqtt/' class="post_tag button button_translucent" title="zigbee2mqtt">
           ZIGBEE2MQTT
           <span class="button_tally">1</span>
         </a>
@@ -727,7 +742,7 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
 
 <footer class="footer">
   <div class="footer_inner wrap pale">
-    <img src='https://gavriliu.com/icons/copy.svg' class="icon icon_2 transparent" alt="Andrei Gavriliu">
+    <img src='http://localhost:1313/icons/copy.svg' class="icon icon_2 transparent" alt="Andrei Gavriliu">
     <p>Copyright&nbsp;2025 -&nbsp;<span class="year"></span>&nbsp;ANDREI GAVRILIU. All Rights Reserved</p><a class="to_top" href="#documentTop">
   <svg class="icon">
   <title>to-top</title>
@@ -739,9 +754,9 @@ In Kubernetes, a NetworkPolicy is like a bouncer for your pods. It checks who’
   </div>
 </footer>
 
-<script type="text/javascript" src="https://gavriliu.com/en/js/bundle.ad439bd37903dd5dd1f6accba6e8fda9cf0b9c014ef7562a57f6847e460a8cc461593b451b28d377c43f2345f4faa107875ab2d22278ed6ab494912eb78e1be9.js" integrity="sha512-rUOb03kD3V3R9qzLpuj9qc8LnAFO91YqV/aEfkYKjMRhWTtFGyjTd8Q/I0X0&#43;qEHh1qy0iJ47Wq0lJEut44b6Q==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://localhost:1313/en/js/bundle.a648a2e7a84a5fad9dfbfa1bd3eca6366125738bd2dfb3d4b2df9175a8613079538a9a1fbc904801670565a1b672d9235a26b15fff7abafc33c4652d20006a9d.js" integrity="sha512-pkii56hKX62d&#43;/ob0&#43;ymNmElc4vS37PUst&#43;RdahhMHlTipofvJBIAWcFZaG2ctkjWiaxX/96uvwzxGUtIABqnQ==" crossorigin="anonymous"></script>
 
-  <script src="https://gavriliu.com/js/search.min.4c2b0421d128bbd7c43fc7d662fb5dfd8e439c60ee92c900a26d72d9c3271d2256f5bac9f6f919cddfd55101e9272898716cbb3381b4360bf43a66a5f7664f54.js"></script>
+  <script src="http://localhost:1313/js/search.min.4c2b0421d128bbd7c43fc7d662fb5dfd8e439c60ee92c900a26d72d9c3271d2256f5bac9f6f919cddfd55101e9272898716cbb3381b4360bf43a66a5f7664f54.js"></script>
 
   </body>
 </html>

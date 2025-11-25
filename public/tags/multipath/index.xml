@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Multipath on Andrei Gavriliu</title>
+    <link>http://localhost:1313/tags/multipath/</link>
+    <description>Recent content in Multipath on Andrei Gavriliu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 16 Nov 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/tags/multipath/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Broke My Homelab Before Breakfast (Thanks, Renovate!)</title>
+      <link>http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/</link>
+      <pubDate>Sun, 16 Nov 2025 03:00:00 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/</guid>
+      <description>
+        
+          
+            &lt;p&gt;There are two kinds of people in the world:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Those who wake up, stretch, drink a glass of water, maybe journal...&lt;/li&gt;
+&lt;li&gt;And people like me, who roll over, grab their phone, and approve a Renovate bot PR before even opening one eye fully.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This particular morning, Renovate greeted me with: &lt;em&gt;Update Longhorn from 1.10.0 to 1.10.1&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A micro version bump.&lt;/li&gt;
+&lt;li&gt;A tiny, innocent patch release.&lt;/li&gt;
+&lt;li&gt;Practically a rounding error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;What could possibly go wrong?&lt;/em&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

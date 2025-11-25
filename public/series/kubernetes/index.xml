@@ -2,17 +2,64 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on Andrei Gavriliu</title>
-    <link>https://gavriliu.com/series/kubernetes/</link>
+    <link>http://localhost:1313/series/kubernetes/</link>
     <description>Recent content in Kubernetes on Andrei Gavriliu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Jun 2025 03:00:00 +0200</lastBuildDate><atom:link href="https://gavriliu.com/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Nov 2025 03:00:00 +0200</lastBuildDate><atom:link href="http://localhost:1313/series/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Broke My Homelab Before Breakfast (Thanks, Renovate!)</title>
+      <link>http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/</link>
+      <pubDate>Sun, 16 Nov 2025 03:00:00 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/11/16/how-i-broke-my-homelab-before-breakfast-thanks-renovate/</guid>
+      <description>
+        
+          
+            &lt;p&gt;There are two kinds of people in the world:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Those who wake up, stretch, drink a glass of water, maybe journal...&lt;/li&gt;
+&lt;li&gt;And people like me, who roll over, grab their phone, and approve a Renovate bot PR before even opening one eye fully.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This particular morning, Renovate greeted me with: &lt;em&gt;Update Longhorn from 1.10.0 to 1.10.1&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A micro version bump.&lt;/li&gt;
+&lt;li&gt;A tiny, innocent patch release.&lt;/li&gt;
+&lt;li&gt;Practically a rounding error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;What could possibly go wrong?&lt;/em&gt;&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Volumes: Where Pods Keep Their Stuff</title>
+      <link>http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</link>
+      <pubDate>Tue, 17 Jun 2025 03:00:00 +0200</pubDate>
+      
+      <guid>http://localhost:1313/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</guid>
+      <description>
+        
+          
+            &lt;p&gt;&lt;em&gt;Or: “How to Give Your Containers a Place to Put Their Shoes”&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a temporary pop-up tent in the cloud. But then… someone said, “Hey, where do I put my logs? My files? My database?”&lt;/p&gt;
+&lt;p&gt;Enter &lt;strong&gt;Kubernetes Volumes&lt;/strong&gt; — the answer to the age-old question: &lt;em&gt;“Where does my pod keep its stuff?”&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;why-volumes-matter-aka-the-tragic-tale-of-tmp&#34;&gt;Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)&lt;/h2&gt;
+&lt;p&gt;Let’s say you write a file in your container, and the pod restarts. Surprise! The file’s gone. That’s because containers are built for immutability. Any data written inside the container is gone when it crashes or gets rescheduled.&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Kubernetes Pod Affinity and Anti-Affinity: Scheduling With Style</title>
-      <link>https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</link>
+      <link>http://localhost:1313/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</link>
       <pubDate>Tue, 10 Jun 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</guid>
+      <guid>http://localhost:1313/post/2025/06/10/kubernetes-pod-affinity-and-anti-affinity-scheduling-with-style/</guid>
       <description>
         
           
@@ -27,10 +74,10 @@
     
     <item>
       <title>Kubernetes RBAC: Who Can Do What, and Where?</title>
-      <link>https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/</link>
+      <link>http://localhost:1313/post/2025/06/03/kubernetes-rbac-roles-bindings/</link>
       <pubDate>Tue, 03 Jun 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/06/03/kubernetes-rbac-roles-bindings/</guid>
+      <guid>http://localhost:1313/post/2025/06/03/kubernetes-rbac-roles-bindings/</guid>
       <description>
         
           
@@ -51,31 +98,11 @@
     </item>
     
     <item>
-      <title>Kubernetes Volumes: Where Pods Keep Their Stuff</title>
-      <link>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</link>
-      <pubDate>Tue, 03 Jun 2025 03:00:00 +0200</pubDate>
-      
-      <guid>https://gavriliu.com/post/2025/06/17/kubernetes-volumes-where-pods-keep-their-stuff/</guid>
-      <description>
-        
-          
-            &lt;p&gt;&lt;em&gt;Or: “How to Give Your Containers a Place to Put Their Shoes”&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;In the beginning, there was the container. And it was stateless. Ephemeral. Disposable. Like a temporary pop-up tent in the cloud. But then… someone said, “Hey, where do I put my logs? My files? My database?”&lt;/p&gt;
-&lt;p&gt;Enter &lt;strong&gt;Kubernetes Volumes&lt;/strong&gt; — the answer to the age-old question: &lt;em&gt;“Where does my pod keep its stuff?”&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;why-volumes-matter-aka-the-tragic-tale-of-tmp&#34;&gt;Why Volumes Matter (a.k.a. The Tragic Tale of /tmp)&lt;/h2&gt;
-&lt;p&gt;Let’s say you write a file in your container, and the pod restarts. Surprise! The file’s gone. That’s because containers are built for immutability. Any data written inside the container is gone when it crashes or gets rescheduled.&lt;/p&gt;
-          
-          
-        
-      </description>
-    </item>
-    
-    <item>
       <title>Kubernetes Endpoints &amp; EndpointSlices: Who’s Really Behind That Service?</title>
-      <link>https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/</link>
+      <link>http://localhost:1313/post/2025/05/27/kubernetes-endpoints-endpointslices/</link>
       <pubDate>Tue, 27 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/27/kubernetes-endpoints-endpointslices/</guid>
+      <guid>http://localhost:1313/post/2025/05/27/kubernetes-endpoints-endpointslices/</guid>
       <description>
         
           
@@ -83,8 +110,11 @@
 &lt;p&gt;Ever wondered how a &lt;code&gt;Service&lt;/code&gt; in Kubernetes actually knows which pods to forward traffic to? Enter the &lt;strong&gt;Endpoint&lt;/strong&gt;, Kubernetes’ behind-the-scenes phonebook.&lt;/p&gt;
 &lt;p&gt;When you create a &lt;code&gt;Service&lt;/code&gt;, Kubernetes auto-generates an &lt;code&gt;Endpoint&lt;/code&gt; object. It’s a simple list of pod IPs and ports that match the &lt;code&gt;Service&lt;/code&gt;’s selector. Basically:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;“Hey Service X, your pods are at 10.42.0.12:8080 and 10.42.0.15:8080. Go get ‘em, tiger.”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;“Hey Service X, your pods are at 10.42.0.12:8080 and 10.42.0.15:8080. Go get ‘em, tiger.”&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;You can check them out with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;kubectl get endpoints
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Or the cooler kids do:&lt;/p&gt;
           
           
         
@@ -93,10 +123,10 @@
     
     <item>
       <title>Kubernetes Network Policies: Your Cluster’s Traffic Bouncer</title>
-      <link>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</link>
+      <link>http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</link>
       <pubDate>Tue, 20 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</guid>
+      <guid>http://localhost:1313/post/2025/05/20/kubernetes-network-policies-your-cluster-s-traffic-bouncer/</guid>
       <description>
         
           
@@ -117,10 +147,10 @@
     
     <item>
       <title>Kubernetes Ingress: 7 Common Mistakes (and How to Avoid Them)</title>
-      <link>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
+      <link>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</link>
       <pubDate>Tue, 13 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
+      <guid>http://localhost:1313/post/2025/05/13/kubernetes-ingress-7-common-mistakes-and-how-to-avoid-them/</guid>
       <description>
         
           
@@ -185,10 +215,10 @@
     
     <item>
       <title>Kubernetes Ingress: Your Cluster&#39;s Traffic Director</title>
-      <link>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
+      <link>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</link>
       <pubDate>Tue, 06 May 2025 03:00:00 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
+      <guid>http://localhost:1313/post/2025/05/06/kubernetes-ingress-your-clusters-traffic-director/</guid>
       <description>
         
           
@@ -205,10 +235,10 @@
     
     <item>
       <title>Kubernetes Services: The Network Matchmakers</title>
-      <link>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
+      <link>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</link>
       <pubDate>Tue, 29 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
+      <guid>http://localhost:1313/post/2025/04/29/kubernetes-services-the-network-matchmakers/</guid>
       <description>
         
           
@@ -222,10 +252,10 @@
     
     <item>
       <title>Kubernetes StatefulSets: Because Some Pods Need to Remember Things</title>
-      <link>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
+      <link>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</link>
       <pubDate>Tue, 22 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
+      <guid>http://localhost:1313/post/2025/04/22/kubernetes-statefulsets-because-some-pods-need-to-remember-things/</guid>
       <description>
         
           
@@ -241,10 +271,10 @@
     
     <item>
       <title>Kubernetes Deployments: Like a Boss (Who Delegates Everything)</title>
-      <link>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
+      <link>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</link>
       <pubDate>Thu, 17 Apr 2025 08:30:35 +0200</pubDate>
       
-      <guid>https://gavriliu.com/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
+      <guid>http://localhost:1313/post/2025/04/17/kubernetes-deployments-like-a-boss-who-delegates-everything/</guid>
       <description>
         
           
