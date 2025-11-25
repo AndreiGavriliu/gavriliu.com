@@ -40,4 +40,4 @@ For comments, the site integrates **[giscus](https://giscus.app/)** ([repository
 
 For analytics, we use a self-hosted **[Umami](https://umami.is/)** ([repository](https://github.com/umami-software/umami)) instance to gather insights on website traffic while respecting user privacy. No personal data is collected, and all analytics data remains within our infrastructure.
 
-Both the static site and the analytics service are hosted in my self-managed [homelab](/series/homelab), ensuring full control over data and performance.
+The analytics service remains hosted in my self-managed [homelab](/series/homelab), while the blog has moved to GitHub Pages for better performance and stability. After all, my homelab is still a homelab, where I break things just to fix them.
