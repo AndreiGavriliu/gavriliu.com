@@ -9,7 +9,7 @@ fallBackOgImage = "logos/logo.png"
 mobileNavigation = "right"
 
 # description on sidebar
-introDescription = "System Engineer @ [SVA System Vertrieb Alexander GmbH](https://sva.de)"
+introDescription = "System Engineer @ [SVA System Vertrieb Alexander GmbH](https://www.sva.de)"
 since = "2025 "
 
 # enable global search in sidebar
