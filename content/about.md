@@ -38,6 +38,6 @@ This website values your privacy and only uses local cookies to store your prefe
 
 For comments, the site integrates **[giscus](https://giscus.app/)** ([repository](https://github.com/giscus/giscus)), a GitHub-based commenting system. To participate in discussions, you will need a [GitHub account](https://github.com/), as all comments are stored as discussions within my repository.
 
-For analytics, we use a self-hosted **[Umami](https://umami.is/)** ([repository](https://github.com/umami-software/umami)) instance to gather insights on website traffic while respecting user privacy. No personal data is collected, and all analytics data remains within our infrastructure.
+For analytics, I use a self-hosted **[Umami](https://umami.is/)** ([repository](https://github.com/umami-software/umami)) instance to gather insights on website traffic while respecting user privacy. No personal data is collected, and all analytics data remains within our infrastructure.
 
 The analytics service remains hosted in my self-managed [homelab](/series/homelab), while the blog has moved to GitHub Pages for better performance and stability. After all, my homelab is still a homelab, where I break things just to fix them.
