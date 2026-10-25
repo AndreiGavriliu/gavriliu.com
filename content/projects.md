@@ -27,9 +27,6 @@ A few details about what makes it all work smoothly:
     * [Prometheus](https://prometheus.io/) (Metrics collection)
     * [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) (Alert management)
 
-<!-- ... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab) -->
-... more details about the cluster and what Apps I am hosting, in my [homelab series](series/homelab)
-
 ```mermaid
 graph TD
     fritz-box["AVM FRITZ!Box"]
@@ -121,6 +118,8 @@ graph TD
     class appletv-01,appletv-02,sony-playstation,nintendo-switch home
     class vpn-homelab down
 ```
+
+... more details about the cluster and what Apps I am hosting, in my [homelab series](series/homelab)
 
 ## Home Assistant
 
