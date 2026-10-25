@@ -30,6 +30,98 @@ A few details about what makes it all work smoothly:
 <!-- ... more details about the cluster and what Apps I am hosting, on my [GitHub Repository](https://github.com/AndreiGavriliu/homelab) -->
 ... more details about the cluster and what Apps I am hosting, in my [homelab series](series/homelab)
 
+```mermaid
+graph TD
+    fritz-box["AVM FRITZ!Box"]
+    fritz-box --> unifi-dream-machine-pro
+
+    unifi-dream-machine-pro["Uifi<br/>Dream Machine Pro"]
+
+    subgraph VPN["VPN networks"]
+        vpn-homelab["Homelab VPN"]
+    end
+    unifi-dream-machine-pro -.- VPN
+
+    unifi-usw-pro-max-24-poe["USW Pro Max 24 PoE"]
+    unifi-dream-machine-pro ==>|"10G"| unifi-usw-pro-max-24-poe
+
+    subgraph hive
+        hive-01["hive-01"]
+        hive-02["hive-02"]
+        hive-03["hive-03"]
+        hive-04["hive-04"]
+    end
+    synology-ds918-plus["Synology DS918+"]
+    pihole-01["pihole-01/HAProxy"]
+    openccu["OpenCCU (HomeMatic)"]
+    power-distribution-unit-01["PDU-01"]
+    slzb-06m["SLZB-06M"]
+
+    unifi-usw-flex-mini["USW Flex Mini"]
+    unifi-usw-pro-max-24-poe -->|"1G"| hive-01
+    unifi-usw-pro-max-24-poe -->|"1G"| hive-02
+    unifi-usw-pro-max-24-poe -->|"1G"| hive-03
+    unifi-usw-pro-max-24-poe -->|"1G"| hive-04
+    unifi-usw-pro-max-24-poe -->|"1G"| unifi-usw-flex-mini
+    unifi-usw-pro-max-24-poe -->|"1G"| synology-ds918-plus
+    unifi-usw-pro-max-24-poe -->|"100M"| pihole-01
+    unifi-usw-pro-max-24-poe -->|"100M"| openccu
+    unifi-usw-pro-max-24-poe -->|"1G"| power-distribution-unit-01
+    unifi-usw-pro-max-24-poe -->|"100M"| slzb-06m
+
+    subgraph hive-externalip["ExternalIP Services"]
+        externalip-01(["mqtt"])
+        externalip-02(["homeassistant"])
+        externalip-03(["ingressVIP"])
+    end
+    hive -.-> externalip-02
+    hive -.-> externalip-01
+    hive -.-> externalip-03
+
+    %% ---------- Office ----------
+    unifi-usw-flex-mini -->|"1G"| office-pc-01["Office PC 01"]
+    unifi-usw-flex-mini -->|"1G"| printer-01["Printer 01"]
+    unifi-usw-flex-mini -->|"100M"| pikvm-01["PiKVM 01"]
+
+    %% ---------- Access points ----------
+    subgraph access-points["Access Points"]
+        unifi-uap-u6-pro-01["Unifi<br/>UAP U6 Pro"]
+        unifi-uap-ac-pro-01["Unifi<br/>UAP AC Pro"]
+        unifi-uap-ac-pro-02["Unifi<br/>UAP AC Pro"]
+    end
+    unifi-usw-flex-mini -->|"1G"| unifi-uap-u6-pro-01
+    unifi-usw-flex-mini -->|"1G"| unifi-uap-ac-pro-01
+    unifi-uap-ac-pro-01 -. "wireless mesh uplink" .-> unifi-uap-ac-pro-02
+
+    subgraph wifi-clients["WiFi Clients"]
+        appletv-01["Apple TV 01"]
+        appletv-02["Apple TV 02"]
+        sony-playstation["Sony Playstation"]
+        nintendo-switch["Nintendo Switch"]
+        iot-devices["IoT Devices"]
+        security-camera-01["Security Camera 01"]
+        security-camera-02["Security Camera 02"]
+    end
+    access-points -.-> wifi-clients
+
+    %% ---------- VLAN colours ----------
+    classDef infra fill:#e5e7eb,stroke:#374151,color:#111
+    classDef lab fill:#dbeafe,stroke:#1d4ed8,color:#111
+    classDef vip fill:#eff6ff,stroke:#1d4ed8,stroke-dasharray:4 3,color:#111
+    classDef iot fill:#fef3c7,stroke:#b45309,color:#111
+    classDef cctv fill:#fee2e2,stroke:#b91c1c,color:#111
+    classDef home fill:#dcfce7,stroke:#15803d,color:#111
+    classDef down fill:#f9fafritz-box,stroke:#9ca3af,stroke-dasharray:4 3,color:#6b7280
+
+    class fritz-box,unifi-dream-machine-pro,unifi-usw-pro-max-24-poe,unifi-usw-flex-mini,unifi-uap-u6-pro-01,unifi-uap-ac-pro-01,unifi-uap-ac-pro-02 infra
+    class hive-01,hive-02,hive-03,hive-04,synology-ds918-plus,pihole-01,office-pc-01 lab
+    class externalip-01,externalip-02,VIP43,externalip-03 vip
+    class pikvm-01,iot-devices,slzb-06m,printer-01,openccu,power-distribution-unit-01 iot
+    class security-camera-01,security-camera-02 cctv
+    class appletv-01,appletv-02,sony-playstation,nintendo-switch home
+    class vpn-homelab down
+```
+
 ## Home Assistant
 
 [Home Assistant](https://www.home-assistant.io/) is like my home’s personal assistant, but instead of scheduling meetings, it’s reminding me to take the trash out and telling me when the washer’s done. It’s got some quirks, though—sometimes it seems to know me better than I know myself, like when it randomly turns on the lights at 3 AM and I’m left wondering if it’s just being helpful or trying to send me a message. At least it’s not sending passive-aggressive reminders… yet.
