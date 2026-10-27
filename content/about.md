@@ -11,7 +11,7 @@ comments = false
 
 Andrei Gavriliu - System Engineer @ [SVA System Vertrieb Alexander GmbH](https://www.sva.de)
 
-I recently moved to [SVA System Vertrieb Alexander GmbH](https://www.sva.de) after almost 20 years at [ConSol Consulting & Solutions Software GmbH](https://consol.de), where I’ve been solving technical challenges and breaking things just enough to learn how to fix them again. I have a passion for technology, whether it’s bleeding-edge Kubernetes clusters or almost century-old bicycles that somehow still work better than modern ones.
+I joined [SVA System Vertrieb Alexander GmbH](https://www.sva.de) in 2025 after spending almost 20 years at [ConSol Consulting & Solutions Software GmbH](https://consol.de), where I tackled technical challenges and occasionally broke things just enough to learn how to fix them again. I’m passionate about technology in all its forms, from bleeding-edge Kubernetes platforms and cloud-native infrastructure to almost century-old bicycles that somehow still work better than many modern ones.
 
 When I’m not in front of a terminal, I attempt downhill riding — with a strong emphasis on attempt — while trying to avoid turning myself into a cautionary tale. Homelabbing, rediscovering old tech, and tinkering with anything that has gears, or a slightly questionable user manual keep me busy.
 
